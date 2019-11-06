@@ -1,15 +1,15 @@
 <?php
-	defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') OR exit('No direct script access allowed');
 	
-	class C_donatur extends CI_Controller {
+class C_donatur extends CI_Controller {
 	
-		public function index()
-		{
-			echo "INI DONATUR";
-		}
-	
+	public function index()
+	{
+		echo "INI DONATUR";
 	}
 	
-	/* End of file controllername.php */
-	/* Location: ./application/controllers/controllername.php */
+}
+	
+/* End of file controllername.php */
+/* Location: ./application/controllers/controllername.php */
 ?>
