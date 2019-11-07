@@ -8,9 +8,9 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 	}
 
-	public function index()
+	public function index($str = "index")
 	{
-		echo "INI BASE CTRL";
+		$this->load->view('homepage/'.$str);
 	}
 
 }
