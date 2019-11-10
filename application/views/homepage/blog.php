@@ -22,7 +22,7 @@
 			<div class="container">
 				<div class="nav-header">
 					<a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-					<h1 id="fh5co-logo"><a href="index">Charity</a></h1>
+					<h1 id="fh5co-logo"><a href="index">Bagi Barang</a></h1>
 					<!-- START #fh5co-menu-wrap -->
 					<nav id="fh5co-menu-wrap" role="navigation">
 						<ul class="sf-menu" id="fh5co-primary-menu">
@@ -47,9 +47,11 @@
 								 	<li><a href="#">Medical Mission</a></li>
 								</ul>
 							</li>
-							<li><a href="<?php echo base_url(); ?>MY_Controller/index/about">About</a></li>
-							<li class="active"><a href="blog.html">Blog</a></li>
-							<li><a href="<?php echo base_url(); ?>MY_Controller/index/contact">Contact</a></li>
+							<li><a href="<?php echo base_url(); ?>MY_Controller/index/about">Tentang Kami</a></li>
+							<li><a href="<?php echo base_url(); ?>MY_Controller/index/blog">Blog</a></li>
+							<li><a href="<?php echo base_url(); ?>MY_Controller/index/contact">Kontak</a></li>
+							<li><a href="" class="" data-toggle="modal" data-target="#modalLoginForm">Masuk</a></li>
+							<li><a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalRegisterForm">Daftar</a></li>
 						</ul>
 					</nav>
 				</div>

@@ -15,3 +15,9 @@
 	
 	<!-- Main JS -->
 	<script src="<?php echo base_url(); ?>assets/js/main.js"></script>
+
+	<!-- Load Login JS -->
+	<?php $this->load->view('homepage/js/login_js'); ?>
+
+	<!-- Load Regis JS -->
+	<?php $this->load->view('homepage/js/regis_js'); ?>
