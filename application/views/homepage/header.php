@@ -76,14 +76,14 @@
       <div class="modal-body mx-3">
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <input type="email" id="defaultForm-email" class="form-control validate" placeholder="example@domain.com">
           <label data-error="wrong" data-success="right" for="defaultForm-email">E-Mail</label>
+          <input type="email" id="defaultForm-email" class="form-control validate" placeholder="example@domain.com">
         </div>
 
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
-          <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="******">
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
+          <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="******">
         </div>
 
       </div>
