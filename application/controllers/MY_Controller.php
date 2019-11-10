@@ -146,6 +146,12 @@ class MY_Controller extends CI_Controller {
 			}
 		}
 	}
+
+	public function logout()
+	{
+    	$this->session->sess_destroy();
+    	redirect('MY_Controller/index','refresh');
+    }  
 }
 
 /* End of file controllername.php */

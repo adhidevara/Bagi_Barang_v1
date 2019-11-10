@@ -26,30 +26,36 @@ $(document).ready(function(e){
 			function(pesan){
 				if(pesan=='pengelola'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata PENGELOLA
-					// window.location = url_admin;
-					Swal.fire(
-						'Selamat!',
-  						'Anda berhasil Masuk - PENGELOLA',
-  						'success'
-					);
+					window.location = '<?php echo base_url(); ?>';
+				    // Swal.fire({
+					   //  title: "Selamat!",
+					   //  text: "Anda berhasil Masuk - PENGELOLA!",
+					   //  type: "success"
+				    // }, function() {
+					   //  window.location.href = '<?php echo base_url(); ?>';
+				    // });
 				}
 				else if(pesan=='donatur'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata DONATUR
-					// window.location = url_admin;
-					Swal.fire(
-						'Selamat!',
-  						'Anda berhasil Masuk - DONATUR',
-  						'success'
-					);
+					window.location = '<?php echo base_url(); ?>';
+					// Swal.fire({
+					//     title: "Selamat!",
+					//     text: "Anda berhasil Masuk - DONATUR!",
+					//     type: "success"
+				 //    }, function() {
+					//     window.location.href = '<?php echo base_url(); ?>';
+				 //    });
 				}
 				else if(pesan=='volunteer'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata VOLUNTEER
-					// window.location = url_admin;
-					Swal.fire(
-						'Selamat!',
-  						'Anda berhasil Masuk - VOLUNTEER',
-  						'success'
-					);
+					window.location = '<?php echo base_url(); ?>';
+					// Swal.fire({
+					//     title: "Selamat!",
+					//     text: "Anda berhasil Masuk - VOLUNTEER!",
+					//     type: "success"
+				 //    }, function() {
+					//     window.location.href = '<?php echo base_url(); ?>';
+				 //    });
 				}
 				else{
 					//Cetak peringatan untuk username & password salah

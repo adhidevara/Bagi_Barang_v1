@@ -142,3 +142,91 @@
 </div>
 
 <!-- ----------------------------------------------------------------------------------------------- -->
+
+<body>
+    <div id="fh5co-wrapper">
+    <div id="fh5co-page">
+    <div class="header-top">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 col-sm-6 text-left fh5co-link">
+            <a href="#">FAQ</a>
+            <a href="#">Forum</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="col-md-6 col-sm-6 text-right fh5co-social">
+            <a href="#" class="grow"><i class="icon-facebook2"></i></a>
+            <a href="#" class="grow"><i class="icon-twitter2"></i></a>
+            <a href="#" class="grow"><i class="icon-instagram2"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="fh5co-header-section" class="sticky-banner">
+      <div class="container">
+        <div class="nav-header">
+          <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+          <h1 id="fh5co-logo"><a href="index">Bagi Barang</a></h1>
+          <!-- START #fh5co-menu-wrap -->
+          <nav id="fh5co-menu-wrap" role="navigation">
+            <ul class="sf-menu" id="fh5co-primary-menu">
+              <li>
+                <a href="index">Home</a>
+              </li>
+              <li>
+                <a href="#" class="fh5co-sub-ddown">Get Involved</a>
+                <ul class="fh5co-sub-menu">
+                  <li><a href="#">Donate</a></li>
+                  <li><a href="#">Fundraise</a></li>
+                  <li><a href="#">Campaign</a></li>
+                  <li><a href="#">Philantrophy</a></li>
+                  <li><a href="#">Volunteer</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#" class="fh5co-sub-ddown">Projects</a>
+                 <ul class="fh5co-sub-menu">
+                  <li><a href="#">Water World</a></li>
+                  <li><a href="#">Cloth Giving</a></li>
+                  <li><a href="#">Medical Mission</a></li>
+                </ul>
+              </li>
+              <li><a href="<?php echo base_url(); ?>MY_Controller/index/about">Tentang Kami</a></li>
+              <li><a href="<?php echo base_url(); ?>MY_Controller/index/blog">Blog</a></li>
+              <li><a href="<?php echo base_url(); ?>MY_Controller/index/contact">Kontak</a></li>
+              <?php if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 1) { ?>
+              <li>
+                <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
+                  <ul class="fh5co-sub-menu">
+                    <li><b>Akun Pengelola</b></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="<?php echo base_url(); ?>MY_Controller/logout">Logout</a></li>
+                  </ul>
+              </li>
+              <?php } else if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 2) { ?>
+              <li>
+                <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
+                  <ul class="fh5co-sub-menu">
+                    <li><b>Akun Donatur</b></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="<?php echo base_url(); ?>MY_Controller/logout">Logout</a></li>
+                  </ul>
+              </li>
+              <?php } else if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 3) { ?>
+              <li>
+                <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
+                  <ul class="fh5co-sub-menu">
+                    <li><b>Akun Volunteer</b></li>
+                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="<?php echo base_url(); ?>MY_Controller/logout" id="logout">Logout</a></li>
+                  </ul>
+              </li>
+              <?php } else { ?>
+              <li><a href="" class="" data-toggle="modal" data-target="#modalLoginForm">Masuk</a></li>
+              <li><a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#modalRegisterForm">Daftar</a></li>
+              <?php } ?>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </header>
