@@ -116,13 +116,13 @@ class MY_Controller extends CI_Controller {
 		if (array_key_exists("accTypeDonatur", $form)) {
 			$check_email = $this->check_email($form['email']);
 			if ($check_email == "EMAIL ADA - P") {
-				echo "EMAIL TELAH TERDAFTAR p";
+				echo "EMAIL TELAH TERDAFTAR error_code : p-reg01";
 			}
 			else if ($check_email == "EMAIL ADA - D") {
-				echo "EMAIL TELAH TERDAFTAR d";
+				echo "EMAIL TELAH TERDAFTAR/nerror_code :d-reg01";
 			}
 			else if ($check_email == "EMAIL ADA - V") {
-				echo "EMAIL TELAH TERDAFTAR v";
+				echo "EMAIL TELAH TERDAFTAR error_code : v-reg01";
 			}
 			else{
 				$insert = $this->M_akun->insert('donatur', $data);
@@ -132,13 +132,13 @@ class MY_Controller extends CI_Controller {
 		else {
 			$check_email = $this->check_email($form['email']);
 			if ($check_email == "EMAIL ADA - P") {
-				echo "EMAIL TELAH TERDAFTAR p";
+				echo "EMAIL TELAH TERDAFTAR error_code : p-reg02";
 			}
 			else if ($check_email == "EMAIL ADA - D") {
-				echo "EMAIL TELAH TERDAFTAR d";
+				echo "EMAIL TELAH TERDAFTAR error_code : d-reg02";
 			}
 			else if ($check_email == "EMAIL ADA - V") {
-				echo "EMAIL TELAH TERDAFTAR v";
+				echo "EMAIL TELAH TERDAFTAR error_code : v-reg02";
 			}
 			else{
 				$insert = $this->M_akun->insert('volunteer', $data);
