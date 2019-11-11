@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
-	'password' => '',
-	'database' => 'Bagi_Barang_v1',
+	'hostname' => 'remotemysql.com:3306',
+	'username' => 'd1mNREuOwm',
+	'password' => 'lgZeppNIUK',
+	'database' => 'd1mNREuOwm',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
@@ -94,3 +94,13 @@ $db['default'] = array(
 	'failover' => array(),
 	'save_queries' => TRUE
 );
+
+// --------------------------REMOTE MYSQL---------------------------------------
+
+// You have successfully created a new database. The details are below.
+// Username: d1mNREuOwm
+// Database name: d1mNREuOwm
+// Password: lgZeppNIUK
+// Server: remotemysql.com
+// Port: 3306
+// These are the username and password to log in to your database and phpMyAdmin

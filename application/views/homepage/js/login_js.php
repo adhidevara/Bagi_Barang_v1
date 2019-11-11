@@ -27,35 +27,23 @@ $(document).ready(function(e){
 				if(pesan=='pengelola'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata PENGELOLA
 					window.location = '<?php echo base_url(); ?>';
-				    // Swal.fire({
-					   //  title: "Selamat!",
-					   //  text: "Anda berhasil Masuk - PENGELOLA!",
-					   //  type: "success"
-				    // }, function() {
-					   //  window.location.href = '<?php echo base_url(); ?>';
-				    // });
 				}
 				else if(pesan=='donatur'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata DONATUR
 					window.location = '<?php echo base_url(); ?>';
-					// Swal.fire({
-					//     title: "Selamat!",
-					//     text: "Anda berhasil Masuk - DONATUR!",
-					//     type: "success"
-				 //    }, function() {
-					//     window.location.href = '<?php echo base_url(); ?>';
-				 //    });
 				}
 				else if(pesan=='volunteer'){
 					//Arahkan ke halaman admin jika script pemroses mencetak kata VOLUNTEER
 					window.location = '<?php echo base_url(); ?>';
-					// Swal.fire({
-					//     title: "Selamat!",
-					//     text: "Anda berhasil Masuk - VOLUNTEER!",
-					//     type: "success"
-				 //    }, function() {
-					//     window.location.href = '<?php echo base_url(); ?>';
-				 //    });
+				}
+				else if(pesan=='CEK EMAIL'){
+					//Arahkan ke halaman admin jika script pemroses mencetak kata VOLUNTEER
+					Swal.fire({
+						icon: 'error',
+						title: 'AKUN ANDA BELUM AKTIF',
+						text: pesan,
+						footer: '<a href=<?php echo base_url(); ?>MY_Controller/reSendEmailVerif?email='+email+'>Kirim Ulang Email Verifikasi!</a>'
+					});
 				}
 				else{
 					//Cetak peringatan untuk username & password salah

@@ -33,7 +33,7 @@ $(document).ready(function(e){
 						// window.location = '<?php echo base_url(); ?>';
 						Swal.fire(
 							'Selamat Anda DONATUR!',
-  							'Akun Anda Berhasil Dibuat',
+  							'Akun Anda Berhasil Dibuat - Cek Email Anda Untuk Melakukan Verifikasi Akun',
   							'success'
 						);
 					}
@@ -41,8 +41,8 @@ $(document).ready(function(e){
 						//Arahkan ke halaman admin jika script pemroses mencetak kata ok
 						// window.location = '<?php echo base_url(); ?>';
 						Swal.fire(
-							'Selamat Anda VOLUNTEER!',
-  							'Akun Anda Berhasil Dibuat',
+							'Selamat Anda DONATUR!',
+  							'Akun Anda Berhasil Dibuat - Cek Email Anda Untuk Melakukan Verifikasi Akun',
   							'success'
 						);
 					}
@@ -76,7 +76,7 @@ $(document).ready(function(e){
 						// window.location = '<?php echo base_url(); ?>';
 						Swal.fire(
 							'Selamat Anda VOLUNTEER!',
-  							'Akun Anda Berhasil Dibuat',
+  							'Akun Anda Berhasil Dibuat - Cek Email Anda Untuk Melakukan Verifikasi Akun',
   							'success'
 						);
 					}
@@ -85,7 +85,7 @@ $(document).ready(function(e){
 						// window.location = '<?php echo base_url(); ?>';
 						Swal.fire(
 							'Selamat Anda VOLUNTEER!',
-  							'Akun Anda Berhasil Dibuat',
+  							'Akun Anda Berhasil Dibuat - Cek Email Anda Untuk Melakukan Verifikasi Akun',
   							'success'
 						);
 					}
