@@ -501,6 +501,7 @@ style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif; font-size
 <tr>
 
 <td align="center" style="padding-top:10px;padding-right:40px;padding-bottom:10px;padding-left:40px">
+<a href="<?php echo base_url(); ?>MY_Controller/verifAcc?email=<?= $email ?>">
 <a href="" target="_blank" style="color:#FFFFFF !important;font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:20px;mso-line-height:exactly;line-height:20px;text-decoration:none;text-align:center;">
 
 <span style="color:#FFFFFF !important;font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif;font-size:20px;mso-line-height:exactly;line-height:20px">
@@ -508,6 +509,7 @@ style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif; font-size
 <strong>Verifikasi Sekarang</strong>
 </font>
 </span>
+</a>
 </a>
 </td>
 </tr>
