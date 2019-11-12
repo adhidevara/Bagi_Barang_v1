@@ -475,7 +475,7 @@ style="font-family:Lato, Helvetica Neue, Helvetica, Arial, sans-serif; font-size
 <tr>
 
 <td valign="top" align="center" style="padding:20px">
-<!--[if !true]><div style="display:none;"><![endif]--><!--[if !mso]><!-- -->
+<!--[if !true]><div style="display:none;"><![endif]--><!--[if !mso]><!- -->
 <a href="" target="_blank" style="display:inline-block;text-decoration:none">
 
 <span><table cellpadding="0" cellspacing="0" border="0" bgcolor="#F2552C" style="border:0px none;border-radius:5px;border-collapse:separate !important;background-color:#F2552C" class="full-width">
