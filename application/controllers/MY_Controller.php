@@ -80,7 +80,7 @@ class MY_Controller extends CI_Controller {
 				if ($getDataD[0]->status == 1) {
 					$session_data = array(
 						'role_id' => 2,
-						'id_pengelola' => $getDataD[0]->id_donatur,
+						'id_donatur' => $getDataD[0]->id_donatur,
 						'email' => $getDataD[0]->email,
 						'nama' => $getDataD[0]->nama,
 						'no_ktp' => $getDataD[0]->no_ktp,
@@ -108,7 +108,7 @@ class MY_Controller extends CI_Controller {
 				if ($getDataV[0]->status == 1) {	
 					$session_data = array(
 						'role_id' => 3,
-						'id_pengelola' => $getDataV[0]->id_volunteer,
+						'id_volunteer' => $getDataV[0]->id_volunteer,
 						'email' => $getDataV[0]->email,
 						'nama' => $getDataV[0]->nama,
 						'no_ktp' => $getDataV[0]->no_ktp,

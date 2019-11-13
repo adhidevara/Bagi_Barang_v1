@@ -217,7 +217,7 @@
                 <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
                   <ul class="fh5co-sub-menu">
                     <li><b>Akun Volunteer</b></li>
-                    <li><a href="#">Dashboard</a></li>
+                    <li><a href="<?php echo base_url(); ?>penerima/C_penerima">Dashboard</a></li>
                     <li><a href="<?php echo base_url(); ?>MY_Controller/logout" id="logout">Logout</a></li>
                   </ul>
               </li>
