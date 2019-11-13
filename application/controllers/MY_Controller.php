@@ -53,9 +53,15 @@ class MY_Controller extends CI_Controller {
 					$session_data = array(
 						'role_id' => 1,
 						'id_pengelola' => $getDataP[0]->id_pengelola,
-						'nama' => $getDataP[0]->nama,
 						'email' => $getDataP[0]->email,
-						'password' => $getDataP[0]->password
+						'nama' => $getDataP[0]->nama,
+						'no_ktp' => $getDataP[0]->no_ktp,
+						'password' => $getDataP[0]->password,
+						'jenis_kelamin' => $getDataP[0]->jenis_kelamin,
+						'alamat' => $getDataP[0]->alamat,
+						'foto' => $getDataP[0]->foto,
+						'no_tlp' => $getDataP[0]->no_tlp,
+						'status' => $getDataP[0]->status
 					);
 					$this->session->set_userdata($session_data);
 					echo "pengelola";
@@ -74,10 +80,16 @@ class MY_Controller extends CI_Controller {
 				if ($getDataD[0]->status == 1) {
 					$session_data = array(
 						'role_id' => 2,
-						'id_donatur' => $getDataD[0]->id_donatur,
-						'nama' => $getDataD[0]->nama,
+						'id_pengelola' => $getDataD[0]->id_donatur,
 						'email' => $getDataD[0]->email,
-						'password' => $getDataD[0]->password
+						'nama' => $getDataD[0]->nama,
+						'no_ktp' => $getDataD[0]->no_ktp,
+						'password' => $getDataD[0]->password,
+						'jenis_kelamin' => $getDataD[0]->jenis_kelamin,
+						'alamat' => $getDataD[0]->alamat,
+						'foto' => $getDataD[0]->foto,
+						'no_tlp' => $getDataD[0]->no_tlp,
+						'status' => $getDataD[0]->status
 					);
 					$this->session->set_userdata($session_data);
 					echo "donatur";				
@@ -96,10 +108,16 @@ class MY_Controller extends CI_Controller {
 				if ($getDataV[0]->status == 1) {	
 					$session_data = array(
 						'role_id' => 3,
-						'id_volunteer' => $getDataV[0]->id_volunteer,
-						'nama' => $getDataV[0]->nama,
+						'id_pengelola' => $getDataV[0]->id_volunteer,
 						'email' => $getDataV[0]->email,
-						'password' => $getDataV[0]->password
+						'nama' => $getDataV[0]->nama,
+						'no_ktp' => $getDataV[0]->no_ktp,
+						'password' => $getDataV[0]->password,
+						'jenis_kelamin' => $getDataV[0]->jenis_kelamin,
+						'alamat' => $getDataV[0]->alamat,
+						'foto' => $getDataV[0]->foto,
+						'no_tlp' => $getDataV[0]->no_tlp,
+						'status' => $getDataV[0]->status
 					);
 					$this->session->set_userdata($session_data);
 					echo "volunteer";
@@ -122,12 +140,7 @@ class MY_Controller extends CI_Controller {
 		$form = $this->input->post();
 		$password = $this->encryption->encrypt($form['password']);
 
-		$data = array(
-					'nama' => $form['nama'],
-					'email' => $form['email'],
-					'password' => $password,
-					'status' => 0
-					);
+
 
 		if (array_key_exists("accTypeDonatur", $form)) {
 			$check_email = $this->check_email($form['email']);
@@ -141,6 +154,14 @@ class MY_Controller extends CI_Controller {
 				echo "EMAIL TELAH TERDAFTAR error_code : v-reg01";
 			}
 			else{
+				$id_donatur = $this->M_akun->gen_id('donatur', 'id_donatur', 'DNTR-1502-');
+				$data = array(
+					'id_donatur' => $id_donatur,
+					'nama' => $form['nama'],
+					'email' => $form['email'],
+					'password' => $password,
+					'status' => 0
+				);
 				$insert = $this->M_akun->insert('donatur', $data);
 				$getDataD = $this->M_akun->selectWhere("*", 'donatur', 'email', $form['email']);
 				$kirim_email = $this->send($getDataD[0]->email, "BAGI BARANG - VERIFIKASI AKUN", $getDataD[0]->nama, "Donatur");
@@ -160,6 +181,14 @@ class MY_Controller extends CI_Controller {
 				echo "EMAIL TELAH TERDAFTAR error_code : v-reg02";
 			}
 			else{
+				$id_volunteer = $this->M_akun->gen_id('volunteer', 'id_volunteer', 'VLNT-1503-');
+				$data = array(
+					'id_donatur' => $id_volunteer,
+					'nama' => $form['nama'],
+					'email' => $form['email'],
+					'password' => $password,
+					'status' => 0
+				);
 				$insert = $this->M_akun->insert('volunteer', $data);
 				$getDataV = $this->M_akun->selectWhere("*", 'volunteer', 'email', $form['email']);
 				$kirim_email = $this->send($getDataV[0]->email, "BAGI BARANG - VERIFIKASI AKUN", $getDataV[0]->nama, "Volunteer");
@@ -257,7 +286,11 @@ class MY_Controller extends CI_Controller {
   	//FUNCTION TESTING
   	// public function test()
   	// {
-  	// 	$this->load->view('content_email');
+  	// 	// $this->load->view('content_email');
+  	// 	$hasil = $this->M_akun->gen_id('donatur', 'id_donatur', 'DNTR-1059-');
+  	// 	echo "<pre>";
+  	// 	print_r ($hasil);
+  	// 	echo "</pre>";
   	// }
   
 }
