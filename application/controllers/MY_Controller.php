@@ -140,8 +140,6 @@ class MY_Controller extends CI_Controller {
 		$form = $this->input->post();
 		$password = $this->encryption->encrypt($form['password']);
 
-
-
 		if (array_key_exists("accTypeDonatur", $form)) {
 			$check_email = $this->check_email($form['email']);
 			if ($check_email == "EMAIL ADA - P") {
@@ -180,10 +178,10 @@ class MY_Controller extends CI_Controller {
 			else if ($check_email == "EMAIL ADA - V") {
 				echo "EMAIL TELAH TERDAFTAR error_code : v-reg02";
 			}
-			else{
+			else {
 				$id_volunteer = $this->M_akun->gen_id('volunteer', 'id_volunteer', 'VLNT-1503-');
 				$data = array(
-					'id_donatur' => $id_volunteer,
+					'id_volunteer' => $id_volunteer,
 					'nama' => $form['nama'],
 					'email' => $form['email'],
 					'password' => $password,
