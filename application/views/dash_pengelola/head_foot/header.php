@@ -23,7 +23,7 @@
     <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/animate-css/animate.css" rel="stylesheet" />
 
     <!-- Morris Chart Css-->
-    <!-- <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/morrisjs/morris.css" rel="stylesheet" /> -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
     <!-- Custom Css -->
     <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">

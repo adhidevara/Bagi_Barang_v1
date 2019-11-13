@@ -1,4 +1,4 @@
-<?php //$this->load->view('dash_pengelola/head_foot/header'); ?>
+<?php $this->load->view('dash_pengelola/head_foot/header'); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -311,7 +311,7 @@
         </div>
     </section>
 
-<?php //$this->load->view('dash_pengelola/head_foot/footer'); ?>
+<?php $this->load->view('dash_pengelola/head_foot/footer'); ?>
 
 </body>
 

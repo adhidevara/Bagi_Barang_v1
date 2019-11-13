@@ -12,9 +12,7 @@ class C_pengelola extends CI_Controller {
 	public function index()
 	{
 		if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 1) {
-			$this->load->view('dash_pengelola/head_foot/header');
 			$this->load->view('dash_pengelola/hal_awal');
-			$this->load->view('dash_pengelola/head_foot/footer');
 		}
 		else{
 			redirect('MY_Controller/index','refresh');
