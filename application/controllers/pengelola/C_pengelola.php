@@ -6,12 +6,12 @@ class C_pengelola extends CI_Controller {
 	public function __construct()
 	{
 		parent::__construct();
-		//Do your magic here
+		$this->load->model('M_akun');
 	}
 
 	public function index()
 	{
-		echo "INI PENGELOLA";
+		$this->load->view('dash_pengelola/hal_awal');
 	}
 
 }
