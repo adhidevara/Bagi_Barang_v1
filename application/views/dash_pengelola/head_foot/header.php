@@ -25,6 +25,9 @@
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
+    <!-- JQuery DataTable Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
     <!-- Custom Css -->
     <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
 
@@ -283,7 +286,7 @@
                     <?php } ?>
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('nama')." - ".$this->session->userdata('id_pengelola'); ?></div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?= $this->session->userdata('nama') ?></div>
                     <div class="email"><?= $this->session->userdata('email') ?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
@@ -372,10 +375,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="">Tambah Pengelola Baru</a>
+                                <a href="<?php echo base_url(); ?>pengelola/C_pengelola/addPengelola">Tambah Pengelola Baru</a>
                             </li>
                             <li>
-                                <a href="">Verifikasi Volunteer
+                                <a href="<?php echo base_url(); ?>pengelola/C_pengelola/VerifVolun">Verifikasi Volunteer
                                 </a>
                             </li>
                         </ul>
@@ -386,10 +389,10 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; 2019 - 2020 <a href="javascript:void(0);">Bagi Barang<br>ID Pengelola : <?= $this->session->userdata('id_pengelola'); ?></a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.0.5
+                    <b>Version: </b> 1.0.0
                 </div>
             </div>
             <!-- #Footer -->

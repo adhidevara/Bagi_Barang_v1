@@ -274,6 +274,11 @@ class MY_Controller extends CI_Controller {
   		}
   	}
 
+  	public function pages_404()
+  	{
+  		$this->load->view('Pages_404');
+  	}
+
 
 
 
