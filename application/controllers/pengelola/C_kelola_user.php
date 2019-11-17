@@ -61,13 +61,15 @@ class C_kelola_user extends C_pengelola {
 				'email' => $form['email'],
 				'nama' => $form['nama'],
 				'no_ktp' => $form['no_ktp'],
+				'no_tlp' => $form['no_tlp'],
+				'password' => $this->encryption->encrypt($id_pengelola),
 				'jenis_kelamin' => $form['jenis_kelamin'],
 				'alamat' => $form['alamat'],
 				'foto' => 'uploads/fotoProfil/ft_p/'.$dataFoto['file_name'],
 				'status' => 0
 			);
 			$this->M_akun->insert('pengelola', $data);
-			// $this->MY_Controller->send($form['email'], 'BAGI BARANG - VERIFIKASI AKUN', $form['nama'], 'Pengelola');
+			$this->send($form['email'], 'BAGI BARANG - VERIFIKASI AKUN', $form['nama'], 'Pengelola');
 			?>
 			<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     		<script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery/jquery.min.js"></script>
@@ -85,6 +87,19 @@ class C_kelola_user extends C_pengelola {
 			<?php
 		}
 	}
+
+	public function send($email_penerima, $subjek, $nama, $jenis_akun){
+
+	    $content = $this->load->view('dash_pengelola/content_email', array('nama'=>$nama, 'jenis_akun'=>$jenis_akun, 'email'=>$email_penerima), true); // Ambil isi file content.php dan masukan ke variabel $content
+	    
+	    $sendmail = array(
+	      'email_penerima'=>$email_penerima,
+	      'subjek'=>$subjek,
+	      'content'=>$content,
+	    );
+	    
+	    $send = $this->mailer->send($sendmail);//Kirim Email
+  	}
 }
 
 /* End of file controllername.php */
