@@ -111,7 +111,7 @@ class MY_Controller extends CI_Controller {
 		else if ($check_email == "EMAIL ADA - V") {
 			$getDataV = $this->M_akun->selectWhere("*", 'volunteer', 'email', $form['email']);
 			if ($form['password'] == $this->encryption->decrypt($getDataV[0]->password)) {
-				if ($getDataV[0]->status == 1) {	
+				if ($getDataV[0]->status == 1 || $getDataV[0]->status == 11) {	
 					$session_data = array(
 						'role_id' => 3,
 						'id_volunteer' => $getDataV[0]->id_volunteer,
