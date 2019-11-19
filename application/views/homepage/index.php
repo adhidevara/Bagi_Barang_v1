@@ -1,11 +1,11 @@
 <?php $this->load->view('homepage/header'); ?>
 	<div class="fh5co-hero">
 			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/cover_bg_1.jpg);">
+			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/banner.jpg);">
 				<div class="desc animate-box">
 					<h2><strong>Donate</strong> for the <strong>Poor Children</strong></h2>
-					<span>HandCrafted by <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">FreeHTML5.co</a></span>
-					<span><a class="btn btn-primary btn-lg" href="#">Donate Now</a></span>
+					<span>Yuk <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">Donasi Sekarang Juga</a></span>
+					<span><a class="btn btn-primary btn-lg" href="#">Donasi Sekarang</a></span>
 				</div>
 			</div>
 
@@ -58,6 +58,58 @@
 			</div>
 		</div>
 
+		<div id="fh5co-blog-section" class="fh5co-section-gray">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+						<h3>Recent From Blog</h3>
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+					</div>
+				</div>
+			</div>
+			<div class="container">
+				<div class="row row-bottom-padded-md">
+
+					<?php foreach ($selectAllCampaign as $dt) { ?>
+						<div class="col-lg-4 col-md-4 col-sm-6">
+							<div class="fh5co-blog animate-box">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px"></a>
+								<div class="blog-text">
+									<div class="prod-title">
+										<h3><a href=""#><?php echo $dt->judul_campaign; ?></a></h3>
+										<span class="comment"><small>Sisa <?php echo $dt->hsl; ?> Hari </small></span><br>
+										
+										<font style="color: orange; size: 5px">
+											Rp. <?php echo number_format($dt->target_campaign); ?> </font> 
+											<div class="progress" style="background-color: lightgrey">
+				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
+				                                    style=" width: 15%; background-color: orange">
+				                               </div>
+				                               <small style="margin-left: -10px; color: white;margin-bottom: 5px">Terkumpul Dari Rp. <?php echo number_format($dt->target_campaign); ?></small>
+				                           </div>
+
+										<p style="text-align: center;">
+											<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>" class="btn btn-primary btn-sm">Donasi Sekarang</a>
+										</p>
+									</div>
+								</div> 
+							</div>
+						</div>
+					<?php } ?>					
+
+
+					<div class="clearfix visible-md-block"></div>
+				</div>
+
+				<div class="row">
+					<div class="col-md-4 col-md-offset-4 text-center animate-box">
+						<a href="#" class="btn btn-primary btn-lg">Lebih Banyak</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
 		<div id="fh5co-feature-product" class="fh5co-section-gray">
 			<div class="container">
 				<div class="row">
@@ -67,17 +119,17 @@
 					</div>
 				</div>
 
-				<div class="row row-bottom-padded-md">
+				<!-- <div class="row row-bottom-padded-md">
 					<div class="col-md-12 text-center animate-box">
-						<p><img src="<?php echo base_url(); ?>assets/images/cover_bg_1.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive"></p>
+						<p><img src="<?php echo base_url().$data2[0]->gambar; ?>" alt="Free HTML5 Bootstrap Template" class="img-responsive" style="width: 100%; height: 450px"></p>
 					</div>
 					<div class="col-md-6 text-center animate-box">
-						<p><img src="<?php echo base_url(); ?>assets/images/cover_bg_2.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive"></p>
+						<p><img src="<?php echo base_url().$view1[0]->gambar; ?>" alt="Free HTML5 Bootstrap Template" class="img-responsive"></p>
 					</div>
 					<div class="col-md-6 text-center animate-box">
-						<p><img src="<?php echo base_url(); ?>assets/images/cover_bg_3.jpg" alt="Free HTML5 Bootstrap Template" class="img-responsive"></p>
+						<p><img src="<?php echo base_url().$view3[0]->gambar; ?>	" alt="Free HTML5 Bootstrap Template" class="img-responsive"></p>
 					</div>
-				</div>
+				</div> -->
 				<div class="row">
 					<div class="col-md-4">
 						<div class="feature-text">
@@ -119,37 +171,37 @@
 					<div class="col-md-12">
 						<ul id="fh5co-portfolio-list">
 
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url(); ?>assets/images/cover_bg_1.jpg); ">
+							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); ">
 								<a href="#" class="color-3">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2>Donation is caring</h2>
+										<h2><?php echo $campaignByPantiAsuhan[0]->kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 						
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url(); ?>assets/images/cover_bg_3.jpg); ">
+							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPendidikan[0]->gambar; ?>); ">
 								<a href="#" class="color-4">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2>Donation is caring</h2>
+										<h2><?php echo $campaignByPendidikan[0]->kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url(); ?>assets/images/cover_bg_1.jpg); "> 
+							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); "> 
 								<a href="#" class="color-5">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2>Donation is caring</h2>
+										<h2><?php echo $campaignByBencanaAlam[0]->kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url(); ?>assets/images/cover_bg_3.jpg); ">
+							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByKemanusiaan[0]->gambar; ?>); ">
 								<a href="#" class="color-6">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2>Donation is caring</h2>
+										<h2><?php echo $campaignByKemanusiaan[0]->kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
@@ -159,7 +211,7 @@
 
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center animate-box">
-						<a href="#" class="btn btn-primary btn-lg">See Gallery</a>
+						<a href="#" class="btn btn-primary btn-lg">Kategori</a>
 					</div>
 				</div>
 
@@ -278,71 +330,7 @@
 		<!-- END What we do -->
 
 
-		<div id="fh5co-blog-section" class="fh5co-section-gray">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Recent From Blog</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
-					</div>
-				</div>
-			</div>
-			<div class="container">
-				<div class="row row-bottom-padded-md">
-					<div class="col-lg-4 col-md-4 col-sm-6">
-						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>assets/images/cover_bg_1.jpg" alt=""></a>
-							<div class="blog-text">
-								<div class="prod-title">
-									<h3><a href=""#>Medical Mission in Southern Kenya</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<p><a href="#">Learn More...</a></p>
-								</div>
-							</div> 
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-4 col-sm-6">
-						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>assets/images/cover_bg_2.jpg" alt=""></a>
-							<div class="blog-text">
-								<div class="prod-title">
-									<h3><a href=""#>Medical Mission in Southern Kenya</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<p><a href="#">Learn More...</a></p>
-								</div>
-							</div> 
-						</div>
-					</div>
-					<div class="clearfix visible-sm-block"></div>
-					<div class="col-lg-4 col-md-4 col-sm-6">
-						<div class="fh5co-blog animate-box">
-							<a href="#"><img class="img-responsive" src="<?php echo base_url(); ?>assets/images/cover_bg_3.jpg" alt=""></a>
-							<div class="blog-text">
-								<div class="prod-title">
-									<h3><a href=""#>Medical Mission in Southern Kenya</a></h3>
-									<span class="posted_by">Sep. 15th</span>
-									<span class="comment"><a href="">21<i class="icon-bubble2"></i></a></span>
-									<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-									<p><a href="#">Learn More...</a></p>
-								</div>
-							</div> 
-						</div>
-					</div>
-					<div class="clearfix visible-md-block"></div>
-				</div>
-
-				<div class="row">
-					<div class="col-md-4 col-md-offset-4 text-center animate-box">
-						<a href="#" class="btn btn-primary btn-lg">Our Blog</a>
-					</div>
-				</div>
-
-			</div>
-		</div>
+		
 		<!-- fh5co-blog-section -->
 		<footer>
 			<div id="footer">

@@ -7,15 +7,18 @@ class C_donatur extends CI_Controller {
 	{
 		parent::__construct();
 		if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 2) {
+			$this->load->model('donatur/M_Donatur');
 			$this->load->model('M_akun');
 		}else{
 			redirect('MY_Controller/pages_404','refresh');
 		}
 	}
 	
-	public function index()
+	public function detailCampaign()
 	{
-		echo "INI DONATUR";
+		$id = $this->input->get('id_campaign');
+		$data['data'] = $this->M_Donatur->viewDetailCampaign($id);
+		$this->load->view('dash_donatur/detailCampaign',$data);
 	}
 	
 }

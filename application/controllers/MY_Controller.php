@@ -7,11 +7,17 @@ class MY_Controller extends CI_Controller {
 	{
 		parent::__construct();
 		$this->load->model('M_akun');
+		$this->load->model('donatur/M_Donatur');
 	}
 
 	public function index($str = "index")
 	{
-		$this->load->view('homepage/'.$str);
+		$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
+		$data['campaignByPantiAsuhan'] = $this->M_Donatur->viewCampaignByKategori('Panti Asuhan');
+		$data['campaignByKemanusiaan'] = $this->M_Donatur->viewCampaignByKategori('Kemanusiaan');
+		$data['campaignByPendidikan'] = $this->M_Donatur->viewCampaignByKategori('Pendidikan');
+		$data['campaignByBencanaAlam'] = $this->M_Donatur->viewCampaignByKategori('Bencana Alam');
+		$this->load->view('homepage/'.$str, $data);
 	}
 
 	public function check_email($inp)
