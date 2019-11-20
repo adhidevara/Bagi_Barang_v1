@@ -315,7 +315,7 @@
                     </li>
                     
                     <li>
-                        <a href="javascript:void(0);">
+                        <a href="<?= base_url() ?>pengelola/C_pengelola/campaignList">
                             <i class="material-icons">assignment</i>
                             <span>Campaign List</span>
                         </a>

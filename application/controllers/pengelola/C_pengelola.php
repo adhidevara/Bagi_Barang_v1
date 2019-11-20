@@ -30,6 +30,12 @@ class C_pengelola extends CI_Controller {
 	{
 		$this->load->view('dash_pengelola/hal_addPengelola');
 	}
+
+	public function campaignList()
+	{
+		$data['campaign'] = $this->M_akun->selectAll("*", "campaign");
+		$this->load->view('dash_pengelola/hal_campaignList', $data);
+	}
 }
 
 /* End of file controllername.php */

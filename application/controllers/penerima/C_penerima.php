@@ -21,7 +21,8 @@ class C_penerima extends CI_Controller {
 			$this->load->view('dash_volunteer/profile', $getData);
 		}
 		else {
-			$this->load->view('dash_volunteer/dashboard');
+			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+			$this->load->view('dash_volunteer/dashboard', $getData);
 		}
 	}
 
