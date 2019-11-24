@@ -46,6 +46,7 @@
 
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/admin.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/js/script.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/index.js"></script>
 
     <!-- Demo Js -->

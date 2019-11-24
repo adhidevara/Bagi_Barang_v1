@@ -21,7 +21,7 @@ class C_kelola_user extends C_pengelola {
        	echo json_encode($data);
 	}
 
-	public function addPengelola()
+	public function addPengelola() //Proses Add Pengelola
 	{
 		$form = $this->input->post();
 		$id_pengelola = $this->M_akun->gen_id('pengelola', 'id_pengelola', 'EMPL-1501-');
@@ -88,7 +88,7 @@ class C_kelola_user extends C_pengelola {
 		}
 	}
 
-	public function send($email_penerima, $subjek, $nama, $jenis_akun){
+	public function send($email_penerima, $subjek, $nama, $jenis_akun){ //Kirim Email
 
 	    $content = $this->load->view('dash_pengelola/content_email', array('nama'=>$nama, 'jenis_akun'=>$jenis_akun, 'email'=>$email_penerima), true); // Ambil isi file content.php dan masukan ke variabel $content
 	    
@@ -98,7 +98,7 @@ class C_kelola_user extends C_pengelola {
 	      'content'=>$content,
 	    );
 	    
-	    $send = $this->mailer->send($sendmail);//Kirim Email
+	    $send = $this->mailer->send($sendmail);
   	}
 }
 

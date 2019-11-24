@@ -291,13 +291,13 @@
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
+                            <li><a href="<?= base_url(); ?>pengelola/C_pengelola/myProfil"><i class="material-icons">person</i>Profile</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="<?= base_url() ?>MY_Controller/logout"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -327,13 +327,13 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="">List Barang & Vendor</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/listBarangVendor">List Barang & Vendor</a>
                             </li>
                             <li>
-                                <a href="">Input Data Vendor</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/addVendor">Input Data Vendor</a>
                             </li>
                             <li>
-                                <a href="">Input Data Barang</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/addBarang">Input Data Barang</a>
                             </li>
                         </ul>
                     </li>
@@ -344,10 +344,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="">Sorting Barang</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/sortBarang">Sorting Barang</a>
                             </li>
                             <li>
-                                <a href="">Kirim Paket</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/kirimPaket">Kirim Paket</a>
                             </li>
                         </ul>
                     </li>
@@ -358,13 +358,13 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="">Verifikasi Laporan Belanja</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/verifLapBelanja">Verifikasi Laporan Belanja</a>
                             </li>
                             <li>
-                                <a href="">List Laporan</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/listLaporan">List Laporan</a>
                             </li>
                             <li>
-                                <a href="">List Transaksi Donasi</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/listTransDonasi">List Transaksi Donasi</a>
                             </li>
                         </ul>
                     </li>

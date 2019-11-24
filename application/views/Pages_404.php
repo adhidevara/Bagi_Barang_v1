@@ -24,10 +24,10 @@
 
 <body class="four-zero-four">
     <div class="four-zero-four-container">
-        <div class="error-code">404</div>
-        <div class="error-message">This page doesn't exist</div>
+        <div class="error-code">:( Oopss..</div><br><br><br>
+        <div class="error-message">Maaf, anda tidak memiliki akses ke halaman ini</div>
         <div class="button-place">
-            <a href="<?php echo base_url(); ?>" class="btn btn-default btn-lg waves-effect">GO TO HOMEPAGE</a>
+            <a href="<?php echo base_url(); ?>" class="btn btn-default btn-lg waves-effect">PERGI KE BERANDA</a>
         </div>
     </div>
 

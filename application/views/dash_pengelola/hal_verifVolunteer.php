@@ -268,6 +268,7 @@
 
             //PROSES ACC
             $('#btn_acc').on('click',function(){
+                $("#btn_acc").html("processing..").attr("disabled", "disabled");
                 var kode=$('#textkode').val();
                 $.ajax({
                 type : "POST",
@@ -291,6 +292,7 @@
 
             //PROSES ACC
             $('#btn_unacc').on('click',function(){
+                $("#btn_unacc").html("processing..").attr("disabled", "disabled");
                 var kode=$('#textkode').val();
                 $.ajax({
                 type : "POST",

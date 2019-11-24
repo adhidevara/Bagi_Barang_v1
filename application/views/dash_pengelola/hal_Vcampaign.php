@@ -1,23 +1,5 @@
-<?php $this->load->view('dash_pengelola/head_foot/header'); ?>    
-    <section class="content">
-        <div class="container-fluid">
-            <div class="block-header">
-                <h2>Campaign List</h2>
-            </div>
-            <div class="block-header">
-                <div class="row clearfix">
-                    <div class="form-line col-lg-4 col-md-4 col-sm-6 col-xs-12" style="width: 300px;">
-                        <input type="text" id="cariCampaign" class="form-control" placeholder="Cari Campaign" style="width: 300px; background-color: #e9e9e9;" />
-                    </div>
-                    <div class="form-line col-lg-4 col-md-4 col-sm-6 col-xs-12">
-                        <button class="btn bg-blue waves-effect" id="btnCari"><i class="material-icons">search</i></button>
-                    </div>
-                </div>
-            </div>
-            <!-- Basic Example -->
-            <div class="row clearfix" id="campaignAll">
-                <?php $no = 1; foreach ($campaign as $cp) { ?>
-                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<?php $no = 1; if( ! empty($campaign)) { foreach ($campaign as $cp) { ?>
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12" id="campaignAll">
                     <div class="card">
                         <div class="header bg-blue">
                             <h2>
@@ -79,53 +61,4 @@
                         </div>
                     </div>
                 </div>
-                <?php } ?>
-            </div>
-            <!-- #END# Basic Example -->
-        </div>
-        <!-- <div class="pagging text-center"></div> -->
-        <?=$pagination?>
-    </section>
-
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery/jquery.min.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function() {
-
-            $("#btnCari").click(function(){
-                if ($("#cariCampaign").val() !== "") {
-                    $(this).html("<i class='material-icons'>search</i>Mencari...").attr("disabled", "disabled");
-                    $(".pagging").hide();
-                
-                    $.ajax({
-                        url: '<?=base_url()?>pengelola/C_campaign/cariCampaign',
-                        type: 'POST',
-                        data: {cariCampaign: $("#cariCampaign").val()},
-                        dataType: "json",
-                        beforeSend: function(e) {
-                            if(e && e.overrideMimeType) {
-                                e.overrideMimeType("application/json;charset=UTF-8");
-                            }
-                        },
-                        success: function(response){ // Ketika proses pengiriman berhasil
-                            $("#btnCari").html("<i class='material-icons'>search</i>").removeAttr("disabled");
-                            $("#campaignAll").html(response.hasil);
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) { // Ketika terjadi error
-                            alert(xhr.responseText);
-                        }
-                    });
-                }
-                else{
-                   console.log("No Search Item") ;
-                }
-            });
-
-        });
-    </script>
-
-    <?php $this->load->view('dash_pengelola/head_foot/footer'); ?>
-
-    </body>
-
-</html>
-
+                <?php } } else { echo "<div align='center'><i>Data Tidak Ditemukan</i></div>"; } ?>

@@ -13,7 +13,7 @@ $(document).ready(function(e){
 		//var url_admin	 = 'http://localhost/tutorial/admin.php';
 		
 		//Ubah tulisan pada button saat click login
-		$('#btnRegis').attr('button','disabled');
+		$("#btnRegis").html("please wait..").attr("disabled", "disabled");
 		
 		if ($("input[name=radioAccType]:checked").val() == "donatur") {
 			//Gunakan jquery AJAX
@@ -55,6 +55,7 @@ $(document).ready(function(e){
 						  text: pesan,
 						});
 					}
+					$("#btnRegis").html("DAFTAR").removeAttr("disabled");
 				},
 			});
 		}
@@ -98,6 +99,7 @@ $(document).ready(function(e){
 						  text: pesan,
 						});
 					}
+					$("#btnRegis").html("DAFTAR").removeAttr("disabled");
 				},
 			});
 		}

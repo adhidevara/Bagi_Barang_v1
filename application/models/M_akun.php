@@ -33,6 +33,7 @@ class M_akun extends CI_Model {
 		return $result->result();
 	}
 
+	// GENERATED ID_AUTO
 	public function gen_id($table, $primaryKey, $kodeDepan)   {
 		  $this->db->select('RIGHT('.$table.'.'.$primaryKey.',4) as kode', FALSE);
 		  $this->db->order_by($primaryKey,'DESC');    

@@ -10,7 +10,7 @@ $(document).ready(function(e){
 		//var url_admin	 = 'http://localhost/tutorial/admin.php';
 		
 		//Ubah tulisan pada button saat click login
-		$('#btnLogin').attr('value','Silahkan tunggu ...');
+		$("#btnLogin").html("please wait..").attr("disabled", "disabled");
 		
 		//Gunakan jquery AJAX
 		$.ajax({
@@ -44,6 +44,7 @@ $(document).ready(function(e){
 						text: pesan,
 						footer: '<a href=<?php echo base_url(); ?>MY_Controller/reSendEmailVerif?email='+email+'>Kirim Ulang Email Verifikasi!</a>'
 					});
+					$("#btnLogin").html("LOGIN").removeAttr("disabled");
 				}
 				else{
 					//Cetak peringatan untuk username & password salah
@@ -53,6 +54,7 @@ $(document).ready(function(e){
 						text: pesan,
 						footer: '<a href=<?php echo base_url(); ?>>Ingin mendaftar?</a>'
 					});
+					$("#btnLogin").html("LOGIN").removeAttr("disabled");
 				}
 			},
 		});
