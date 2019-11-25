@@ -17,7 +17,7 @@ class C_penerima extends CI_Controller {
 	{
 		if ($this->session->userdata('status') == 1) {
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-				
+			
 			$this->load->view('dash_volunteer/profile', $getData);
 		}
 		else {
@@ -28,7 +28,8 @@ class C_penerima extends CI_Controller {
 
 	public function v_Profile()
 	{
-		$this->load->view('dash_volunteer/profile');
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/profile', $getData);
 	}
 
 	public function prosesIsiData()
@@ -88,6 +89,24 @@ class C_penerima extends CI_Controller {
 
 			redirect('penerima/C_penerima/index','refresh');
 		}
+	}
+
+	public function VbuatCampaign()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/buatCampaign', $getData);
+	}
+
+	public function VaccPaket()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/accPaket', $getData);
+	}
+
+	public function VbuatLaporan()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/buatLaporan', $getData);
 	}
 
 }

@@ -10,7 +10,7 @@
                                 <?php if ($this->session->userdata('foto') == "") { ?>
                                     <img src="<?php echo base_url(); ?>assets/dashAssets/images/user-lg.jpg" alt="AdminBSB - Profile Image" />
                                 <?php } else { ?>
-                                    <img src="<?php echo base_url().$this->session->userdata('foto'); ?>" alt="AdminBSB - Profile Image" />
+                                    <img src="<?php echo base_url().$this->session->userdata('foto'); ?>" alt="AdminBSB - Profile Image" style="width: 150px; height: 150px" />
                                 <?php } ?>
                             </div>
                             <div class="content-area">
