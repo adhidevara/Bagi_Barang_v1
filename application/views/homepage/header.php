@@ -146,7 +146,7 @@
 <body>
     <div id="fh5co-wrapper">
     <div id="fh5co-page">
-    <div class="header-top">
+    <div class="header-top" style="background-color: black">
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-6 text-left fh5co-link">
@@ -166,14 +166,14 @@
       <div class="container">
         <div class="nav-header">
           <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
-          <h1 id="fh5co-logo"><a href="index">Bagi Barang</a></h1>
+          <h1 id="fh5co-logo"><a href="<?php echo base_url(); ?>MY_Controller/index">Bagi Barang</a></h1>
           <!-- START #fh5co-menu-wrap -->
           <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
               <li>
                 <a href="<?php echo base_url(); ?>MY_Controller/index">Home</a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#" class="fh5co-sub-ddown">Get Involved</a>
                 <ul class="fh5co-sub-menu">
                   <li><a href="#">Donate</a></li>
@@ -182,17 +182,17 @@
                   <li><a href="#">Philantrophy</a></li>
                   <li><a href="#">Volunteer</a></li>
                 </ul>
-              </li>
-              <li>
+              </li> -->
+              <!-- <li>
                 <a href="#" class="fh5co-sub-ddown">Projects</a>
                  <ul class="fh5co-sub-menu">
                   <li><a href="#">Water World</a></li>
                   <li><a href="#">Cloth Giving</a></li>
                   <li><a href="#">Medical Mission</a></li>
                 </ul>
-              </li>
+              </li> -->
               <li><a href="<?php echo base_url(); ?>MY_Controller/index/about">Tentang Kami</a></li>
-              <li><a href="<?php echo base_url(); ?>MY_Controller/index/blog">Blog</a></li>
+              <!-- <li><a href="<?php echo base_url(); ?>MY_Controller/index/blog">Blog</a></li> -->
               <li><a href="<?php echo base_url(); ?>MY_Controller/index/contact">Kontak</a></li>
               <?php if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 1) { ?>
               <li>
@@ -209,6 +209,7 @@
                   <ul class="fh5co-sub-menu">
                     <li><b>Akun Donatur</b></li>
                     <li><a href="#">Dashboard</a></li>
+                    <li><a href="<?php echo base_url(); ?>donatur/C_donatur/profile">Profile</a></li>
                     <li><a href="<?php echo base_url(); ?>MY_Controller/logout">Logout</a></li>
                   </ul>
               </li>

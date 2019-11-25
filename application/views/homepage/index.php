@@ -70,22 +70,28 @@
 			<div class="container">
 				<div class="row row-bottom-padded-md">
 
-					<?php foreach ($selectAllCampaign as $dt) { ?>
+					<?php $no=0; foreach ($selectAllCampaign as $dt) { 
+					$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
+					$jml = $this->M_Donatur->progressCampaign($dt->id_campaign);
+					$persen = ($jml[0]->jml/$dt->target_campaign)*100;
+					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px"></a>
 								<div class="blog-text">
 									<div class="prod-title">
-										<h3><a href=""#><?php echo $dt->judul_campaign; ?></a></h3>
+										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
 										<span class="comment"><small>Sisa <?php echo $dt->hsl; ?> Hari </small></span><br>
 										
 										<font style="color: orange; size: 5px">
-											Rp. <?php echo number_format($dt->target_campaign); ?> </font> 
+											Rp. <?php echo number_format($jml[0]->jml); ?> </font> 
 											<div class="progress" style="background-color: lightgrey">
+
 				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-				                                    style=" width: 15%; background-color: orange">
+				                                    style=" width: <?php echo $persen ?>%; background-color: orange">
+				                                    <small style="color: white;margin-bottom: 5px;">Terkumpul&nbsp;Dari&nbsp;Rp.&nbsp;<?php echo number_format($dt->target_campaign); ?></small>
 				                               </div>
-				                               <small style="margin-left: -10px; color: white;margin-bottom: 5px">Terkumpul Dari Rp. <?php echo number_format($dt->target_campaign); ?></small>
+				                               
 				                           </div>
 
 										<p style="text-align: center;">
