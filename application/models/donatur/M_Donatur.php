@@ -53,9 +53,25 @@
 
 		function progressCampaign($where)
 		{
-			$this->db->select('sum(nominal_donasi) as jml, ');
+			$this->db->select('sum(nominal_donasi) as jml');
 			$this->db->from('donasi');
 			$this->db->where('id_campaign', $where);
+			return $this->db->get()->result();
+		}
+
+		function tampilDonasi($id)
+		{
+			$this->db->select('*');
+			$this->db->from('donasi');
+			$this->db->where('id_donatur', $id);
+			return $this->db->get()->result();
+		}
+
+		function editPass($where)
+		{
+			$this->db->select('*');
+			$this->db->from('donatur');
+			$this->db->where('id_donatur', $where);
 			return $this->db->get()->result();
 		}
 

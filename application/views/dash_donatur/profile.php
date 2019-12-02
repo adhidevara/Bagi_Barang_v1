@@ -1,31 +1,30 @@
 <?php $this->load->view('homepage/header'); ?>
-
+<?php error_reporting(0); echo $notif; ?>
     <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Profile | Bootstrap Based Admin Template - Material Design</title>
-    <!-- Favicon-->
-    <link rel="icon" href="<?php echo base_url(); ?>assets/dashAssets/favicon.ico" type="image/x-icon">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <title>Profile | Bootstrap Based Admin Template - Material Design</title>
+        <!-- Favicon-->
+        <link rel="icon" href="<?php echo base_url(); ?>assets/dashAssets/favicon.ico" type="image/x-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <!-- Bootstrap Core Css -->
+        <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Waves Effect Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/node-waves/waves.css" rel="stylesheet" />
+        <!-- Waves Effect Css -->
+        <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/node-waves/waves.css" rel="stylesheet" />
 
-    <!-- Animation Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/animate-css/animate.css" rel="stylesheet" />
+        <!-- Animation Css -->
+        <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/animate-css/animate.css" rel="stylesheet" />
 
-    <!-- Custom Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
+        <!-- Custom Css -->
+        <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
 
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
+        <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+        <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
 </head>
-
 <br>
         <div class="container-fluid">
             <div class="row clearfix">
@@ -157,13 +156,13 @@
                                                 <div class="col-sm-10">
                                                     <!-- Group of material radios - option 2 -->
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="jekel" value="laki-laki">
+                                                        <input type="radio" class="form-check-input" id="materialGroupExample1" name="jekel" value="laki-laki" <?php if ($this->session->userdata('jenis_kelamin')=='laki-laki'){ echo 'checked';} ?> />
                                                         <label class="form-check-label" for="materialGroupExample1" >Laki-laki</label>
                                                     </div>
 
                                                     <!-- Group of material radios - option 2 -->
                                                     <div class="form-check">
-                                                        <input type="radio" class="form-check-input" id="materialGroupExample2" name="jekel" value="perempuan">
+                                                        <input type="radio" class="form-check-input" id="materialGroupExample2" name="jekel" value="perempuan" <?php if($this->session->userdata('jenis_kelamin')=='perempuan') { echo 'checked';} ?> />
                                                         <label class="form-check-label" for="materialGroupExample2" >Perempuan</label>
                                                     </div>
                                                 </div>
@@ -208,28 +207,28 @@
                                     </div>
                                     
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" action="<?php echo base_url(); ?>donatur/C_donatur/ubahPassword" method="post">
                                             <div class="form-group">
-                                                <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
+                                                <label for="OldPassword" class="col-sm-3 control-label">Password Lama</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" id="OldPassword" name="OldPassword" placeholder="Old Password" required>
+                                                        <input type="password" class="form-control" id="OldPassword" name="passLama" placeholder="Password Lama" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="NewPassword" class="col-sm-3 control-label">New Password</label>
+                                                <label for="NewPassword" class="col-sm-3 control-label">Password Baru</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" id="NewPassword" name="NewPassword" placeholder="New Password" required>
+                                                        <input type="password" class="form-control" id="NewPassword" name="passBaru" placeholder="Password Baru" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="NewPasswordConfirm" class="col-sm-3 control-label">New Password (Confirm)</label>
+                                                <label for="passConfirm" class="col-sm-3 control-label"> Password Baru (Confirm)</label>
                                                 <div class="col-sm-9">
                                                     <div class="form-line">
-                                                        <input type="password" class="form-control" id="NewPasswordConfirm" name="NewPasswordConfirm" placeholder="New Password (Confirm)" required>
+                                                        <input type="password" class="form-control" id="NewPasswordConfirm" name="passConfirm" placeholder=" Password Baru (Confirm)" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,6 +248,7 @@
             </div>
         </div>
     </section>
+
 
 
     <!-- Jquery Core Js -->

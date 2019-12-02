@@ -150,8 +150,8 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-6 text-left fh5co-link">
-            <a href="#">FAQ</a>
-            <a href="#">Forum</a>
+            <a href="<?php echo base_url() ?>donatur/C_Bank/index">Bank</a>
+            <a href="#">Faq</a>
             <a href="#">Contact</a>
           </div>
           <div class="col-md-6 col-sm-6 text-right fh5co-social">
@@ -193,7 +193,7 @@
               </li> -->
               <li><a href="<?php echo base_url(); ?>MY_Controller/index/about">Tentang Kami</a></li>
               <!-- <li><a href="<?php echo base_url(); ?>MY_Controller/index/blog">Blog</a></li> -->
-              <li><a href="<?php echo base_url(); ?>MY_Controller/index/contact">Kontak</a></li>
+              <li><a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya">Donasi Saya</a></li>
               <?php if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 1) { ?>
               <li>
                 <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>

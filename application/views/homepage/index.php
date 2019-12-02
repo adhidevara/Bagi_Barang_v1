@@ -1,15 +1,13 @@
 <?php $this->load->view('homepage/header'); ?>
 	<div class="fh5co-hero">
-			<div class="fh5co-overlay"></div>
-			<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/banner.jpg);">
-				<div class="desc animate-box">
-					<h2><strong>Donate</strong> for the <strong>Poor Children</strong></h2>
-					<span>Yuk <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">Donasi Sekarang Juga</a></span>
-					<span><a class="btn btn-primary btn-lg" href="#">Donasi Sekarang</a></span>
-				</div>
+		<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/banner.jpg);">
+			<div class="desc animate-box">
+				<h2><strong>Donate</strong> for the <strong>Poor Children</strong></h2>
+				<span>Yuk <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">Donasi Sekarang Juga</a></span>
+				<span><a class="btn btn-primary btn-lg" href="#">Donasi Sekarang</a></span>
 			</div>
-
 		</div>
+	</div>
 		<!-- end:header-top -->
 		<div id="fh5co-features">
 			<div class="container">
@@ -74,11 +72,14 @@
 					$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
 					$jml = $this->M_Donatur->progressCampaign($dt->id_campaign);
 					$persen = ($jml[0]->jml/$dt->target_campaign)*100;
+					// echo "<pre>";
+					// print_r ($dt->id_campaign);
+					// echo "</pre>";
 					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px"></a>
-								<div class="blog-text">
+								<div class="blog-text" style="opacity: 0.8">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
 										<span class="comment"><small>Sisa <?php echo $dt->hsl; ?> Hari </small></span><br>
@@ -118,13 +119,13 @@
 
 		<div id="fh5co-feature-product" class="fh5co-section-gray">
 			<div class="container">
-				<div class="row">
+				<!-- <div class="row">
 					<div class="col-md-12 text-center heading-section">
 						<h3>Giving is Virtue.</h3>
 						<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
 					</div>
 				</div>
-
+ -->
 				<!-- <div class="row row-bottom-padded-md">
 					<div class="col-md-12 text-center animate-box">
 						<p><img src="<?php echo base_url().$data2[0]->gambar; ?>" alt="Free HTML5 Bootstrap Template" class="img-responsive" style="width: 100%; height: 450px"></p>
@@ -167,8 +168,8 @@
 
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center heading-section animate-box">
-						<h3>Our Gallery</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+						<h3>Berdasarkan Kategori</h3>
+						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p> -->
 					</div>
 				</div>
 

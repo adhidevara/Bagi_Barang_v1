@@ -54,12 +54,8 @@ class C_donatur extends CI_Controller {
 
 			$this->session->set_userdata($data);
 			$this->M_Donatur->updateData('donatur','id_donatur',$data,$where);
-			$error['error'] = $this->upload->display_errors();
-			echo "<pre>";
-			print_r ($error);
-			echo "</pre>";
-			echo "gkupload";
-			//redirect('donatur/C_donatur/profile',$error);
+			//$error['error'] = $this->upload->display_errors();
+			redirect('donatur/C_donatur/profile');
 		}
 		else{
 			$dataFoto = $this->upload->data();
@@ -78,10 +74,61 @@ class C_donatur extends CI_Controller {
 			$this->session->set_userdata($data);
 			$this->M_Donatur->updateData('donatur','id_donatur',$data,$where);
 			$error['error'] = "Profile Berhasil di Perbarui";
-			echo $error['error'];
-			// redirect('donatur/C_donatur/profile',$error);
+			redirect('donatur/C_donatur/profile',$error);
 		}
+	}
 
+	public function ubahPassword()
+	{
+		$id = $this->session->userdata('id_donatur');
+		$form = $this->input->post();
+		$akun = $this->M_Donatur->editPass($id);
+
+		if ($form['passLama'] == $this->encryption->decrypt($akun[0]->password)) {
+			if ($form['passBaru'] == $form['passConfirm']) {
+				$data = array(
+					'password' => $this->encryption->encrypt($form['passConfirm'])
+				);
+				$this->M_Donatur->updateData('donatur','id_donatur',$data,$id);
+				$data['notif'] = "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+								  <script type='text/javascript'>
+								  	Swal.fire({
+										icon: 'success',
+										title: 'Password Berhasil Di Ubah',
+									  	text: ' '
+									});
+								  </script>";
+				$this->load->view('dash_donatur/profile',$data);
+			}else{
+				$data['notif'] = "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+								  <script type='text/javascript'>
+								  	Swal.fire({
+										icon: 'error',
+										title: 'Password Tidak Sama!',
+									  	text: ' '
+									});
+								  </script>";
+				$this->load->view('dash_donatur/profile',$data);
+			}
+		}else{
+			$data['notif'] = "<script src='https://cdn.jsdelivr.net/npm/sweetalert2@9'></script>
+								  <script type='text/javascript'>
+								  	Swal.fire({
+										icon: 'error',
+										title: 'Password Lama Salah!',
+									  	text: ' '
+									});
+								  </script>";
+			$this->load->view('dash_donatur/profile',$data);
+		}
+		
+	}
+
+	public function donasiSaya()
+	{
+		$id = $this->session->userdata('id_donatur');
+		$data['data'] = $this->M_Donatur->tampilDonasi($id);
+		$this->load->view('dash_donatur/donasiSaya',$data);
 	}
 	
 }
