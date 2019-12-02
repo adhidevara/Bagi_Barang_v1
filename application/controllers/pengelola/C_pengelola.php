@@ -22,8 +22,7 @@ class C_pengelola extends CI_Controller {
 
 	public function myProfil()
 	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
+		$this->load->view('dash_pengelola/hal_profil');
 	}
 
 	public function campaignList() //Tampilan List Campaign
@@ -60,8 +59,9 @@ class C_pengelola extends CI_Controller {
 
 	public function listBarangVendor()
 	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
+		$data['vendor'] = $this->M_akun->selectAll('*', 'vendor');
+		$data['barang'] = $this->M_akun->selectAll('*', 'barang');
+		$this->load->view('dash_pengelola/hal_listBarangVendor', $data);
 	}
 
 	public function addVendor()
@@ -79,8 +79,9 @@ class C_pengelola extends CI_Controller {
 
 	public function sortBarang()
 	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
+		$data['paket0'] = $this->M_pengelola->selectWherePaket0();
+		$data['paket1'] = $this->M_pengelola->selectWherePaket1();
+		$this->load->view('dash_pengelola/hal_sortBarang', $data);
 	}
 
 	public function kirimPaket()

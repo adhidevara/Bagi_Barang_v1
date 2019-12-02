@@ -22,7 +22,7 @@ class MY_Controller extends CI_Controller {
 		$this->load->view('homepage/'.$str, $data);
 	}
 
-	public function check_email($inp)
+	public function check_email($inp = "")
 	{
 		$getDataP = $this->M_akun->selectWhere("*", 'pengelola', 'email', $inp);
 		$getDataD = $this->M_akun->selectWhere("*", 'donatur', 'email', $inp);
@@ -46,6 +46,7 @@ class MY_Controller extends CI_Controller {
 		else{
 			return "EMAIL TIDAK ADA";
 		}
+		redirect('MY_Controller/pages_404','refresh');
 	}
 
 	public function login()
@@ -280,6 +281,84 @@ class MY_Controller extends CI_Controller {
 		    $send = $this->mailer->send($sendmail);
 		    redirect('MY_Controller/index','refresh');
   		}
+  	}
+
+  	public function lupaPass()
+  	{
+  		$form = $this->input->post();
+
+  		$dataP = $this->M_akun->selectWhere("*", "pengelola", "email", $form['email']);
+  		$dataV = $this->M_akun->selectWhere("*", "volunteer", "email", $form['email']);
+  		$dataD = $this->M_akun->selectWhere("*", "donatur", "email", $form['email']);
+
+  		if (count($dataP) > 0) {
+  			$id = $dataP[0]->id_pengelola;
+  			$nama = $dataP[0]->nama;
+  			$email = $dataP[0]->email;
+  		}
+  		else if (count($dataV) > 0) {
+  			$id = $dataV[0]->id_volunteer;
+  			$nama = $dataV[0]->nama;
+  			$email = $dataV[0]->email;
+  		}
+  		else if (count($dataD) > 0) {
+  			$id = $dataD[0]->id_donatur;
+  			$nama = $dataD[0]->nama;
+  			$email = $dataD[0]->email;
+  		}
+  		else {
+  			$id = "undefined";
+  			$nama = "undefined";
+  			$email = "undefined";
+  		}
+
+  		$data = array(
+		    		'id' => $id,
+		    		'nama' => $nama,
+		    		'email' => $email
+				);
+
+  		$content = $this->load->view('content_lupaPass', $data, true);
+  		$sendmail = array(
+		      'email_penerima'=>$email,
+		      'subjek'=>"LUPA PASSWORD - BAGI BARANG",
+		      'content'=>$content,
+		    );
+		    
+		$send = $this->mailer->send($sendmail);
+
+
+  		echo json_encode($data);
+  	}
+
+  	public function ubahPass()
+  	{
+  		$data['id'] = $this->input->get('id');
+  		$this->load->view('ubahPass', $data);
+  	}
+
+  	public function proUbahPass()
+  	{
+  		$form = $this->input->post();
+
+  		$dataP = $this->M_akun->selectWhere("*", "pengelola", "id_pengelola", $form['id']);
+  		$dataV = $this->M_akun->selectWhere("*", "volunteer", "id_volunteer", $form['id']);
+  		$dataD = $this->M_akun->selectWhere("*", "donatur", "id_donatur", $form['id']);
+
+  		if (count($dataP) > 0) {
+  			$data = array('password' => $this->encryption->encrypt($form['newPass']));
+  			$this->M_akun->update('id_pengelola', $form['id'], 'pengelola', $data);
+  		}
+  		else if (count($dataV) > 0) {
+  			$data = array('password' => $this->encryption->encrypt($form['newPass']));
+  			$this->M_akun->update('id_volunteer', $form['id'], 'volunteer', $data);	
+  		}
+  		else if (count($dataD) > 0) {
+  			$data = array('password' => $this->encryption->encrypt($form['newPass']));
+  			$this->M_akun->update('id_donatur', $form['id'], 'donatur', $data);
+  		}
+
+  		echo json_encode($form);
   	}
 
   	public function pages_404()

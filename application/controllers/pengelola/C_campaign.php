@@ -15,7 +15,6 @@ class C_campaign extends C_pengelola {
     	
     	echo json_encode($callback); // konversi varibael $callback menjadi JSON
 	}
-
 }
 
 /* End of file controllername.php */

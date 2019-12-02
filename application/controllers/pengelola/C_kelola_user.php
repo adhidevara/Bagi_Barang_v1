@@ -5,6 +5,29 @@ require_once APPPATH.'controllers/pengelola/C_pengelola.php';
 
 class C_kelola_user extends C_pengelola {
 
+	public function editPengelola()
+	{
+		$form = $this->input->post();
+		$id_pengelola = $this->session->userdata('id_pengelola');
+
+		$data = array(
+				'role_id' => 1,
+				'id_pengelola' => $id_pengelola,
+				'email' => $form['Email'],
+				'nama' => $form['Nama'],
+				'no_ktp' => $form['NoKTP'],
+				'password' => $this->session->userdata('password'),
+				'jenis_kelamin' => $form['jenis_kelamin'],
+				'alamat' => $form['Alamat'],
+				'foto' => $this->session->userdata('foto'),
+				'no_tlp' => $form['NoTlp'],
+				'status' => $this->session->userdata('status')
+			);
+		$this->session->set_userdata($data);
+		$update = $this->M_akun->update('id_pengelola', $id_pengelola, 'pengelola', $data);
+		echo json_encode($update);
+	}
+
 	public function accVol() //Proses Acc
 	{
 		$id_volunteer=$this->input->post('kode');
