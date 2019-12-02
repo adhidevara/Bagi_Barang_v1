@@ -63,6 +63,8 @@
 
 	</head>
 
+<!------------------------------------------------------------------------------------------------------------------------------>
+
 	<div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -86,6 +88,8 @@
           <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="******">
         </div>
 
+        <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#modalLupaPasswordForm">Lupa Password</a>
+
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-primary" id="btnLogin">Login</button>
@@ -107,6 +111,7 @@
         </button>
       </div>
       <div class="modal-body mx-3">
+
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
           <label data-error="wrong" data-success="right" for="orangeForm-name">Your name</label>
@@ -136,6 +141,34 @@
       </div>
       <div class="modal-footer d-flex justify-content-center">
         <button class="btn btn-primary" id="btnRegis">Daftar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ----------------------------------------------------------------------------------------------- -->
+
+  <div class="modal fade" id="modalLupaPasswordForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">Lupa Password</h4>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        
+        <div class="md-form mb-5">
+          <i class="fas fa-envelope prefix grey-text"></i>
+          <label data-error="wrong" data-success="right" for="emailLupa">E-Mail</label>
+          <input type="email" id="emailLupa" name="emailLupa" class="form-control validate" placeholder="example@domain.com">
+        </div>
+
+      </div>
+      <div class="modal-footer d-flex justify-content-center">
+        <button class="btn btn-primary" id="btnSubmitLupaPassword">Submit</button>
       </div>
     </div>
   </div>

@@ -21,3 +21,6 @@
 
 	<!-- Load Regis JS -->
 	<?php $this->load->view('homepage/js/regis_js'); ?>
+
+	<!-- Lupa Password JS -->
+	<?php $this->load->view('homepage/js/lupa_pass_js'); ?>
