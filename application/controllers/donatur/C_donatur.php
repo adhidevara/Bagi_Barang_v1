@@ -16,8 +16,8 @@ class C_donatur extends CI_Controller {
 	
 	public function detailCampaign()
 	{
-		$id = $this->input->get('id_campaign');
-		$data['data'] = $this->M_Donatur->viewDetailCampaign($id);
+		$data['id'] = $this->input->get('id_campaign');
+		$data['data'] = $this->M_Donatur->viewDetailCampaign($data['id']);
 		$this->load->view('dash_donatur/detailCampaign',$data);
 	}
 
@@ -122,6 +122,36 @@ class C_donatur extends CI_Controller {
 			$this->load->view('dash_donatur/profile',$data);
 		}
 		
+	}
+
+	public function prosesDonasi()
+	{
+		$form = $this->input->post();
+
+		if ($form['metode_bayar'] == "Virtual Account") {
+			$data = array(
+					'id_campaign' => $form['id_campaign'],
+					'id_donatur' => $this->session->userdata('id_donatur'),
+					'nominal_donasi' => $form['nominal'],
+					'nominal_transfer' => $form['nominal'],
+					'metode_pembayaran' => $form['metode_bayar'],
+					'status' => "pending"
+				);
+			$insert = $this->M_Donatur->insertData('donasi', $data);
+		}
+		else{
+			$data = array(
+					'id_campaign' => $form['id_campaign'],
+					'id_donatur' => $this->session->userdata('id_donatur'),
+					'nominal_donasi' => $form['nominal'],
+					'nominal_transfer' => 0,
+					'metode_pembayaran' => $form['metode_bayar'],
+					'status' => 'pending'
+				);
+			$insert = $this->M_Donatur->insertData('donasi', $data);
+		}
+
+		echo json_encode($insert);
 	}
 
 	public function donasiSaya()

@@ -81,7 +81,7 @@
                                                         <i class="material-icons">more_vert</i>
                                                     </a>
                                                     <ul class="dropdown-menu pull-right">
-                                                        <li><a href="javascript:void(0);">Action</a></li>
+                                                        <li><a href="javascript:void(0);"><?=$id?></a></li>
                                                         <li><a href="javascript:void(0);">Another action</a></li>
                                                         <li><a href="javascript:void(0);">Something else here</a></li>
                                                     </ul>
@@ -117,35 +117,43 @@
                                                 <h2>Formulir Donasi</h2>
                                                 <section>
                                                     <fieldset>
+
+                                                        <input type="hidden" name="id_campaign" class="form-control" value="<?=$id?>" id="id_campaign">
+
                                                         <div class="form-group form-float">
                                                             <div class="form-line">
-                                                                <input type="text" name="name" class="form-control" value="<?php echo $this->session->userdata('nama'); ?>" disabled>
+                                                                <input type="text" name="nama" class="form-control" id="nama" value="<?php echo $this->session->userdata('nama'); ?>" required>
                                                                 <label class="form-label">Nama Lengkap</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group form-float">
                                                             <div class="form-line">
-                                                                <input type="email" name="email" class="form-control" value="<?php echo $this->session->userdata('email'); ?>" disabled>
+                                                                <input type="email" name="email" class="form-control" id="email" value="<?php echo $this->session->userdata('email'); ?>" required>
                                                                 <label class="form-label">Email</label>
                                                             </div>
                                                         </div>
                                                         <div class="form-group form-float">
+                                                            <!-- <div class="form-line">
+                                                                <input type="number" name="nominal" class="form-control" id="nominal" required>
+                                                                <label class="form-label">Nominal Donasi (Rp.)</label>
+                                                            </div> -->
                                                             <div class="form-line">
-                                                                <input type="number" class="form-control" required >
-                                                                <label class="form-label">Nominal Donasi ( Rp. )</label>
+                                                                <input type="number" class="form-control" name="nominal" id="nominal" required="" aria-required="true">
+                                                                <label class="form-label">Nominal Donasi (Rp.)</label>
                                                             </div>
                                                         </div>
+
                                                         
                                                         <label class="form-label">METODE PEMBAYARAN</label>
                                                         <div class="form-check">
-                                                            <input type="radio" class="form-check-input" id="materialGroupExample1" name="groupOfMaterialRadios">
-                                                            <label class="form-check-label" for="materialGroupExample1">VIRTUAL ACCOUNT</label>
+                                                            <input type="radio" class="form-check-input" id="method1" name="metode_bayar" value="Virtual Account">
+                                                            <label class="form-check-label" for="method1">VIRTUAL ACCOUNT</label>
                                                         </div>
 
                                                         <!-- Group of material radios - option 2 -->
                                                         <div class="form-check">
-                                                            <input type="radio" class="form-check-input" id="materialGroupExample2" name="groupOfMaterialRadios">
-                                                            <label class="form-check-label" for="materialGroupExample2">TRANSFER BANK</label>
+                                                            <input type="radio" class="form-check-input" id="method2" name="metode_bayar" value="Transfer Bank">
+                                                            <label class="form-check-label" for="method2">TRANSFER BANK</label>
                                                         </div>
 
                                                     </fieldset>
@@ -301,10 +309,69 @@
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/demo.js"></script>
 
+    <!-- Sweetalert 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
     <script type="text/javascript">
         $(document).ready(function(e){
             $("a[href='#finish']").click(function(e){
-                console.log("terpencet");
+                var id_campaign = $("#id_campaign").val();
+                var nama = $("#nama").val();
+                var email = $("#email").val();
+                var nominal = $("#nominal").val();
+                var method1 = $("#method1").val(); //Virtual Account
+                var method2 = $("#method2").val(); //Transfer Bank
+                
+                if ($("input[name=metode_bayar]:checked").val() == "Virtual Account") {
+                    $.ajax({
+                        url: '<?=base_url()?>donatur/C_donatur/prosesDonasi',
+                        type: 'POST',
+                        dataType: 'html',
+                        data: 'id_campaign='+id_campaign+'&nama='+nama+'&email='+email+'&nominal='+nominal+'&metode_bayar='+method1,
+                        success :
+                        function(pesan){
+                            Swal.fire(
+                                'PEMBAYARAN',
+                                'Silahkan melakukan pembayaran sesuai dengan nominal (Maks. 24 Jam)',
+                                'success'
+                            );
+                        }
+                    })
+                    .done(function() {
+                        console.log("success");
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+                    .always(function() {
+                        console.log("complete");
+                    });
+                }
+                else{
+                    $.ajax({
+                        url: '<?=base_url()?>donatur/C_donatur/prosesDonasi',
+                        type: 'POST',
+                        dataType: 'html',
+                        data: 'id_campaign='+id_campaign+'&nama='+nama+'&email='+email+'&nominal='+nominal+'&metode_bayar='+method2,
+                        success :
+                        function(pesan){
+                            Swal.fire(
+                                'PEMBAYARAN',
+                                'Silahkan melakukan pembayaran sesuai dengan nominal (Maks. 24 Jam)',
+                                'success'
+                            );
+                        }
+                    })
+                    .done(function() {
+                        console.log("success");
+                    })
+                    .fail(function() {
+                        console.log("error");
+                    })
+                    .always(function() {
+                        console.log("complete");
+                    });
+                }
+                
             })
         });
     </script>

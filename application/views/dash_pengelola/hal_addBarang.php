@@ -122,7 +122,16 @@
                                         </div>
                                     </div>
                                 </div>
-
+                            </div>
+                            <div class="row clearfix">
+                                <div class="col-md-4">
+                                    <label for="jumlah_barang">Upload Gambar</label>
+                                    <div class="form-group">
+                                        <div class="form-line">
+                                            <input type="file" id="upload_gambar" class="form-control" min="0">
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                             <button type="button" class="btn btn-primary m-t-15 waves-effect">Submit</button>
                             </form>
