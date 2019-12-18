@@ -90,15 +90,14 @@
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
-										<span class="comment"><small>Sisa <?php echo $dt->hsl; ?> Hari </small></span><br>
+										<span class="comment"><small>Sisa <?php echo $dt->sisa; ?> Hari </small></span><br>
 										
-										<font style="color: orange; size: 5px">
-											Rp. <?php echo number_format($jml[0]->jml); ?> </font> 
+										<font style="color: orange; size: 5px">Batas waktu campaign</font> 
 											<div class="progress" style="background-color: lightgrey">
 
 				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-				                                    style=" width: <?php echo $persen ?>%; background-color: orange">
-				                                    <small style="color: white;margin-bottom: 5px;">Terkumpul&nbsp;Dari&nbsp;Rp.&nbsp;<?php echo number_format($dt->target_campaign); ?></small>
+				                                    style=" width: <?=$dt->hsl?>%; background-color: orange">
+				                                    <small style="color: white;margin-bottom: 5px;"><?=$dt->hsl?>%&nbsp;(Sisa&nbsp;<?php echo $dt->sisa; ?>&nbsp;Hari)</small>
 				                               </div>
 				                               
 				                           </div>

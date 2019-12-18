@@ -3,6 +3,25 @@
 <body style="background-color: lightgrey">
     <div class="col-md-8 col-md-offset-2 text-left " style="background-color: white; width: 70%;"> <br>
         <center><h3>Tracking Barang</h3></center>
+
+        <?php if (count($data)== 0) { ?>
+            <table style="width: 100%" border="1">
+                <tr style="color: black;background-color: lightgrey;text-align: center">
+                    <td>No Resi</td>
+                    <td>No Pengiriman </td>
+                    <td>Tanggal Pengiriman </td>
+                    <td>Asal</td>
+                    <td>Tujuan</td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td colspan="5">Data Tidak Ditemukan</td>
+                </tr>
+            </table>
+            <br><br>
+            <a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya" class="btn btn-primary btn-sm">Kembali</a>
+            <br><br>
+        <?php }else{ ?>
+
         Kurir : <?php echo $data[0]->nama_kurir ?>
         <table style="width: 100%" border="1">
             <tr style="color: black;background-color: lightgrey;text-align: center">
@@ -46,9 +65,10 @@
             </tr>
 
         </table>
-        <br><br>
-        <a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya" class="btn btn-primary btn-sm">Kembali</a>
-        <br><br>
+            <br><br>
+            <a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya" class="btn btn-primary btn-sm">Kembali</a>
+            <br><br>
+        <?php } ?>
     </div><br>
           
         <!-- fh5co-content-section -->

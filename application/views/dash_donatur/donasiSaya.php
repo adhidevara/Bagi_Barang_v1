@@ -31,6 +31,7 @@
 
         <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
         <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 <body class="theme-red" bgcolor="lightgrey">
@@ -110,18 +111,24 @@
                                                 <td><?php echo $dt->jumlah_barang; ?></td>
                                                 <td><?php if($dt->resi == null){ echo "<div class='alert alert-warning'>Input No Resi</div>"; }else{ echo "<div class='alert alert-info'>Data Lengkap</div>"; } ?></td>
                                                 <td>
-                                                    
+
                                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/hapusDonasi">
                                                         <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
-                                                        <input type="submit" value="Hapus" class="btn btn-danger btn-xs" style="float: left; margin-right: 5px">    
+                                                        <button type="submit" class="btn btn-danger" style="float: left; margin-right: 5px">
+                                                        <i class="fa fa-trash"></i>
+                                                        </button>    
                                                     </form>
                                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanEditDonasi">
                                                         <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
-                                                        <input type="submit" value="Ubah" class="btn btn-primary btn-xs" style="float: left; margin-right: 5px">    
+                                                        <button type="submit" class="btn btn-success" style="float: left; margin-right: 5px">
+                                                        <i class="fa fa-edit"></i>
+                                                        </button>    
                                                     </form>
                                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanDetailDonasi">
                                                         <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
-                                                        <input type="submit" value="Detail" class="btn btn-primary btn-xs" style="float: left; margin-right: 5px">    
+                                                        <button type="submit" class="btn btn-info" style="float: left; margin-right: 5px">
+                                                        <i class="fa fa-bars"></i>
+                                                        </button>    
                                                     </form>
                                                 </td>    
                                             </tr>
@@ -163,6 +170,7 @@
         <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
         <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+        <script src="https://kit.fontawesome.com/yourcode.js"></script>
 
         <!-- Custom Js -->
         <script src="<?php echo base_url(); ?>assets/dashAssets/js/admin.js"></script>

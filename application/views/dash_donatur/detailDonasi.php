@@ -15,10 +15,6 @@
                 <td style="color: black">Id Donatur</td>
                 <td colspan="5"> : <?php echo $this->session->userdata('id_donatur'); ?></td>
             </tr>
-            <tr>
-                <td style="color: black">Id Pengelola</td>
-                <td colspan="5"> : <?php echo $data[0]->id_pengelola ?></td>
-            </tr>
         </table>
         <br>
         <table border="1" style="width: 100%">
@@ -42,10 +38,14 @@
                     <?php if ($data[0]->resi == null) {
                         echo ' - ';
                     }else{?>
+                    <?php if ($data[0]->status == "Di Terima (Warehouse)") { ?>
                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/trackingBarang">
                         <input type="hidden" name="id_campaign" value="<?php echo $data[0]->id_campaign; ?>">
                         <input type="submit" name="submit" value="Lacak" class="btn btn-warning btn-xs">
                     </form>
+                    <?php } else { ?>
+                    <input type="submit" name="submit" value="Lacak" class="btn btn-warning btn-xs" disabled>
+                    <?php } ?>
                 <?php } ?>
             </tr>
         </table>

@@ -16,18 +16,28 @@
 
 		function viewCampaign()
 		{
-			$this->db->select('*,TIMESTAMPDIFF(day, now(), batas_campaign) as hsl');
+			// $this->db->select('*,TIMESTAMPDIFF(day, now(), batas_campaign) as hsl');
+			// $this->db->from('campaign');
+			// $this->db->where('TIMESTAMPDIFF(day, now(), batas_campaign) > 0');
+
+			$this->db->select("*, 
+				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
+				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
 			$this->db->from('campaign');
-			$this->db->where('TIMESTAMPDIFF(day, now(), batas_campaign) > 0');
+			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) >= 0');
 
 			return $this->db->get()->result();
 		}
 
 		function viewCampaignCari($where)
 		{
-			$this->db->select('*,TIMESTAMPDIFF(day, now(), batas_campaign) as hsl');
+			$this->db->select("*, 
+				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
+				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
 			$this->db->from('campaign');
-			$this->db->where('TIMESTAMPDIFF(day, now(), batas_campaign) > 0');
+			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) >= 0');
 			$this->db->like('judul_campaign',$where);
 
 			return $this->db->get()->result();
@@ -54,9 +64,12 @@
 
 		function viewCampaignByKategori2($kategori)
 		{
-			$this->db->select('*,TIMESTAMPDIFF(day, now(), batas_campaign) as hsl');
+			$this->db->select("*, 
+				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
+				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
 			$this->db->from('campaign');
-			$this->db->where('TIMESTAMPDIFF(day, now(), batas_campaign) > 0');
+			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) >= 0');
 			$this->db->where('kategori_campaign', $kategori);
 
 			return $this->db->get()->result();
@@ -73,8 +86,8 @@
 
 		function progressCampaign($where)
 		{
-			$this->db->select('sum(nominal_donasi) as jml');
-			$this->db->from('donasi');
+			$this->db->select('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as jml');
+			$this->db->from('campaign');
 			$this->db->where('id_campaign', $where);
 			return $this->db->get()->result();
 		}
