@@ -204,7 +204,7 @@
           <nav id="fh5co-menu-wrap" role="navigation">
             <ul class="sf-menu" id="fh5co-primary-menu">
               <li>
-                <a href="<?php echo base_url(); ?>MY_Controller/index">Home</a>
+                <a href="<?php echo base_url(); ?>MY_Controller/index">Halaman Utama</a>
               </li>
               <!-- <li>
                 <a href="#" class="fh5co-sub-ddown">Get Involved</a>
@@ -241,7 +241,7 @@
                 <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
                   <ul class="fh5co-sub-menu">
                     <li><b>Akun Donatur</b></li>
-                    <li><a href="#">Dashboard</a></li>
+                    <!-- <li><a href="#">Dashboard</a></li> -->
                     <li><a href="<?php echo base_url(); ?>donatur/C_donatur/profile">Profile</a></li>
                     <li><a href="<?php echo base_url(); ?>MY_Controller/logout">Logout</a></li>
                   </ul>

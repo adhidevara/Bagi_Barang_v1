@@ -18,7 +18,7 @@
 			$this->db->where($kolom, $where);
 			$this->db->update($table, $data);
 		}
-
+		
 	}
 
 /* End of file modelName.php */

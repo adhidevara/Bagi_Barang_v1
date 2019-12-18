@@ -12,14 +12,21 @@ class MY_Controller extends CI_Controller {
 
 	public function index($str = "index")
 	{
-
-		$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
-		// $data['jml'] = $this->M_Donatur->progressCampaign($data['selectAllCampaign'][0]->id_campaign);
 		$data['campaignByPantiAsuhan'] = $this->M_Donatur->viewCampaignByKategori('Panti Asuhan');
 		$data['campaignByKemanusiaan'] = $this->M_Donatur->viewCampaignByKategori('Kemanusiaan');
 		$data['campaignByPendidikan'] = $this->M_Donatur->viewCampaignByKategori('Pendidikan');
 		$data['campaignByBencanaAlam'] = $this->M_Donatur->viewCampaignByKategori('Bencana Alam');
-		$this->load->view('homepage/'.$str, $data);
+
+		if ($this->input->post('btCari') == 'Cari') {
+			$form = $this->input->post();
+			$data['selectAllCampaign'] = $this->M_Donatur->viewCampaignCari($form['cari']);
+			$this->load->view('homepage/'.$str, $data);
+
+		}else{
+			$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
+			// $data['jml'] = $this->M_Donatur->progressCampaign($data['selectAllCampaign'][0]->id_campaign);
+			$this->load->view('homepage/'.$str, $data);
+		}
 	}
 
 	public function check_email($inp = "")

@@ -23,30 +23,31 @@
 	<![endif]-->
 <div class="" id="modalUbahPassForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
   aria-hidden="true">
+  <H2 style="padding: 30px; size: 30px; color: #ff5722 ;background-color: lightyellow">BERBAGI BARANG</H2>
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header text-center" style="background-color: orange;">
-        <h4 class="modal-title w-100 font-weight-bold" style="color: black;">Ubah Password</h4>
+        <h4 class="modal-title w-100 font-weight-bold" style="color: white;">UBAH PASSWORD</h4>
         <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button> -->
       </div>
-      <div class="modal-body mx-3" style="background-color: brown;">
+      <div class="modal-body mx-3" style="background-color: ;">
       	<input type="hidden" name="id" id="id" value="<?=$this->input->get('id')?>">
         <div class="md-form mb-5">
           <i class="fas fa-user prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-newPass" style="color: white;">Password Baru</label>
-          <input type="password" id="orangeForm-newPass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-newPass" style="color: ;">Password Baru</label>
+          <input type="password" id="orangeForm-newPass" class="form-control validate" style="background-color: #ededed">
         </div>
 
         <div class="md-form mb-5">
           <i class="fas fa-envelope prefix grey-text"></i>
-          <label data-error="wrong" data-success="right" for="orangeForm-reTypeNewPass" style="color: white;">Ulangi Password</label>
-          <input type="password" id="orangeForm-reTypeNewPass" class="form-control validate">
+          <label data-error="wrong" data-success="right" for="orangeForm-reTypeNewPass" style="color: ;">Ulangi Password</label>
+          <input type="password" id="orangeForm-reTypeNewPass" class="form-control validate" style="background-color: #ededed">
         </div>
 
       </div>
-      <div class="modal-footer d-flex justify-content-center" style="background-color: orange;">
+      <div class="modal-footer d-flex justify-content-center" style="background-color: ;">
         <button class="btn btn-primary" id="btnUbah">Ubah Password</button>
       </div>
     </div>

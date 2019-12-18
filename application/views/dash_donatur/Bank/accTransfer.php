@@ -64,7 +64,7 @@
                                                     <td><?= $dt->nominal_transfer ?></td>
                                                     <td><?= $dt->metode_pembayaran ?></td>
                                                     <td>
-                                                        <a href="<?php echo base_url(); ?>donatur/C_Bank/prosesAcc/?id= <?php echo $dt->id_donasi ?>" class="btn btn-info btn-success item_acc" data="<?= $dt->id_donasi ?>">Terima</a>
+                                                        <a href="<?php echo base_url(); ?>donatur/C_Bank/prosesAcc/?id=<?php echo $dt->id_donasi ?>" class="btn btn-info btn-success item_acc" data="<?=$dt->id_donasi?>">Terima</a>
                                                         <a href="javascript:;" class="btn btn-danger item_acc" data="<?= $dt->id_donasi ?>">Tolak</a>
                                                     </td>
                                                 </tr>

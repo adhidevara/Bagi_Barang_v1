@@ -138,23 +138,16 @@
                                                                 <label class="form-label">Nominal Donasi (Rp.)</label>
                                                             </div> -->
                                                             <div class="form-line">
-                                                                <input type="number" class="form-control" name="nominal" id="nominal" required="" aria-required="true">
+                                                                <select class="form-control">
+                                                                    <option>asd</option>
+                                                                    <option></option>
+                                                                </select>
+                                                                <input type="number" class="form-control" name="nominal" id="nominal" required="" aria-required="true" value="0">
                                                                 <label class="form-label">Nominal Donasi (Rp.)</label>
                                                             </div>
                                                         </div>
 
                                                         
-                                                        <label class="form-label">METODE PEMBAYARAN</label>
-                                                        <div class="form-check">
-                                                            <input type="radio" class="form-check-input" id="method1" name="metode_bayar" value="Virtual Account">
-                                                            <label class="form-check-label" for="method1">VIRTUAL ACCOUNT</label>
-                                                        </div>
-
-                                                        <!-- Group of material radios - option 2 -->
-                                                        <div class="form-check">
-                                                            <input type="radio" class="form-check-input" id="method2" name="metode_bayar" value="Transfer Bank">
-                                                            <label class="form-check-label" for="method2">TRANSFER BANK</label>
-                                                        </div>
 
                                                     </fieldset>
                                                 </section>
@@ -162,6 +155,18 @@
                                                 <h2>Lakukan Pembayaran</h2>
                                                 <section>
                                                     <fieldset>
+                                                        <label class="form-label">METODE PEMBAYARAN</label>
+                                                            <div class="form-check">
+                                                                <input type="radio" class="form-check-input" id="method1" name="metode_bayar" value="Virtual Account" required="">
+                                                                <label class="form-check-label" for="method1">VIRTUAL ACCOUNT</label>
+                                                            </div>
+
+                                                            <!-- Group of material radios - option 2 -->
+                                                            <div class="form-check">
+                                                                <input type="radio" class="form-check-input" id="method2" name="metode_bayar" value="Transfer Bank" required="">
+                                                                <label class="form-check-label" for="method2">TRANSFER BANK</label>
+                                                            </div>
+                                                            
                                                         <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required>
                                                         <label for="acceptTerms-2">I agree with the Terms and Conditions.</label>
                                                     </fieldset>
@@ -329,11 +334,23 @@
                         data: 'id_campaign='+id_campaign+'&nama='+nama+'&email='+email+'&nominal='+nominal+'&metode_bayar='+method1,
                         success :
                         function(pesan){
-                            Swal.fire(
-                                'PEMBAYARAN',
-                                'Silahkan melakukan pembayaran sesuai dengan nominal (Maks. 24 Jam)',
-                                'success'
-                            );
+                            Swal.fire({
+                              title: 'Apakah Anda Yakin Lanjut?',
+                              text: "klik Button Setuju untuk lanjut!",
+                              icon: 'warning',
+                              showCancelButton: true,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Setuju!'
+                            }).then((result) => {
+                                    if (result.value) {
+                                        Swal.fire(
+                                          'Berhasil!',
+                                          'Lakukan Pembayaran (Maks. 24 jam)',
+                                          'success'
+                                        )
+                                    }
+                                });
                         }
                     })
                     .done(function() {
@@ -354,11 +371,23 @@
                         data: 'id_campaign='+id_campaign+'&nama='+nama+'&email='+email+'&nominal='+nominal+'&metode_bayar='+method2,
                         success :
                         function(pesan){
-                            Swal.fire(
-                                'PEMBAYARAN',
-                                'Silahkan melakukan pembayaran sesuai dengan nominal (Maks. 24 Jam)',
-                                'success'
-                            );
+                            Swal.fire({
+                              title: 'Apakah Anda Yakin Untuk Lanjut?',
+                              text: "klik Setuju untuk lanjut!",
+                              icon: 'warning',
+                              showCancelButton: true,
+                              confirmButtonColor: '#3085d6',
+                              cancelButtonColor: '#d33',
+                              confirmButtonText: 'Setuju!'
+                            }).then((result) => {
+                                    if (result.value) {
+                                        Swal.fire(
+                                          'Berhasil!',
+                                          'Lakukan Pembayaran (Maks. 24 jam)',
+                                          'success'
+                                        )
+                                    }
+                                });
                         }
                     })
                     .done(function() {

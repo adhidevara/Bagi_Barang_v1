@@ -34,22 +34,7 @@
 </head>
 
 <body class="theme-red" bgcolor="lightgrey">
-    <!-- Page Loader -->
-    <div class="page-loader-wrapper">
-        <div class="loader">
-            <div class="preloader">
-                <div class="spinner-layer pl-red">
-                    <div class="circle-clipper left">
-                        <div class="circle"></div>
-                    </div>
-                    <div class="circle-clipper right">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </div>
-            <p>Please wait...</p>
-        </div>
-    </div>
+
     <!-- #END# Page Loader -->
     <!-- Overlay For Sidebars -->
     <div class="overlay"></div>
@@ -75,7 +60,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                EXPORTABLE TABLE
+                                Donasi Saya
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -96,33 +81,49 @@
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
                                         <tr>
-                                            <th>Id Donasi</th>
-                                            <th>Id Campaign</th>
-                                            <th>Id Donatur</th>
-                                            <th>Total Donasi</th>
+                                            <th>Id Barang</th>
+                                            <th>Kategori Barang</th>
+                                            <th>Nama Barang</th>
+                                            <th>Jumlah Barang</th>
+                                            <th>Keterangan</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>Id Donasi</th>
-                                            <th>Id Campaign</th>
-                                            <th>Id Donatur</th>
-                                            <th>Total Donasi</th>
-                                            <th>Action</th>
-                                            
+                                            <th>Id Barang</th>
+                                            <th>Kategori Barang</th>
+                                            <th>Nama Barang</th>
+                                            <th>Jumlah Barang</th>
+                                            <th>Keterangan</th>
+                                            <th style="width: 230px">Action</th>
                                         </tr>
-                                    </tfoot>
 
+                                    </tfoot>
+                                    <tbody>
                                     <?php foreach ($data as $dt) { ?>
-                                        <tbody>
+                                        
                                             <tr>
-                                                <td><?php echo $dt->id_donasi; ?></td>
-                                                <td><?php echo $dt->id_campaign; ?></td>
-                                                <td><?php echo $dt->id_donatur; ?></td>
-                                                <td><?php echo $dt->nominal_donasi; ?></td>
-                                                <td><input type="submit" value="Detail" class="btn btn-primary"></td>
-                                                
+                                                <td><?php echo $dt->id_barang; ?></td>
+                                                <td><?php echo $dt->kategori_barang; ?></td>
+                                                <td><?php echo $dt->nama_barang; ?></td>
+                                                <td><?php echo $dt->jumlah_barang; ?></td>
+                                                <td><?php if($dt->resi == null){ echo "<div class='alert alert-warning'>Input No Resi</div>"; }else{ echo "<div class='alert alert-info'>Data Lengkap</div>"; } ?></td>
+                                                <td>
+                                                    
+                                                    <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/hapusDonasi">
+                                                        <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
+                                                        <input type="submit" value="Hapus" class="btn btn-danger btn-xs" style="float: left; margin-right: 5px">    
+                                                    </form>
+                                                    <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanEditDonasi">
+                                                        <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
+                                                        <input type="submit" value="Ubah" class="btn btn-primary btn-xs" style="float: left; margin-right: 5px">    
+                                                    </form>
+                                                    <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanDetailDonasi">
+                                                        <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
+                                                        <input type="submit" value="Detail" class="btn btn-primary btn-xs" style="float: left; margin-right: 5px">    
+                                                    </form>
+                                                </td>    
                                             </tr>
                                     <?php } ?>
                                     

@@ -187,7 +187,7 @@
 						<ul id="fh5co-portfolio-list">
 
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Panti Asuhan" class="color-3">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/Kemanusiaan" class="color-3">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
 										<h2><?php echo $campaignByPantiAsuhan[0]->kategori_campaign; ?></h2>
@@ -196,7 +196,7 @@
 							</li>
 						
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPendidikan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Pendidikan" class="color-4">
+								<a href="#" class="color-4">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
 										<h2><?php echo $campaignByPendidikan[0]->kategori_campaign; ?></h2>
@@ -205,7 +205,7 @@
 							</li>
 
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); "> 
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Bencana Alam" class="color-5">
+								<a href="#" class="color-5">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
 										<h2><?php echo $campaignByBencanaAlam[0]->kategori_campaign; ?></h2>
@@ -213,7 +213,7 @@
 								</a>
 							</li>
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByKemanusiaan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Kemanusiaan" class="color-6">
+								<a href="#" class="color-6">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
 										<h2><?php echo $campaignByKemanusiaan[0]->kategori_campaign; ?></h2>
