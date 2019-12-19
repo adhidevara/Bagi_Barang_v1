@@ -140,7 +140,7 @@
 
       </div>
       <div class="modal-footer d-flex justify-content-center">
-        <button class="btn btn-primary" id="btnRegis">Daftar</button>
+        <button class="btn btn-primary btn-m" id="btnRegis">Daftar</button>
       </div>
     </div>
   </div>

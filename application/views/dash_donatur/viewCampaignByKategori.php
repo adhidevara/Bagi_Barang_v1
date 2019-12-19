@@ -79,7 +79,7 @@
 					<?php $no=0; foreach ($selectAllCampaign as $dt) { 
 					$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
 					$jml = $this->M_Donatur->progressCampaign($dt->id_campaign);
-					$persen = ($jml[0]->jml/$dt->target_campaign)*100;
+					// $persen = ($jml[0]->jml/$dt->target_campaign)*100;
 					// echo "<pre>";
 					// print_r ($dt->id_campaign);
 					// echo "</pre>";
@@ -90,9 +90,9 @@
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
-										<span class="comment"><small>Sisa <?php echo $dt->sisa; ?> Hari </small></span><br>
+										<span class="comment"><small>Kateogri : <?php echo $dt->kategori_campaign; ?> Hari </small></span><br>
 										
-										<font style="color: orange; size: 5px">Batas waktu campaign</font> 
+										<font style="color: orange; size: 5px">Waktu campaign</font> 
 											<div class="progress" style="background-color: lightgrey">
 
 				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
