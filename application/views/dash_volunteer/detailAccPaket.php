@@ -31,28 +31,34 @@
                                 <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
-                                            <th>ID CAMPAIGN</th>
-                                            <th>JUDUL CAMPAING</th>
-                                            <!-- <th>ACC PAKET</th> -->
+                                            <th>ID PAKET</th>
+                                            <th>JENIS BARANG</th>
+                                            <th>NO RESI</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID CAMPAIGN</th>
-                                            <th>JUDUL CAMPAING</th>
-                                            <!-- <th>ACC PAKET</th> -->
+                                            <th>ID PAKET</th>
+                                            <th>JENIS BARANG</th>
+                                            <th>NO RESI</th>
                                             <th>Action</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <?php foreach ($data2 as $dat) { ?>
                                         <tr>
-                                            <td><?=$dat->id_campaign?></td>
-                                            <td><?=$dat->judul_campaign?></td>
+                                            <td><?=$dat->id_paket?></td>
+                                            <td><?=$dat->jenis_barang?></td>
+                                            <td><?=$dat->no_resi?></td>
                                             <td>
-                                                <?php error_reporting(0); ?>
-                                                <a href="<?=base_url()?>penerima/C_penerima/VdetailAccPaket?id_campaign=<?=$data2[0]->id_campaign?>" class="btn btn-primary btn-sm">Detail</a>
+                                                <?php if ($dat->status != 'Telah diterima oleh Penerima Donasi') {  ?>
+                                                <a href="<?=base_url()?>penerima/C_penerima/proAccPaket?id_paket=<?=$dat->id_paket?>&id_campaign=<?php echo $id_campaign; ?>" class="btn btn-primary btn-sm">Terima Paket</a>
+                                                &nbsp; &nbsp; &nbsp;
+                                                <a href="<?=base_url()?>penerima/C_penerima/?>" class="btn btn-primary btn-sm">Detail</a>
+                                            <?php }else{ ?>
+                                                <a href="<?=base_url()?>penerima/C_penerima/?>" class="btn btn-primary btn-sm">Detail</a>
+                                                <?php } ?>
                                             </td>
                                         </tr>
                                     <?php } ?>

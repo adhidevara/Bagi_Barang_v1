@@ -3,7 +3,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h1>Laporan Pembelian Barang Campaign</h1>
+                <h1>Laporan Pembelian Barang <?php echo $data3[0]->judul_campaign; ?></h1>
             </div>
             <!-- Basic Table -->
             <div class="row clearfix">
@@ -12,29 +12,30 @@
                         <div class="body table-responsive">
                             <table class="table">
                                 <div class="body">
+                        </div>
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>ID Campaign</th>
-                                        <th>Judul Campaign</th>
-                                        <th>Kategori Campaign</th>
-                                        <th>Action</th>
+                                        <th>Kategori Barang</th>
+                                        <th>Nama Barang</th>
+                                        <th>Quantity</th>
+                                        <th>Foto</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php $i = 1; ?>
-                                    <?php foreach ($data2 as $campaign) { ?>
+                                <?php foreach ($data4 as $brgBth) { ?>
                                     <tr>
-                                        <th scope="row"><?php echo $i++ ?></th>
-                                        <td><?php echo $campaign->id_campaign; ?></td>
-                                        <td><?php echo $campaign->judul_campaign; ?></td>
-                                        <td><?php echo $campaign->kategori_campaign; ?></td>
-                                        <td><form method= "POST" action="VtambahBukti/?id_campaign=<?php echo $campaign->id_campaign ?>"><input type="hidden" name="id_campaign"><button type="submit" class="btn bg-deep-orange waves-effect">Buat Laporan</button></form></td>
+                                        <th scope="row"><?php echo $i++; ?></th>
+                                        <td><?php echo $brgBth->kategori_barang; ?></td>
+                                        <td><?php echo $brgBth->nama_barang; ?></td>
+                                        <td><?php echo $brgBth->jumlah_dibeli; ?></td>
+                                        <td><input type="file" name="foto"></td>
                                     </tr>
-                                    <?php }  ?>
+                                    <?php } ?>
                                 </tbody>
-                            </div>
                             </table>
+                            <form method= "POST" action="VtambahBukti/?id_campaign="><input type="hidden" name="id_campaign" value=""><button style="float: right" type="submit" class="btn bg-deep-orange waves-effect">Upload Laporan</button></form>
                         </div>
                     </div>
                 </div>
@@ -42,45 +43,7 @@
             <!-- #END# Basic Table -->
         </div>
     </section>
-<!--     <div class="modal fade" id="mdModal" tabindex="-1" role="dialog">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title" id="defaultModalLabel">Tambah Barang Yang Dibutuhkan</h4>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" action="">
-                        <div class="form-group form-float">
-                            <label class="form-control">Kategori Barang</label>
-                            <select class="form-control show-tick">
-                                <option value="">PILIH KATEGORI CAMPAIGN</option>
-                                <option value="Sembako">Sembako</option>
-                                <option value="Pakaian">Pakaian</option>
-                                <option value="Obat-obatan">Obat-obatan</option>
-                            </select>
-                        </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <label class="form-control">Nama Barang</label>
-                                <input type="namaBarang" class="form-control" name="username" >
-                            </div>
-                        </div>
-                        <div class="form-group form-float">
-                            <div class="form-line">
-                                <label class="form-control">Quantity</label>
-                                <input min="0" type="number" name="jumlahBarang" class="form-control" required>
-                            </div>
-                            <div class="help-info">Barang Berikut merupakan satuan (kilogram, liter dan pax)</div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-link waves-effect">Simpan</button>
-                    <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">Tutup</button>
-                </div>
-            </div>
-        </div>
-    </div>  -->
+
 
      <!-- Jquery Core Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery/jquery.min.js"></script>
@@ -134,3 +97,17 @@
 
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/demo.js"></script>
+
+
+    <script type="text/javascript">
+        $(document).ready(function(e){
+            $("#simpan").click(function(e){
+                var kategoriBarang = $("#kategoriBarang").val();
+                var namaBarang = $("#namaBarang").val();
+                var quantity = $("#quantity").val();
+
+                console.log(kategoriBarang+ namaBarang+ quantity);
+            });
+        });
+        
+    </script>

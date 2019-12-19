@@ -8,7 +8,7 @@
                         <div class="profile-body">
                             <div class="image-area">
                                 <?php if ($this->session->userdata('foto') == "") { ?>
-                                    <img src="<?php echo base_url(); ?>assets/dashAssets/images/user-lg.jpg" alt="AdminBSB - Profile Image" />
+                                    <img src="<<?php echo base_url().$this->session->userdata('foto'); ?>" alt="AdminBSB - Profile Image" />
                                 <?php } else { ?>
                                     <img src="<?php echo base_url().$this->session->userdata('foto'); ?>" alt="AdminBSB - Profile Image" style="width: 150px; height: 150px" />
                                 <?php } ?>
@@ -29,7 +29,7 @@
                                     <?php if ($data[0]->status == 1) { ?>
                                         <li role="presentation" class="active"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li>
                                     <?php } else { ?>
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+                                        <li role="presentation" class="active"><a href="" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
                                         <li role="presentation"><a href="#profile_settings" aria-controls="settings" role="tab" data-toggle="tab">Profile Settings</a></li>
                                         <li role="presentation"><a href="#change_password_settings" aria-controls="settings" role="tab" data-toggle="tab">Change Password</a></li>
                                     <?php } ?>
@@ -67,14 +67,14 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">Gender</label>
+                                                <label for="Email" class="col-sm-2 control-label">Jenis Kelamin</label>
 
                                                 <div class="col-sm-10" style="padding-top: 5px">
                                                         <div class="demo-radio-button">
                                                             <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Laki - Laki" checked />
-                                                                <label for="radio_1">Male</label>
+                                                                <label for="radio_1">Laki - laki</label>
                                                                 <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Perempuan" />
-                                                                <label for="radio_2">Female</label>
+                                                                <label for="radio_2">Perempuan</label>
                                                         </div>
                                                 </div>
                                             </div>
@@ -124,12 +124,12 @@
                                                 <div class="media">
                                                     <div class="media-left">
                                                         <a href="#">
-                                                            <img src="<?php echo base_url(); ?>assets/dashAssets/images/user-lg.jpg" />
+                                                            <img src="<?php echo $this->session->userdata('foto'); ?>" />
                                                         </a>
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <a href="#">Marc K. Hammond</a>
+                                                            <a href="#"><?php echo $this->session->userdata('email'); ?></a>
                                                         </h4>
                                                         Shared publicly - 26 Oct 2018
                                                     </div>
@@ -185,7 +185,7 @@
                                                     </div>
                                                     <div class="media-body">
                                                         <h4 class="media-heading">
-                                                            <a href="#">Marc K. Hammond</a>
+                                                            <a href="#"><?php echo $this->session->userdata('nama'); ?></a>
                                                         </h4>
                                                         Shared publicly - 01 Oct 2018
                                                     </div>
@@ -232,12 +232,12 @@
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>penerima/C_penerima/ubahBiodata">
                                             <div class="form-group">
-                                                <label for="NameSurname" class="col-sm-2 control-label">Name Surname</label>
+                                                <label for="NameSurname" class="col-sm-2 control-label">Nama Lengkap</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="Marc K. Hammond" required>
+                                                        <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="<?php echo $this->session->userdata('nama'); ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
@@ -245,33 +245,49 @@
                                                 <label for="Email" class="col-sm-2 control-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="example@example.com" required>
+                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="<?php echo $this->session->userdata('email'); ?>" required>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="InputExperience" class="col-sm-2 control-label">Experience</label>
+                                                <label for="InputExperience" class="col-sm-2 control-label">Alamat</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Experience"></textarea>
+                                                        <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Alamat"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="InputSkills" class="col-sm-2 control-label">Skills</label>
+                                                <label for="InputSkills" class="col-sm-2 control-label">No KTP</label>
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="Skills">
+                                                        <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="No KTP">
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <input type="checkbox" id="terms_condition_check" class="chk-col-red filled-in" />
-                                                    <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
+                                                <label for="text" class="col-sm-2 control-label">Jenis Kelamin</label>
+
+                                                <div class="col-sm-10" style="padding-top: 5px">
+                                                    <div class="demo-radio-button">
+                                                        <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Laki - Laki" checked />
+                                                        <label for="jenis_kelamin">Laki - laki</label>
+                                                        <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Perempuan" />
+                                                        <label for="jenis_kelamin">Perempuan</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="InputSkills" class="col-sm-2 control-label">Foto</label>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="file" class="form-control" id="InputSkills" name="InputSkills" placeholder="No KTP" required>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -282,7 +298,7 @@
                                         </form>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>penerima/C_penerima/ubahPassword">
                                             <div class="form-group">
                                                 <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
                                                 <div class="col-sm-9">

@@ -80,7 +80,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="index.html">BAGI BARANG</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -91,7 +91,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
-                            <span class="label-count">7</span>
+                            <span class="label-count"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">NOTIFICATIONS</li>
@@ -200,7 +200,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">flag</i>
-                            <span class="label-count">9</span>
+                            <span class="label-count"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">TASKS</li>
@@ -289,17 +289,17 @@
                     <img src="<?php echo base_url(); ?>assets/dashAssets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('nama'); ?></div>
+                    <div class="email"><?php echo $this->session->userdata('email'); ?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="<?php echo base_url(); ?>penerima/C_penerima/Vprofile"><i class="material-icons">person</i>Profile</a></li>
+                            <!-- <li role="separator" class="divider"></li> -->
+                            <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="separator" class="divider"></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
+                            <!-- <li role="separator" class="divider"></li> -->
                             <li><a href="<?php echo base_url(); ?>MY_Controller/logout"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
@@ -336,10 +336,10 @@
                         </a>
                     </li>
                     <li class="">
-                        <a href="index.html">
+                      <!--   <a href="index.html">
                             <i class="material-icons">home</i>
                             <span>Home</span>
-                        </a>
+                        </a> -->
                     </li>
                     
                     <?php } ?>
@@ -349,7 +349,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; 2016 - 2017 <a href="javascript:void(0);">BAGI BARANG</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5
