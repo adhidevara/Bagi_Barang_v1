@@ -16,12 +16,12 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-control">Judul Campaign</label>
-                                            <input type="text" class="form-control" name="judulCampaign" id="judulCampaign">
+                                            <input type="text" class="form-control" name="judulCampaign" id="judulCampaign" >
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <label class="form-control">Kategori Campaign</label>
-                                        <select class="form-control show-tick" name="kategoriCampaign" id="kategoriCampaign">
+                                        <select class="form-control show-tick" name="kategoriCampaign" id="kategoriCampaign" >
                                            <option value="0">-- Pilih Kategori --</option>
                                             <option value="Bencana Alam">Bencana Alam</option>
                                             <option value="Pendidikan">Pendidikan</option>
@@ -34,19 +34,19 @@
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-control">Batas Waktu Campaign</label>
-                                            <input type="date" class="form-control" name="batasCampaign" id="batasCampaign">
+                                            <input type="date" class="form-control" name="batasCampaign" id="batasCampaign" >
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-control">Ajakan Campaign</label>
-                                            <input type="text" class="form-control" name="ajakanCampaign" id="ajakanCampaign">
+                                            <input type="text" class="form-control" name="ajakanCampaign" id="ajakanCampaign" >
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
                                         <div class="form-line">
                                             <label class="form-control">Deskripsi Campaign</label>
-                                            <textarea name="deskripsiCampaign" cols="30" rows="3" class="form-control no-resize" id="deskripsiCampaign"></textarea>
+                                            <textarea name="deskripsiCampaign" cols="30" rows="3" class="form-control no-resize" id="deskripsiCampaign" ></textarea>
                                         </div>
                                     </div> 
                                     <!-- <div class="form-group form-float">
@@ -102,8 +102,8 @@
                                             <label class="form-control" style="height: 35px;" for="radio_4">Lainnya</label><br>
                                         </div>
 
-                                    <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required>
-                                    <label for="acceptTerms-2">Saya setuju dengan Syarat & Ketentuan Donasi di berbagibarang.com, termasuk biaya administrasi platform sebesar 2,5% dari target donasi online yang terkumpul</label>
+                                    <input type="checkbox" required>
+                                    <label>Saya setuju dengan Syarat & Ketentuan Donasi di berbagibarang.com, termasuk biaya administrasi platform sebesar 2,5% dari target donasi online yang terkumpul</label>
                                 </fieldset>
                             </form>
                         </div>
@@ -289,7 +289,11 @@
                       'Barang berhasil ditambahkan pada list',
                       'success'
                     );
-                    $("#simpanTambahBarang").html("Simpan").removeAttr("disabled");
+                    $("#namaBarang").val(" ");
+                    $("#quantity").val(" ");
+                    $("#kategoriBarang").val(" ");
+                    $("#satuan").val(" ");
+                    $("#simpanTambahBarang").html("Simpan");
 
                     tampil_data_barang();
                 })
