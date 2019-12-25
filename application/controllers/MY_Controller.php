@@ -278,7 +278,7 @@ class MY_Controller extends CI_Controller {
   		else if ($check_email == "EMAIL ADA - V") {
   			$getDataV = $this->M_akun->selectWhere("*", 'volunteer', 'email', $email);
   			$content = $this->load->view('content_email', array('nama'=>$getDataV[0]->nama, 'jenis_akun'=>"Volunteer"), true);
-	    
+	    	
 		    $sendmail = array(
 		      'email_penerima'=>$getDataV[0]->email,
 		      'subjek'=>'BAGI BARANG - VERIFIKASI EMAIL',

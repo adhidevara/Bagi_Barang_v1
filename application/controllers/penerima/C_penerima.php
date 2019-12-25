@@ -8,6 +8,7 @@ class C_penerima extends CI_Controller {
 		parent::__construct();
 		if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 3) {
 			$this->load->model('M_akun');
+			$this->load->model('volunteer/M_volunteer');
 		}else{
 			redirect('MY_Controller/pages_404','refresh');
 		}
@@ -17,18 +18,21 @@ class C_penerima extends CI_Controller {
 	{
 		if ($this->session->userdata('status') == 1) {
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-				
+			
 			$this->load->view('dash_volunteer/profile', $getData);
 		}
 		else {
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+			$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($this->session->userdata('id_volunteer'));
+
 			$this->load->view('dash_volunteer/dashboard', $getData);
 		}
 	}
 
 	public function v_Profile()
 	{
-		$this->load->view('dash_volunteer/profile');
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/profile', $getData);
 	}
 
 	public function prosesIsiData()
@@ -53,15 +57,6 @@ class C_penerima extends CI_Controller {
 		}
 		else{
 			$dataFoto = $this->upload->data();
-			
-			//Uncomment for DEBUG
-			// echo "<pre>";
-			// print_r ($dataFoto);
-			// echo "</pre>";
-
-			// echo "<pre>";
-			// print_r ($form);
-			// echo "</pre>";
 
 			$data = array(
 				'no_ktp' => $form['noKtp'],
@@ -90,6 +85,169 @@ class C_penerima extends CI_Controller {
 		}
 	}
 
+	public function VbuatCampaign()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+
+		$this->load->view('dash_volunteer/buatCampaign', $getData);
+	}
+
+	public function proBuatCampaign()
+	{
+		$form = $this->input->post();
+
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$data = array('id_campaign' => $id_campaign,
+					  'id_volunteer' => $this->session->userdata('id_volunteer'),
+					  'judul_campaign' => $form['judulCampaign'],
+					  'kategori_campaign' => $form['kategoriCampaign'],
+					  'batas_campaign' => $form['batasCampaign'],
+					  'deskripsi_campaign' => $form['deskripsiCampaign'],
+					  'ajakan_campaign' => $form['ajakanCampaign'],
+					  'keterangan' => $form['keteranganCampaign'],
+		 );
+
+		$this->M_volunteer->insert('campaign', $data);
+		echo json_encode($data);
+	}
+
+	public function VuploadGambarCampaign()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/uploadGambarCampaign', $getData);
+	}
+
+	public function VaccPaket()
+	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$getData['data2'] = $this->M_volunteer->selCampaignSelesai($id_volunteer);
+
+
+		$this->load->view('dash_volunteer/accPaket', $getData);
+	}
+
+	public function VdetailAccPaket()
+	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+		$id_paket = $this->input->get('id_paket');
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer',$id_volunteer);
+		$getData['data2'] = $this->M_volunteer->selWhereJoinPaket($id_campaign);
+		$getData['data3'] = $this->M_volunteer->selDetailPaket($id_paket);
+		$getData['id_campaign'] = $id_campaign;
+
+		$this->load->view('dash_volunteer/detailAccPaket', $getData);
+	}
+
+	public function proAccPaket()
+	{
+		$id_paket = $this->input->get('id_paket');
+		$id_campaign = $this->input->get('id_campaign');
+		$data = array('id_paket' => $id_paket,
+					  'tanggal_diterima' => DATE('Y-m-d H:i:s'),
+					  'status' => 'Telah diterima oleh Penerima Donasi' 
+					);
+
+		$this->M_volunteer->update('id_paket', $id_paket, 'paket', $data);
+
+		redirect('penerima/C_penerima/VdetailAccPaket?id_campaign='.$id_campaign,'refresh');
+	}
+
+	public function VbuatLaporan()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$getData['data2'] = $this->M_volunteer->selCampaign();
+
+		$this->load->view('dash_volunteer/buatLaporan', $getData);
+	}
+
+	public function VtambahBukti()
+	{
+		$id_campaign = $this->input->get('id_campaign');
+		
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$getData['data3'] = $this->M_volunteer->selCampaignById($id_campaign);
+		$getData['data4'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+
+		$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
+	}
+
+
+	public function proTambahBarang()
+	{
+		$form = $this->input->post();
+
+		echo json_encode($form);
+
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$id_barang_butuh = $this->M_akun->gen_id('barang_dibutuhkan', 'id_barang_butuh', 'BRNG-BTH1-');
+
+		echo json_encode($id_campaign);
+		$data = array('id_barang_butuh' => $id_barang_butuh,
+					  'id_campaign' => $id_campaign,
+					  'nama_barang' => $form['namaBarang'], 
+					  'kategori_barang' => $form['kategoriBarang'],
+					  'jumlah' => $form['quantity'],
+					  'satuan_barang' => $form['satuan']
+					);
+		echo json_encode($data);
+		$this->M_volunteer->insert('barang_dibutuhkan', $data);
+	}
+
+	public function barangDibutuhkanJson()
+	{
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		
+		$dataBarang = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+
+		echo json_encode($dataBarang);
+	}
+
+	public function detailCampaign()
+	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+		
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$getData['data_camp'] = $this->M_akun->selectWhere("*", 'campaign', 'id_campaign', $id_campaign);
+		$getData['data_don'] = $this->M_volunteer->selWhereJoin($id_volunteer, $id_campaign);
+		
+		$this->load->view('dash_volunteer/detailCampaign', $getData);
+	}
+
+	public function Vprofile()
+	{
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$this->load->view('dash_volunteer/profile', $getData);
+	}
+
+	public function uploadGambarCampaign()
+	{
+		$camp = $this->M_volunteer->selectLastCamp();
+		$config['upload_path'] = './uploads/gambarCampaign/';
+		$config['allowed_types'] = 'jpeg|jpg|png|JPG|MP4';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '10240';
+		$config['max_height']  = '7680';
+		$config['file_name'] = $camp[0]->id_campaign;
+		
+		$this->upload->initialize($config);
+		
+		if ( ! $this->upload->do_upload('file')){
+			$error = array('error' => $this->upload->display_errors());
+		}
+		else{
+			$data = $this->upload->data();
+			$data = array('gambar' => 'uploads/gambarCampaign/'.$data['file_name']);
+			$this->M_akun->update('id_campaign', $camp[0]->id_campaign, 'campaign', $data);
+		}
+	}
 }
 
 /* End of file controllername.php */

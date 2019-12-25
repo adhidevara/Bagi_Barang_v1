@@ -36,6 +36,7 @@
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/admin.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/index.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/ui/modals.js"></script>
 
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/demo.js"></script>

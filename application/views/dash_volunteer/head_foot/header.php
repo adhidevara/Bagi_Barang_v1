@@ -25,11 +25,21 @@
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
+    <!-- Bootstrap Select Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- Bootstrap Tagsinput Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css" rel="stylesheet">
+
+    <!-- jquery databales-->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+    
     <!-- Custom Css -->
     <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
 
     <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
     <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
+
 </head>
 
 <body class="theme-red">
@@ -70,7 +80,7 @@
             <div class="navbar-header">
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
-                <a class="navbar-brand" href="index.html">ADMINBSB - MATERIAL DESIGN</a>
+                <a class="navbar-brand" href="index.html">BAGI BARANG</a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -81,7 +91,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
-                            <span class="label-count">7</span>
+                            <span class="label-count"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">NOTIFICATIONS</li>
@@ -190,7 +200,7 @@
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">flag</i>
-                            <span class="label-count">9</span>
+                            <span class="label-count"></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">TASKS</li>
@@ -264,7 +274,7 @@
                         </ul>
                     </li>
                     <!-- #END# Tasks -->
-                    <li class="pull-right"><a href="javascript:void(0);" class="js-right-sidebar" data-close="true"><i class="material-icons">more_vert</i></a></li>
+                    <li><a href="<?php echo base_url(); ?>MY_Controller/logout"><i class="material-icons">input</i></a></li>
                 </ul>
             </div>
         </div>
@@ -279,18 +289,18 @@
                     <img src="<?php echo base_url(); ?>assets/dashAssets/images/user.png" width="48" height="48" alt="User" />
                 </div>
                 <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">John Doe</div>
-                    <div class="email">john.doe@example.com</div>
+                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $this->session->userdata('nama'); ?></div>
+                    <div class="email"><?php echo $this->session->userdata('email'); ?></div>
                     <div class="btn-group user-helper-dropdown">
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
-                            <li><a href="javascript:void(0);"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
+                            <li><a href="<?php echo base_url(); ?>penerima/C_penerima/Vprofile"><i class="material-icons">person</i>Profile</a></li>
+                            <!-- <li role="separator" class="divider"></li> -->
+                            <!-- <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
                             <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">input</i>Sign Out</a></li>
+                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li> -->
+                            <!-- <li role="separator" class="divider"></li> -->
+                            <li><a href="<?php echo base_url(); ?>MY_Controller/logout"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
                     </div>
                 </div>
@@ -302,57 +312,36 @@
                     <li class="header">MAIN NAVIGATION</li>
                     <?php if ($data[0]->status == 11) { ?>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="<?php  echo base_url(); ?>penerima/C_penerima">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">widgets</i>
-                            <span>Widgets</span>
+                    <li class="">
+                        <a href="<?php echo base_url(); ?>penerima/C_penerima/VbuatCampaign">
+                            <i class="material-icons">assignment</i>
+                            <span>Create Campaign</span>
                         </a>
-                        <ul class="ml-menu">
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Cards</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="pages/widgets/cards/basic.html">Basic</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/cards/colored.html">Colored</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/cards/no-header.html">No Header</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <span>Infobox</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>
-                                    </li>
-                                    <li>
-                                        <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
                     </li>
+                    <li class="">
+                        <a href="<?php echo base_url(); ?>penerima/C_penerima/VbuatLaporan">
+                            <i class="material-icons">book</i>
+                            <span>Create Report Campaign</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="<?php echo base_url(); ?>penerima/C_penerima/VaccPaket">
+                            <i class="material-icons">check_circle</i>
+                            <span>Approval Paket</span>
+                        </a>
+                    </li>
+                    <li class="">
+                      <!--   <a href="index.html">
+                            <i class="material-icons">home</i>
+                            <span>Home</span>
+                        </a> -->
+                    </li>
+                    
                     <?php } ?>
                 </ul>
             </div>
@@ -360,7 +349,7 @@
             <!-- Footer -->
             <div class="legal">
                 <div class="copyright">
-                    &copy; 2016 - 2017 <a href="javascript:void(0);">AdminBSB - Material Design</a>.
+                    &copy; 2016 - 2017 <a href="javascript:void(0);">BAGI BARANG</a>.
                 </div>
                 <div class="version">
                     <b>Version: </b> 1.0.5
