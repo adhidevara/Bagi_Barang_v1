@@ -42,7 +42,7 @@ class C_donatur extends CI_Controller {
 			'jumlah_barang' => $form['jumlah_barang'],
 			'satuan_barang' => $form['satuan_barang'],
 			'catatan_barang' => $form['catatan_barang'],
-			'status' => 'pending'
+			'status' => 'Menunggu Pengiriman'
 		);
 		$this->M_Donatur->insertData('barang', $data);
 		redirect('donatur/C_donatur/donasiSaya');
@@ -212,7 +212,7 @@ class C_donatur extends CI_Controller {
 			'satuan_barang' => $form['satuan_barang'],
 			'catatan_barang' => $form['catatan_barang'],
 			'resi' => $form['resi'],
-			'status' => 'Masuk Gudang'
+			'status' => 'Sedang Dikirim'
 		);
 		$this->M_Donatur->updateData('barang', 'id_barang',$data,$id_barang);
 		redirect('donatur/C_donatur/donasiSaya');
