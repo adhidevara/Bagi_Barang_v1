@@ -19,7 +19,7 @@
                     <div class="form-group">
                         <div class="form-line">
                             Kategori Barang <small style="color: red">*</small>
-                            <select class="form-control" name="kategori_barang">
+                            <select class="form-control" name="kategori_barang" required="">
                                 <option value="0">--- Pilih Kategori Barang ---</option>
                                 <option value="sembako">Sembako</option>
                                 <option value="Obat-obatan">Obat-obatan</option>
@@ -32,19 +32,19 @@
                     <div class="form-group">
                         <div class="form-line">
                             Nama Barang <small style="color: red">*</small>
-                            <input type="text" class="form-control" name="nama_barang" placeholder="contoh : Pakaian" />
+                            <input type="text" class="form-control" name="nama_barang" placeholder="contoh : Pakaian" required="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
                             Jumlah Barang <small style="color: red">*</small>
-                            <input type="number" class="form-control" name="jumlah_barang" placeholder="contoh : 100 "  />
+                            <input type="number" class="form-control" name="jumlah_barang" placeholder="contoh : 100 " required="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
                             Satuan Barang <small style="color: red">*</small>
-                            <input type="text" class="form-control" name="satuan_barang" placeholder="contoh : pcs, pack, box dll" />
+                            <input type="text" class="form-control" name="satuan_barang" placeholder="contoh : pcs, pack, box dll" required="" />
                         </div>
                     </div>
                     <div class="form-group">
