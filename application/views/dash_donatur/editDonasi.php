@@ -18,7 +18,7 @@
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Kategori Barang
+                            Kategori Barang <small style="color: red">*</small>
                             <select class="form-control" name="kategori_barang">
                                 <option value="<?php echo $data[0]->kategori_barang ?>"><?php echo $data[0]->kategori_barang ?></option>
                                 <option value="sembako">Sembako</option>
@@ -31,29 +31,45 @@
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Nama Barang <input type="text" class="form-control" name="nama_barang" value="<?php echo $data[0]->nama_barang ?>" />
+                            Nama Barang <small style="color: red">*</small>
+                            <input type="text" class="form-control" name="nama_barang" value="<?php echo $data[0]->nama_barang ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Jumlah Barang <input type="number" class="form-control" name="jumlah_barang" value="<?php echo $data[0]->jumlah_barang ?>" />
+                            Jumlah Barang <small style="color: red">*</small>
+                            <input type="number" class="form-control" name="jumlah_barang" value="<?php echo $data[0]->jumlah_barang ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Satuan Barang <input type="text" class="form-control" name="satuan_barang" value="<?php echo $data[0]->satuan_barang ?>" />
+                            Satuan Barang <small style="color: red">*</small>
+                            <input type="text" class="form-control" name="satuan_barang" value="<?php echo $data[0]->satuan_barang ?>" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Catatan<textarea class="form-control" value="<?php echo $data[0]->catatan_barang ?>" name="catatan_barang"><?php echo $data[0]->catatan_barang ?></textarea>
+                            Catatan <textarea class="form-control" value="<?php echo $data[0]->catatan_barang ?>" name="catatan_barang"><?php echo $data[0]->catatan_barang ?></textarea>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Resi <input type="text" class="form-control" name="resi" placeholder="Masukkan No Resi" />
+                            Resi <small style="color: red">*</small><input type="text" class="form-control" name="resi" placeholder="Masukkan No Resi" required="" />
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="form-line">
+                            Kurir <small style="color: red">*</small>
+                            <select class="form-control" name="kurir">
+                                <option value=" ">--- Pilih Kurir ---</option>
+                                <option value="sembako">J&T</option>
+                                <option value="Obat-obatan">JNE</option>
+                                <option value="Pakaian">TIKI</option>
+                                <option value="sembako">Wahana</option>
+                                <option value="sembako">Lainnya</option>
+                            </select>
+                        </div>
+                    </div><br>
 
                     <input type="hidden" name="id" value="<?php echo $data[0]->id_barang ?>">
                     <input type="submit" name="submit" class="btn btn-primary btn-sm" value="Simpan" style="float: right;"> &nbsp;

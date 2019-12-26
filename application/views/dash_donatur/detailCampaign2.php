@@ -45,7 +45,7 @@
                             <div class="content-area">
                                 <h4><?php echo $data[0]->nama; ?></h4>
                                 <!-- <p>Web Software Developer</p> -->
-                                <p> <font size="2"><?php echo $data[0]->email; ?></font></p>
+                                <p> <font size="2">Volunteer</font></p>
                             </div>
                         </div>
                         <div class="profile-footer">
@@ -55,13 +55,13 @@
                                     <span><font size="2"><?php echo $data[0]->jenis_kelamin; ?></font></span>
                                 </li>
                                 <li>
-                                    <span>No Tlp</span>
-                                    <span><font size="2"><?php echo $data[0]->no_tlp; ?></font></span>
+                                    <span>Email</span>
+                                    <span><font size="2"><?php echo $data[0]->email; ?></font></span>
                                 </li>
-                                <li>
+                                <!-- <li>
                                     <span>Alamat</span>
                                     <span><font size="2"><?php echo $data[0]->alamat; ?></font></span>
-                                </li>
+                                </li> -->
                             </ul>
                             <br><br>
                         </div>
