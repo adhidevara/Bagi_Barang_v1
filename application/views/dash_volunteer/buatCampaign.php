@@ -102,8 +102,8 @@
                                             <label class="form-control" style="height: 35px;" for="radio_4">Lainnya</label><br>
                                         </div>
 
-                                    <input id="acceptTerms-2" name="acceptTerms" type="checkbox" required>
-                                    <label for="acceptTerms-2">Saya setuju dengan Syarat & Ketentuan Donasi di berbagibarang.com, termasuk biaya administrasi platform sebesar 2,5% dari target donasi online yang terkumpul</label>
+                                    <input id="acceptTerms" name="acceptTerms" type="checkbox" style="background-color:#FFF" required>
+                                    <!-- <label for="acceptTerms">Saya setuju dengan Syarat & Ketentuan Donasi di berbagibarang.com, termasuk biaya administrasi platform sebesar 2,5% dari target donasi online yang terkumpul</label> -->
                                 </fieldset>
                             </form>
                         </div>
@@ -245,7 +245,7 @@
                     url: '<?php echo base_url(); ?>penerima/C_penerima/proBuatCampaign',
                     type: 'post',
                     dataType: 'html',
-                    data: 'judulCampaign='+ judulCampaign + '&kategoriCampaign=' + kategoriCampaign + '&batasCampaign=' + batasCampaign + '&ajakanCampaign=' + ajakanCampaign + '&deskripsiCampaign=' + deskripsiCampaign + '&kategoriCampaign=' + kategoriCampaign,
+                    data: 'judulCampaign='+ judulCampaign + '&kategoriCampaign=' + kategoriCampaign + '&batasCampaign=' + batasCampaign + '&ajakanCampaign=' + ajakanCampaign + '&deskripsiCampaign=' + deskripsiCampaign + '&keteranganCampaign=' + keteranganCampaign,
                     success :
                     function(pesan) {
                         console.log(pesan);  
@@ -292,7 +292,7 @@
                     );
                     $("#namaBarang").val(" ");
                     $("#quantity").val(" ");
-                    $("#kategoriBarang").val(" ");
+                    $("#kategoriBarang").val("0");
                     $("#satuan").val(" ");
                     $("#simpanTambahBarang").html("Simpan");
 

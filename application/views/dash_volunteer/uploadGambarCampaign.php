@@ -76,7 +76,7 @@
                                 </div>
                             <br>
                             <div class="button-demo">
-                                <a href="<?=base_url()?>penerima/C_penerima" class="btn bg-red waves-effect" style="float: right;">Upload</a>
+                                <a href="<?=base_url()?>penerima/C_penerima" class="btn bg-red waves-effect" style="float: right; margin-top: 5px">Upload</a>
                             </div>
                             </form>
                             <br>
