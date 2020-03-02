@@ -35,7 +35,54 @@ class M_pengelola extends CI_Model {
 		return $result->result();
 	}
 
-	
+	public function selectCampPkt()
+	{
+		$this->db->select('*');
+		$this->db->from('campaign');
+
+		return $this->db->get()->result();
+	}
+
+	public function selectBarangPaket($id_campaign, $jenis_barang)
+	{
+		$this->db->select('*');
+		$this->db->from('barang b');
+		$this->db->where('b.id_campaign', $id_campaign);
+		$this->db->where('b.kategori_barang', $jenis_barang);
+		$this->db->where('id_paket IS NULL');
+		$this->db->where('status', 'Di Terima (Warehouse)');
+
+		return $this->db->get()->result();
+	}
+
+	public function isiPaket($id_campaign, $jenis_barang)
+	{
+		$this->db->select('*');
+		$this->db->from('barang b');
+		$this->db->join('paket p', 'b.id_paket = p.id_paket');
+		$this->db->where('b.id_campaign', $id_campaign);
+		$this->db->where('b.kategori_barang', $jenis_barang);
+
+		return $this->db->get()->result();
+	}
+
+	public function lap_unacc()
+	{
+		$this->db->select('*');
+		$this->db->from('laporan_donasi');
+		$this->db->where('tanggal_diacc IS NULL');
+
+		return $this->db->get()->result();
+	}
+
+	public function lap_acc()
+	{
+		$this->db->select('*');
+		$this->db->from('laporan_donasi');
+		$this->db->where('tanggal_diacc IS NOT NULL');
+
+		return $this->db->get()->result();
+	}
 }
 
 /* End of file modelName.php */

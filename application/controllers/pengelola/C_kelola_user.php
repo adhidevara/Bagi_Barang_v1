@@ -24,8 +24,41 @@ class C_kelola_user extends C_pengelola {
 				'status' => $this->session->userdata('status')
 			);
 		$this->session->set_userdata($data);
-		$update = $this->M_akun->update('id_pengelola', $id_pengelola, 'pengelola', $data);
-		echo json_encode($update);
+		$data1 = array(
+				'email' => $form['Email'],
+				'nama' => $form['Nama'],
+				'no_ktp' => $form['NoKTP'],
+				'jenis_kelamin' => $form['jenis_kelamin'],
+				'alamat' => $form['Alamat'],
+				'no_tlp' => $form['NoTlp'],
+			);
+		$update = $this->M_akun->update('id_pengelola', $id_pengelola, 'pengelola', $data1);
+		echo "success";
+	}
+
+	public function editPassword()
+	{
+		$form = $this->input->post();
+
+		if ($form['OldPassword'] != "" || $form['NewPassword'] != "" || $form['NewPasswordConfirm'] != "") {
+			if ($form['OldPassword'] == $this->encryption->decrypt($this->session->userdata('password'))) {
+				if ($form['NewPassword'] == $form['NewPasswordConfirm']) {
+					$data = array('password' => $this->encryption->encrypt($form['NewPasswordConfirm']));
+					$this->M_akun->update('id_pengelola', $this->session->userdata('id_pengelola'), 'pengelola', $data);
+					$this->session->set_userdata('password', $this->encryption->encrypt($form['NewPasswordConfirm']));
+					echo 'success';
+				}
+				else{
+					echo 'failed2';
+				}
+			}
+			else{
+				echo 'failed1';
+			}
+		}
+		else{
+			echo 'failed0';
+		}
 	}
 
 	public function accVol() //Proses Acc

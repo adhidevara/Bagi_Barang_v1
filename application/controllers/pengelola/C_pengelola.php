@@ -57,11 +57,30 @@ class C_pengelola extends CI_Controller {
 		$this->load->view('dash_pengelola/hal_campaignList', $data);
 	}
 
-	public function listBarangVendor()
+	public function detailCampaign()
 	{
-		$data['vendor'] = $this->M_akun->selectAll('*', 'vendor');
+		$val = $this->input->get('id_campaign');
+		$data['data'] = $this->M_akun->selectWhere("*", "campaign", "id_campaign", $val);
+		$this->load->view('dash_pengelola/hal_detailCampaign', $data);
+	}
+
+	public function listBarang()
+	{
+		$val = $this->input->get('id_campaign');
+		$data['data'] = $this->M_akun->selectWhere("*", "barang", "id_campaign", $val);
+		
+		if (count($data['data']) > 0) {
+			$this->load->view('dash_pengelola/hal_listBarang', $data);
+		}
+		else{
+			$this->load->view('dash_pengelola/hal_listBarang');
+		}		
+	}
+
+	public function listBarangAll()
+	{
 		$data['barang'] = $this->M_akun->selectAll('*', 'barang');
-		$this->load->view('dash_pengelola/hal_listBarangVendor', $data);
+		$this->load->view('dash_pengelola/hal_listBarangAll', $data);
 	}
 
 	public function addVendor()
@@ -84,28 +103,32 @@ class C_pengelola extends CI_Controller {
 		$this->load->view('dash_pengelola/hal_sortBarang', $data);
 	}
 
-	public function kirimPaket()
+	public function formPaket()
 	{
+		$data['data'] = $this->M_pengelola->selectCampPkt();
+		
 		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
+		$this->load->view('dash_pengelola/hal_formPaket', $data);
+	}
+
+	public function barangPaket()
+	{
+		$get = $this->input->get();
+
+		$data['id_paket'] = $get['id_paket'];
+		$data['id_campaign'] = $get['id_campaign'];
+		$data['jenis_barang'] = $get['jenis_barang'];
+		$data['data'] = $this->M_pengelola->selectBarangPaket($get['id_campaign'], $get['jenis_barang']);
+		$data['isi'] = $this->M_pengelola->isiPaket($get['id_campaign'], $get['jenis_barang']);
+		
+		$this->load->view('dash_pengelola/hal_barangPaket', $data);
 	}
 
 	public function verifLapBelanja()
 	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
-	}
-
-	public function listLaporan()
-	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
-	}
-
-	public function listTransDonasi()
-	{
-		$this->load->view('dash_pengelola/head_foot/header');
-		$this->load->view('dash_pengelola/head_foot/footer');
+		$data['lap_unacc'] = $this->M_pengelola->lap_unacc();
+		$data['lap_acc'] = $this->M_pengelola->lap_acc();
+		$this->load->view('dash_pengelola/hal_laporan', $data);
 	}
 
 	public function addPengelola() //Tampilan Add Pengelola

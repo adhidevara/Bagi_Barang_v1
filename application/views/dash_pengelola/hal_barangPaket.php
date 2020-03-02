@@ -1,9 +1,20 @@
+<!-- Bootstrap Material Datetime Picker Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-material-datetimepicker/css/bootstrap-material-datetimepicker.css" rel="stylesheet" />
+
+    <!-- Bootstrap DatePicker Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet" />
+
+    <!-- Wait Me Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/waitme/waitMe.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
 <?php $this->load->view('dash_pengelola/head_foot/header'); ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    Kelola Paket
+                    Barang Paket
                     <small>Taken from <a href="#" target="_blank">Bagi Barang.com</a></small>
                 </h2>
             </div>
@@ -13,16 +24,13 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Sortir dan Pengiriman Paket Barang
+                                Detail Paket
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
                                     <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                         <i class="material-icons">more_vert</i>
                                     </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="<?=base_url()?>pengelola/C_pengelola/formPaket">Buat Paket</a></li>
-                                    </ul>
                                 </li>
                             </ul>
                         </div>
@@ -31,12 +39,12 @@
                             <ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active">
                                     <a href="#home_with_icon_title" data-toggle="tab">
-                                        <i class="material-icons">reorder</i> Data Paket (Belum Dikirim)
+                                        <i class="material-icons">reorder</i> Sortir Barang
                                     </a>
                                 </li>
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
-                                        <i class="material-icons">receipt</i> Data Paket (Siap Dikirim)
+                                        <i class="material-icons">receipt</i> Isi Paket
                                     </a>
                                 </li>
                             </ul>
@@ -44,48 +52,37 @@
                             <!-- Tab panes -->
                             <div class="tab-content">
                                 <div role="tabpanel" class="tab-pane fade in active" id="home_with_icon_title">
-                                    <p>
-                                    <div class="body">
-                                        <div class="table-responsive">
-                                            <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                                <thead>
-                                                    <tr>
-                                                        <th>ID Paket</th>
-                                                        <th>ID Campaign</th>
-                                                        <th>Jenis Barang</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Keterangan</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </thead>
-                                                <tfoot>
-                                                    <tr>
-                                                        <th>ID Paket</th>
-                                                        <th>ID Campaign</th>
-                                                        <th>Jenis Barang</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Keterangan</th>
-                                                        <th>Aksi</th>
-                                                    </tr>
-                                                </tfoot>
-                                                <tbody id="show_data">
-                                                    <?php foreach ($paket0 as $vol) { ?>
-                                                    <tr>
-                                                        <td><?= $vol->id_paket ?></td>
-                                                        <td><?= $vol->id_campaign ?></td>
-                                                        <td><?= $vol->jenis_barang ?></td>
-                                                        <td><?= $vol->tanggal_sortir ?></td>
-                                                        <td><?= $vol->keterangan ?></td>
-                                                        <td>
-                                                            <a href="<?=base_url()?>pengelola/C_pengelola/barangPaket?id_paket=<?=$vol->id_paket?>&id_campaign=<?=$vol->id_campaign?>&jenis_barang=<?=$vol->jenis_barang?>" class="btn btn-info btn-info item_acc" data="<?= $vol->id_paket ?>">Detail Paket</a>
-                                                        </td>
-                                                    </tr>
+                                    <h2 class="card-inside-title">Input Barang Paket</h2>
+                                    <form action="<?=base_url()?>pengelola/C_paket/barangPaket" method="POST">
+                                    <div class="row clearfix">
+                                        <div class="col-sm-4">
+                                            <input type="hidden" name="id_paket" value="<?=$id_paket?>">
+                                            <input type="hidden" name="id_campaign" value="<?=$id_campaign?>">
+                                            <input type="hidden" name="jenis_barang" value="<?=$jenis_barang?>">
+                                            <select class="form-control show-tick" name="id_barang" required>
+                                                <option value="">-- Pilih Barang --</option>
+                                                <?php foreach ($data as $da) { ?>
+                                                <option value="<?=$da->id_barang?>"><?=$da->nama_barang?></option>
                                                 <?php } ?>
-                                                </tbody>
-                                            </table>
+                                            </select>
+                                        </div>
+                                        <div class="col-sm-1">
+                                            Jumlah Sortir :
+                                        </div>
+                                        <div class="col-sm-1">
+                                            <div class="input-group spinner" data-trigger="spinner">
+                                                <div class="form-line">
+                                                    <input type="text" class="form-control text-center" value="1" data-rule="quantity" name="qty" required>
+                                                </div>
+                                                <span class="input-group-addon">
+                                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
-                                    </p>    
+                                    <input type="submit" class="btn btn-primary m-t-15 waves-effect" value="SUBMIT">
+                                    </form>
                                 </div>
                                 <div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title">
                                     <div class="body">
@@ -93,47 +90,36 @@
                                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                                 <thead>
                                                     <tr>
-                                                        <th>ID Paket</th>
+                                                        <th>ID Barang</th>
+                                                        <th>ID Donatur</th>
                                                         <th>ID Campaign</th>
                                                         <th>Jenis Barang</th>
-                                                        <th>Nama Kurir</th>
-                                                        <th>No Resi</th>
-                                                        <th>Tanggal Kirim</th>
-                                                        <th>Tanggal Terima</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Keterangan</th>
-                                                        <th>Aksi</th>
+                                                        <th>Nama Barang</th>
+                                                        <th>Jumlah</th>
+                                                        <th>Satuan</th>
                                                     </tr>
                                                 </thead>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>ID Paket</th>
+                                                        <th>ID Barang</th>
+                                                        <th>ID Donatur</th>
                                                         <th>ID Campaign</th>
                                                         <th>Jenis Barang</th>
-                                                        <th>Nama Kurir</th>
-                                                        <th>No Resi</th>
-                                                        <th>Tanggal Kirim</th>
-                                                        <th>Tanggal Terima</th>
-                                                        <th>Tanggal Dibuat</th>
-                                                        <th>Keterangan</th>
-                                                        <th>Aksi</th>
+                                                        <th>Nama Barang</th>
+                                                        <th>Jumlah</th>
+                                                        <th>Satuan</th>
                                                     </tr>
                                                 </tfoot>
                                                 <tbody id="show_data">
-                                                    <?php foreach ($paket1 as $vol) { ?>
+                                                    <?php foreach ($isi as $vol) { ?>
                                                     <tr>
-                                                        <td><?= $vol->id_paket ?></td>
+                                                        <td><?= $vol->id_barang ?></td>
+                                                        <td><?= $vol->id_donatur ?></td>
                                                         <td><?= $vol->id_campaign ?></td>
-                                                        <td><?= $vol->jenis_barang ?></td>
-                                                        <td><?= $vol->nama_kurir ?></td>
-                                                        <td><?= $vol->no_resi ?></td>
-                                                        <td><?= $vol->tanggal_pengiriman ?></td>
-                                                        <td><?= $vol->tanggal_diterima ?></td>
-                                                        <td><?= $vol->tanggal_sortir ?></td>
-                                                        <td><?= $vol->keterangan ?></td>
-                                                        <td>
-                                                            <a href="javascript:;" class="btn btn-info btn-success item_acc" data="<?= $vol->id_paket ?>">Siap Kirim</a>
-                                                        </td>
+                                                        <td><?= $vol->kategori_barang ?></td>
+                                                        <td><?= $vol->nama_barang ?></td>
+                                                        <td><?= $vol->jumlah_barang ?></td>
+                                                        <td><?= $vol->satuan_barang ?></td>
                                                     </tr>
                                                 <?php } ?>
                                                 </tbody>
@@ -164,6 +150,9 @@
 
     <!-- Waves Effect Plugin Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/node-waves/waves.js"></script>
+
+    <!-- Jquery Spinner Plugin Js -->
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-spinner/js/jquery.spinner.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/jquery.dataTables.js"></script>

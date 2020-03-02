@@ -1,9 +1,10 @@
-<?php $this->load->view('dash_pengelola/head_foot/header'); ?>
-    <section class="content">
+<?php $this->load->view('dash_pengelola/head_foot/header'); error_reporting(0); ?>
+
+<section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>
-                    Data Vendor & Barang
+                    Data Barang Donasi
                     <small>Taken from <a href="#" target="_blank">Bagi Barang.com</a></small>
                 </h2>
             </div>
@@ -13,72 +14,7 @@
                     <div class="card">
                         <div class="header">
                             <h2>
-                                Data Vendor
-                            </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover dataTable js-exportable">
-                                    <thead>
-                                        <tr>
-                                            <th>ID Vendor</th>
-                                            <th>Nama Vendor</th>
-                                            <th>Jenis Vendor</th>
-                                            <th>Alamat</th>
-                                            <th>No Telepon</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>ID Vendor</th>
-                                            <th>Nama Vendor</th>
-                                            <th>Jenis Vendor</th>
-                                            <th>Alamat</th>
-                                            <th>No Telepon</th>
-                                            <th>Aksi</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody id="show_data">
-                                        <?php foreach ($vendor as $vol) { ?>
-                                        <tr>
-                                            <td><?= $vol->id_vendor ?></td>
-                                            <td><?= $vol->nama_vendor ?></td>
-                                            <td><?= $vol->jenis_vendor ?></td>
-                                            <td><?= $vol->alamat ?></td>
-                                            <td><?= $vol->no_tlp ?></td>
-                                            <td>
-                                                <a href="javascript:;" class="btn btn-info btn-primary item_acc" data="<?= $vol->id_vendor ?>">Detail</a>
-                                            </td>
-                                        </tr>
-                                    <?php } ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- #END# Exportable Table -->
-            <!-- Exportable Table -->
-            <div class="row clearfix">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>
-                                Data Barang
+                                Data Barang dari <?=$data[0]->id_campaign?>
                             </h2>
                             <ul class="header-dropdown m-r--5">
                                 <li class="dropdown">
@@ -99,39 +35,44 @@
                                     <thead>
                                         <tr>
                                             <th>ID Barang</th>
-                                            <th>ID Vendor</th>
                                             <th>Nama Barang</th>
                                             <th>Kategori Barang</th>
-                                            <th>Jumlah Stok</th>
+                                            <th>Jumlah</th>
                                             <th>Satuan</th>
-                                            <th>Harga Satuan</th>
-                                            <th>Gambar</th>
+                                            <th>Resi</th>
+                                            <th>Catatan</th>
+                                            <th>Status</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>ID Barang</th>
-                                            <th>ID Vendor</th>
                                             <th>Nama Barang</th>
                                             <th>Kategori Barang</th>
-                                            <th>Jumlah Stok</th>
+                                            <th>Jumlah</th>
                                             <th>Satuan</th>
-                                            <th>Harga Satuan</th>
-                                            <th>Gambar</th>
+                                            <th>Resi</th>
+                                            <th>Catatan</th>
+                                            <th>Status</th>
                                         </tr>
                                     </tfoot>
                                     <tbody id="show_data_unverified">
-                                        <?php foreach ($barang as $vol) { ?>
+                                        <?php foreach ($data as $vol) { ?>
                                         <tr>
                                             <td><?= $vol->id_barang ?></td>
-                                            <td><?= $vol->id_vendor ?></td>
                                             <td><?= $vol->nama_barang ?></td>
                                             <td><?= $vol->kategori_barang ?></td>
                                             <td><?= $vol->jumlah_barang ?></td>
                                             <td><?= $vol->satuan_barang ?></td>
-                                            <td><?= "Rp.".number_format($vol->harga_satuan) ?></td>
-                                            <td>
-                                            </td>
+                                            <td><?= $vol->resi ?></td>
+                                            <td><?= $vol->catatan_barang ?></td>
+                                            <?php if ($vol->status == "Sedang Dikirim") { ?>
+                                            <td style="background-color: yellow; color: black;"><?php echo $vol->status; ?></td>
+                                            <?php } else if ($vol->status == "Menunggu Pengiriman") { ?>
+                                            <td style="background-color: lightblue; color: black;"><?php echo $vol->status; ?></td>
+                                            <?php } else if ($vol->status == "Di Terima (Warehouse)") { ?>
+                                            <td style="background-color: lightgreen; color: black;"><?php echo $vol->status; ?></td>
+                                            <?php } ?>
                                         </tr>
                                     <?php } ?>
                                     </tbody>

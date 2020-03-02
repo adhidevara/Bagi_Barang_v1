@@ -11,7 +11,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Detail</a></li>
+                                        <li><a href="<?=base_url()?>pengelola/C_pengelola/detailCampaign?id_campaign=<?=$cp->id_campaign?>">Detail</a></li>
                                     </ul>
                                 </li>
                             </ul>

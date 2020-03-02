@@ -327,14 +327,14 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/listBarangVendor">List Barang & Vendor</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/listBarangAll">List Barang Donasi</a>
                             </li>
-                            <li>
+                            <!-- <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/addVendor">Input Data Vendor</a>
                             </li>
                             <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/addBarang">Input Data Barang</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li>
@@ -346,9 +346,6 @@
                             <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/sortBarang">Sorting Barang</a>
                             </li>
-                            <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/kirimPaket">Kirim Paket</a>
-                            </li>
                         </ul>
                     </li>
                     <li>
@@ -358,14 +355,11 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/verifLapBelanja">Verifikasi Laporan Belanja</a>
+                                <a href="<?= base_url() ?>pengelola/C_pengelola/verifLapBelanja">Verifikasi Laporan</a>
                             </li>
-                            <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/listLaporan">List Laporan</a>
-                            </li>
-                            <li>
+                            <!-- <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/listTransDonasi">List Transaksi Donasi</a>
-                            </li>
+                            </li> -->
                         </ul>
                     </li>
                     <li>

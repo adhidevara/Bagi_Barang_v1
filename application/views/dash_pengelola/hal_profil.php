@@ -208,7 +208,7 @@
                                         </div>
                                     </div> -->
                                     <div role="tabpanel" class="tab-pane fade in active" id="profile_settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" method="POST" action="#">
                                             <div class="form-group">
                                                 <label for="Nama" class="col-sm-2 control-label">Nama</label>
                                                 <div class="col-sm-10">
@@ -283,7 +283,7 @@
                                         </form>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-                                        <form class="form-horizontal">
+                                        <form class="form-horizontal" method="POST" action="#">
                                             <div class="form-group">
                                                 <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
                                                 <div class="col-sm-9">
@@ -311,7 +311,7 @@
 
                                             <div class="form-group">
                                                 <div class="col-sm-offset-3 col-sm-9">
-                                                    <button type="submit" class="btn btn-danger">SUBMIT</button>
+                                                    <button type="submit" class="btn btn-danger" id="btnChangePass">SUBMIT</button>
                                                 </div>
                                             </div>
                                         </form>
@@ -412,7 +412,20 @@
                         data    : 'Nama='+Nama+'&Email='+Email+'&NoKTP='+NoKTP+'&NoTlp='+NoTlp+'&Alamat='+Alamat+'&jenis_kelamin='+jk2,
                         success : 
                             function(pesan){
-                                console.log(pesan);
+                                if (pesan == 'success') {
+                                    Swal.fire({
+                                      icon: 'success',
+                                      title: 'Profil Berhasil Diubah',
+                                      text: 'Berhasil melakukan perubahan Profil!~',
+                                    }); 
+                                }
+                                else {
+                                    Swal.fire({
+                                      icon: 'error`',
+                                      title: 'Kesalahan',
+                                      text: 'Kesalahan pada sistem!~',
+                                    }); 
+                                }
                             }
                         })
                         .done(function() {
@@ -426,6 +439,68 @@
                         });
 
                 }
+            });
+
+            $("#btnChangePass").click(function(){
+                $("#btnChangePass").html("please wait").attr("disabled", "disabled");
+
+                var OldPassword = $('#OldPassword').val();
+                var NewPassword = $('#NewPassword').val();
+                var NewPasswordConfirm = $('#NewPasswordConfirm').val();
+                
+                $.ajax({
+                    url     : '<?=base_url()?>pengelola/C_kelola_user/editPassword',
+                    type    : 'POST',
+                    dataType: 'html',
+                    data    : 'OldPassword='+OldPassword+'&NewPassword='+NewPassword+'&NewPasswordConfirm='+NewPasswordConfirm,
+                    success :
+                        function(pesan) {
+                            console.log(pesan);
+                            $('#OldPassword').val("");
+                            $('#NewPassword').val("");
+                            $('#NewPasswordConfirm').val("");
+
+                            if (pesan == 'success') {
+                                Swal.fire({
+                                  icon: 'success',
+                                  title: 'Password Telah Diubah',
+                                  text: 'Berhasil melakukan perubahan Password!~',
+                                }); 
+                            }
+                            else if (pesan == 'failed0') {
+                                Swal.fire({
+                                  icon: 'error',
+                                  title: 'Isi Form Dengan Lengkap',
+                                  text: 'Mohon isi formulir dengan lengkap!~',
+                                }); 
+                            }
+                            else if (pesan == 'failed1') {
+                                Swal.fire({
+                                  icon: 'error',
+                                  title: 'Password Lama Tidak Sesuai',
+                                  text: 'Password Lama anda tidak sesuai dengan sistem!~',
+                                }); 
+                            }
+                            else if (pesan == 'failed2') {
+                                Swal.fire({
+                                  icon: 'error',
+                                  title: 'Password Baru Tidak Sama',
+                                  text: 'Password Baru dan konfirmasi password tidak sama!~',
+                                }); 
+                            }
+                        }
+                })
+                .done(function() {
+                    $("#btnChangePass").html('SUBMIT').removeAttr("disabled");
+                    console.log("success");
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+                
             });
 
         });

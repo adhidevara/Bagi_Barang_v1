@@ -29,7 +29,7 @@
                                         <i class="material-icons">more_vert</i>
                                     </a>
                                     <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Detail</a></li>
+                                        <li><a href="<?=base_url()?>pengelola/C_pengelola/detailCampaign?id_campaign=<?=$cp->id_campaign?>">Detail</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -59,10 +59,23 @@
                                         </div>
                                     </div> -->
                                     <div class="item active">
-                                        <img src="<?=base_url()?>assets/dashAssets/images/image-gallery/19.jpg" />
+                                        <img src="<?=base_url().$cp->gambar?>" />
                                         <div class="carousel-caption">
                                             <h3><?=$cp->judul_campaign?></h3>
-                                            <p><?=$cp->ajakan_campaign?></p>
+                                            <?php
+                                            $string = strip_tags($cp->ajakan_campaign);
+                                            if (strlen($string) > 150) {
+
+                                                // truncate string
+                                                $stringCut = substr($string, 0, 150);
+                                                $endPoint = strrpos($stringCut, ' ');
+
+                                                //if the string doesn't contain any space then it will cut without word basis.
+                                                $string = $endPoint? substr($stringCut, 0, $endPoint) : substr($stringCut, 0);
+                                                $string .= '... <a href="'.base_url().'pengelola/C_pengelola/detailCampaign?id_campaign='.$cp->id_campaign.'">Read More</a>';
+                                            }
+                                            ?>
+                                            <p><?=$string?></p>
                                         </div>
                                     </div>
                                 </div>
