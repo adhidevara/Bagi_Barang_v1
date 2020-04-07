@@ -2,10 +2,10 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Nov 10, 2019 at 03:18 PM
--- Server version: 10.4.6-MariaDB
--- PHP Version: 7.3.8
+-- Host: 127.0.0.1
+-- Waktu pembuatan: 03 Apr 2020 pada 05.24
+-- Versi server: 10.3.16-MariaDB
+-- Versi PHP: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -19,44 +19,50 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `Bagi_Barang_v1`
+-- Database: `bagi_barang_v1`
 --
-CREATE DATABASE IF NOT EXISTS `Bagi_Barang_v1` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `Bagi_Barang_v1`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `barang`
+-- Struktur dari tabel `barang`
 --
 
 CREATE TABLE `barang` (
-  `id_barang` int(11) NOT NULL,
-  `id_campaign` int(11) NOT NULL,
-  `id_pengelola` int(11) NOT NULL,
-  `id_donatur` int(11) NOT NULL,
-  `id_vendor` int(11) NOT NULL,
-  `id_kategori` int(11) NOT NULL,
+  `id_barang` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `id_donatur` varchar(255) NOT NULL,
+  `kategori_barang` varchar(255) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
-  `jumlah_barang` varchar(255) NOT NULL,
-  `satuan_barang` varchar(255) NOT NULL,
-  `harga_satuan` varchar(255) NOT NULL
+  `jumlah_barang` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `campaign`
+-- Struktur dari tabel `barang_dibutuhkan`
+--
+
+CREATE TABLE `barang_dibutuhkan` (
+  `id_barang_butuh` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `kategori_barang` varchar(255) NOT NULL,
+  `nama_barang` varchar(255) NOT NULL,
+  `jumlah_barang_butuh` int(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `campaign`
 --
 
 CREATE TABLE `campaign` (
-  `id_campaign` int(11) NOT NULL,
-  `id_penerima` int(11) NOT NULL,
-  `id_paket` int(11) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `id_volunteer` varchar(255) NOT NULL,
   `judul_campaign` varchar(255) NOT NULL,
   `tanggal_campaign` datetime NOT NULL,
   `batas_campaign` datetime NOT NULL,
-  `target_campaign` varchar(255) NOT NULL,
   `deskripsi_campaign` varchar(255) NOT NULL,
   `ajakan_campaign` varchar(255) NOT NULL,
   `kategori_campaign` varchar(255) NOT NULL,
@@ -66,11 +72,22 @@ CREATE TABLE `campaign` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donatur`
+-- Struktur dari tabel `donasi`
+--
+
+CREATE TABLE `donasi` (
+  `id_donasi` varchar(255) NOT NULL,
+  `tanggal_donasi` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `donatur`
 --
 
 CREATE TABLE `donatur` (
-  `id_donatur` int(11) NOT NULL,
+  `id_donatur` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
@@ -84,23 +101,36 @@ CREATE TABLE `donatur` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kategori_barang`
+-- Struktur dari tabel `kategori_barang`
 --
 
 CREATE TABLE `kategori_barang` (
-  `id_kategori` int(11) NOT NULL,
-  `nama_kategori` varchar(255) NOT NULL,
-  `deskripsi` varchar(255) NOT NULL
+  `id_kategori_barang` varchar(255) NOT NULL,
+  `nama_kategori_barang` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `paket`
+-- Struktur dari tabel `kategori_campaign`
+--
+
+CREATE TABLE `kategori_campaign` (
+  `id_kategori` varchar(255) NOT NULL,
+  `nama_kategori` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `paket`
 --
 
 CREATE TABLE `paket` (
-  `id_paket` int(11) NOT NULL,
+  `id_paket` varchar(255) NOT NULL,
+  `id_donatur` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `id_pengelola` varchar(255) NOT NULL,
   `nama_kurir` varchar(255) NOT NULL,
   `no_resi` varchar(255) NOT NULL,
   `tanggal_pengiriman` varchar(255) NOT NULL,
@@ -111,11 +141,41 @@ CREATE TABLE `paket` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pengelola`
+-- Struktur dari tabel `penerimaan_barang`
+--
+
+CREATE TABLE `penerimaan_barang` (
+  `id_laporan` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `tgl_dibuat` varchar(255) NOT NULL,
+  `tgl_diacc` varchar(255) NOT NULL,
+  `keterangan` varchar(255) NOT NULL,
+  `foto` varchar(255) NOT NULL,
+  `link_video` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penerima_donasi`
+--
+
+CREATE TABLE `penerima_donasi` (
+  `id_penerima_donasi` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `nama_penerima_donasi` varchar(255) NOT NULL,
+  `no_ktp` varchar(255) NOT NULL,
+  `alamat_penerima_donasi` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengelola`
 --
 
 CREATE TABLE `pengelola` (
-  `id_pengelola` int(11) NOT NULL,
+  `id_pengelola` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
@@ -129,25 +189,11 @@ CREATE TABLE `pengelola` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `vendor`
---
-
-CREATE TABLE `vendor` (
-  `id_vendor` int(11) NOT NULL,
-  `nama_vendor` varchar(255) NOT NULL,
-  `jenis_vendor` varchar(255) NOT NULL,
-  `alamat` varchar(255) NOT NULL,
-  `no_tlp` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `volunteer`
+-- Struktur dari tabel `volunteer`
 --
 
 CREATE TABLE `volunteer` (
-  `id_volunteer` int(11) NOT NULL,
+  `id_volunteer` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nama` varchar(255) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
@@ -161,16 +207,16 @@ CREATE TABLE `volunteer` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `wallet`
+-- Struktur dari tabel `wallet`
 --
 
 CREATE TABLE `wallet` (
-  `id_wallet` int(11) NOT NULL,
-  `id_campaign` int(11) NOT NULL,
-  `id_donatur` int(11) NOT NULL,
+  `id_wallet` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `id_donatur` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `private_key` varchar(255) NOT NULL,
-  `public_key` varchar(255) NOT NULL,
-  `address` varchar(255) NOT NULL
+  `public_key` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -178,116 +224,127 @@ CREATE TABLE `wallet` (
 --
 
 --
--- Indexes for table `barang`
+-- Indeks untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  ADD PRIMARY KEY (`id_barang`);
+  ADD PRIMARY KEY (`id_barang`),
+  ADD KEY `id_campaign` (`id_campaign`),
+  ADD KEY `id_donatur` (`id_donatur`);
 
 --
--- Indexes for table `campaign`
+-- Indeks untuk tabel `barang_dibutuhkan`
+--
+ALTER TABLE `barang_dibutuhkan`
+  ADD PRIMARY KEY (`id_barang_butuh`),
+  ADD KEY `id_campaign` (`id_campaign`);
+
+--
+-- Indeks untuk tabel `campaign`
 --
 ALTER TABLE `campaign`
-  ADD PRIMARY KEY (`id_campaign`);
+  ADD PRIMARY KEY (`id_campaign`),
+  ADD KEY `id_volunteer` (`id_volunteer`);
 
 --
--- Indexes for table `donatur`
+-- Indeks untuk tabel `donasi`
+--
+ALTER TABLE `donasi`
+  ADD PRIMARY KEY (`id_donasi`);
+
+--
+-- Indeks untuk tabel `donatur`
 --
 ALTER TABLE `donatur`
   ADD PRIMARY KEY (`id_donatur`);
 
 --
--- Indexes for table `kategori_barang`
+-- Indeks untuk tabel `kategori_barang`
 --
 ALTER TABLE `kategori_barang`
-  ADD PRIMARY KEY (`id_kategori`);
+  ADD PRIMARY KEY (`id_kategori_barang`);
 
 --
--- Indexes for table `paket`
+-- Indeks untuk tabel `paket`
 --
 ALTER TABLE `paket`
-  ADD PRIMARY KEY (`id_paket`);
+  ADD PRIMARY KEY (`id_paket`),
+  ADD KEY `id_donatur` (`id_donatur`,`id_campaign`),
+  ADD KEY `id_campaign` (`id_campaign`),
+  ADD KEY `id_pengelola` (`id_pengelola`);
 
 --
--- Indexes for table `pengelola`
+-- Indeks untuk tabel `penerimaan_barang`
+--
+ALTER TABLE `penerimaan_barang`
+  ADD PRIMARY KEY (`id_laporan`),
+  ADD KEY `id_campaign` (`id_campaign`);
+
+--
+-- Indeks untuk tabel `penerima_donasi`
+--
+ALTER TABLE `penerima_donasi`
+  ADD PRIMARY KEY (`id_penerima_donasi`),
+  ADD KEY `id_campaign` (`id_campaign`);
+
+--
+-- Indeks untuk tabel `pengelola`
 --
 ALTER TABLE `pengelola`
   ADD PRIMARY KEY (`id_pengelola`);
 
 --
--- Indexes for table `vendor`
---
-ALTER TABLE `vendor`
-  ADD PRIMARY KEY (`id_vendor`);
-
---
--- Indexes for table `volunteer`
+-- Indeks untuk tabel `volunteer`
 --
 ALTER TABLE `volunteer`
   ADD PRIMARY KEY (`id_volunteer`);
 
 --
--- Indexes for table `wallet`
+-- Indeks untuk tabel `wallet`
 --
 ALTER TABLE `wallet`
   ADD PRIMARY KEY (`id_wallet`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
 
 --
--- AUTO_INCREMENT for table `barang`
+-- Ketidakleluasaan untuk tabel `barang`
 --
 ALTER TABLE `barang`
-  MODIFY `id_barang` int(11) NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `barang_ibfk_1` FOREIGN KEY (`id_campaign`) REFERENCES `campaign` (`id_campaign`),
+  ADD CONSTRAINT `barang_ibfk_2` FOREIGN KEY (`id_donatur`) REFERENCES `donatur` (`id_donatur`);
 
 --
--- AUTO_INCREMENT for table `campaign`
+-- Ketidakleluasaan untuk tabel `barang_dibutuhkan`
+--
+ALTER TABLE `barang_dibutuhkan`
+  ADD CONSTRAINT `barang_dibutuhkan_ibfk_1` FOREIGN KEY (`id_campaign`) REFERENCES `campaign` (`id_campaign`);
+
+--
+-- Ketidakleluasaan untuk tabel `campaign`
 --
 ALTER TABLE `campaign`
-  MODIFY `id_campaign` int(11) NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `campaign_ibfk_1` FOREIGN KEY (`id_volunteer`) REFERENCES `volunteer` (`id_volunteer`);
 
 --
--- AUTO_INCREMENT for table `donatur`
---
-ALTER TABLE `donatur`
-  MODIFY `id_donatur` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `kategori_barang`
---
-ALTER TABLE `kategori_barang`
-  MODIFY `id_kategori` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `paket`
+-- Ketidakleluasaan untuk tabel `paket`
 --
 ALTER TABLE `paket`
-  MODIFY `id_paket` int(11) NOT NULL AUTO_INCREMENT;
+  ADD CONSTRAINT `paket_ibfk_1` FOREIGN KEY (`id_campaign`) REFERENCES `campaign` (`id_campaign`),
+  ADD CONSTRAINT `paket_ibfk_2` FOREIGN KEY (`id_pengelola`) REFERENCES `pengelola` (`id_pengelola`);
 
 --
--- AUTO_INCREMENT for table `pengelola`
+-- Ketidakleluasaan untuk tabel `penerimaan_barang`
 --
-ALTER TABLE `pengelola`
-  MODIFY `id_pengelola` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `penerimaan_barang`
+  ADD CONSTRAINT `penerimaan_barang_ibfk_1` FOREIGN KEY (`id_campaign`) REFERENCES `campaign` (`id_campaign`);
 
 --
--- AUTO_INCREMENT for table `vendor`
+-- Ketidakleluasaan untuk tabel `penerima_donasi`
 --
-ALTER TABLE `vendor`
-  MODIFY `id_vendor` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `volunteer`
---
-ALTER TABLE `volunteer`
-  MODIFY `id_volunteer` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `wallet`
---
-ALTER TABLE `wallet`
-  MODIFY `id_wallet` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `penerima_donasi`
+  ADD CONSTRAINT `penerima_donasi_ibfk_1` FOREIGN KEY (`id_campaign`) REFERENCES `campaign` (`id_campaign`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
