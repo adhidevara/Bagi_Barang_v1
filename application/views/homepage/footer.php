@@ -31,7 +31,7 @@
 		});
 		$(document).on('click','.pass_show .ptxt', function(){
 
-			// $(this).text($(this).text() == "Show" ? "Hide" : "Show");
+			$(".glyphicon").toggleClass('glyphicon-eye-open glyphicon-eye-close');
 
 			$(this).prev().attr('type', function(index, attr){return attr == 'password' ? 'text' : 'password'; });
 
