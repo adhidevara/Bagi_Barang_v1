@@ -61,6 +61,21 @@
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
 
+	<style type="text/css">
+		.pass_show{position: relative}
+		.pass_show .ptxt {
+			position: absolute;
+			top: 50%;
+			right: 10px;
+			z-index: 1;
+			color: #f36c01;
+			margin-top: -10px;
+			cursor: pointer;
+			transition: .3s ease all;
+		}
+		.pass_show .ptxt:hover{color: #333333;}
+	</style>
+
 	</head>
 
 <!------------------------------------------------------------------------------------------------------------------------------>
@@ -85,8 +100,10 @@
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
           <label data-error="wrong" data-success="right" for="defaultForm-pass">Password</label>
-          <input type="password" id="defaultForm-pass" class="form-control validate" placeholder="******">
-        </div>
+			<div class="form-group pass_show">
+				<input type="password" id="defaultForm-pass" class="form-control validate" placeholder="******">
+			</div>
+		</div>
 
         <a href="#" data-toggle="modal" data-dismiss="modal" data-target="#modalLupaPasswordForm">Lupa Password</a>
 
@@ -126,9 +143,13 @@
         <div class="md-form mb-4">
           <i class="fas fa-lock prefix grey-text"></i>
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Your password</label>
-          <input type="password" id="orangeForm-pass" class="form-control validate">
+			<div class="form-group pass_show">
+          		<input type="password" id="orangeForm-pass" class="form-control validate">
+			</div>
         </div>
+
         <br>
+
         <div class="md-form mb-4" align="center">
           <i class="fas fa-lock prefix grey-text"></i>
           <label data-error="wrong" data-success="right" for="orangeForm-pass">Daftar Sebagai :</label><br>

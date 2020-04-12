@@ -113,7 +113,7 @@ Class NemPhp extends NemApi{
     public function prepareTransaction($amount, $fee, $recipient, $mosaics = null, $message = null, $secure = false, $extractFeeFromTransaction = false){
 
         $this->transaction = [
-            'timeStamp'     => (time() - 1427587585),           // The number of seconds elapsed since the creation of the nemesis block.
+            'timeStamp'     => (time() - 1427612785),           // The number of seconds elapsed since the creation of the nemesis block.1427587585
             'amount'        => round($amount * 1000000),        //The amount of micro NEM that is transferred from sender to recipient.
             'fee'           => round($fee    *1000000),         //The fee for the transaction. The higher the fee, the higher the priority of the transaction. Transactions with high priority get included in a block before transactions with lower priority.
             'recipient'     => str_replace('-', '', $recipient),
