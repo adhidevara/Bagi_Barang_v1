@@ -169,15 +169,54 @@ class C_penerima extends CI_Controller {
 
 	public function VtambahBukti()
 	{
-		$id_campaign = $this->input->get('id_campaign');
+		$getData['id_campaign'] = $this->input->get('id_campaign');
 		
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-		$getData['data3'] = $this->M_volunteer->selCampaignById($id_campaign);
-		$getData['data4'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
-
-		$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
+		$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
+		echo "<pre>";
+		print_r($getData['id_campaign']);
+		echo "</pre>";
+		// $this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
 	}
 
+	public function proBuatLaporan()
+	{
+		$form = $this->input->post();
+		$id_laporan = $this->M_akun->gen_id('laporan_donasi', 'id_laporan', 'RPRT-0001-');
+		$id_campaign = $this->input->get('id_campaign');
+		
+		var_dump($id_campaign);
+		die();
+		
+		$getData['data2'] = $this->M_volunteer->selCampaignById($id_campaign);
+		
+		$config['upload_path'] = './uploads/fotoLaporan/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['file_name'] = "ft_r-".$id_laporan;
+		$config['max_size']  = '10000';
+		$config['max_width']  = '10240';
+		$config['max_height']  = '7680';
+			
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+			
+		if ( ! $this->upload->do_upload('foto')){
+			$error = array('error' => $this->upload->display_errors());
+			echo "<pre>";
+			print_r ($error);
+			echo "</pre>";
+		}
+		else{
+			$data = array('id_laporan' => $id_laporan,
+						  'id_campaign' => $id_campaign,
+						  'link_video' => $form['link'],
+						  'foto' => $form['foto'],
+						//   'file_penerima' => $form['dokumen']
+						);
+
+			$this->M_volunteer->insert('laporan_donasi', $data);
+		}
+	}
 
 	public function proTambahBarang()
 	{

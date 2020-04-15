@@ -29,6 +29,7 @@
                                             <option value="Difabel">Difabel</option>
                                             <option value="Keluarga">Keluarga</option>
                                             <option value="Kreatif">Kreatif</option>
+                                            <option value="Rumah Sakit">Rumah Sakit</option>
                                     </select>
                                     </div>
                                     <div class="form-group form-float">
@@ -142,6 +143,7 @@
                                                                     <option value="Sembako">Sembako</option>
                                                                     <option value="Pakaian">Pakaian</option>
                                                                     <option value="Obat-Obatan">Obat-Obatan</option>
+                                                                    <option value="Obat-Obatan">Alat Medis</option>
                                                                     <option value="Lainnya">Lainnya</option>
                                                                 </select>
                                                             </div>
@@ -293,7 +295,7 @@
                     $("#namaBarang").val(" ");
                     $("#quantity").val(" ");
                     $("#kategoriBarang").val("0");
-                    $("#satuan").val(" ");
+                    $("#satuan").val("");
                     $("#simpanTambahBarang").html("Simpan");
 
                     tampil_data_barang();

@@ -3,7 +3,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h1>Laporan Pembelian Barang Campaign</h1>
+                <h1>Laporan Penerimaan Barang Donasi</h1>
             </div>
             <!-- Basic Table -->
             <div class="row clearfix">
@@ -29,7 +29,7 @@
                                         <td><?php echo $campaign->id_campaign; ?></td>
                                         <td><?php echo $campaign->judul_campaign; ?></td>
                                         <td><?php echo $campaign->kategori_campaign; ?></td>
-                                        <td><form method= "POST" action="VtambahBukti/?id_campaign=<?php echo $campaign->id_campaign ?>"><input type="hidden" name="id_campaign"><button type="submit" class="btn bg-deep-orange waves-effect">Buat Laporan</button></form></td>
+                                        <td><form method= "POST" action="<?php echo base_url(); ?>penerima/C_penerima/VtambahBukti"><input type="hidden" name="id_campaign" value="<?php $campaign->id_campaign ?>"><button type="submit" class="btn bg-deep-orange waves-effect" value="<?php $campaign->id_campaign ?>">Buat Laporan</button></form></td>
                                     </tr>
                                     <?php }  ?>
                                 </tbody>
