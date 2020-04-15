@@ -25,11 +25,11 @@
                                     <?php $i = 1; ?>
                                     <?php foreach ($data2 as $campaign) { ?>
                                     <tr>
-                                        <th scope="row"><?php echo $i++ ?></th>
+                                        <th scope="row"><?php echo $i++; ?></th>
                                         <td><?php echo $campaign->id_campaign; ?></td>
                                         <td><?php echo $campaign->judul_campaign; ?></td>
                                         <td><?php echo $campaign->kategori_campaign; ?></td>
-                                        <td><form method= "POST" action="<?php echo base_url(); ?>penerima/C_penerima/VtambahBukti"><input type="hidden" name="id_campaign" value="<?php $campaign->id_campaign ?>"><button type="submit" class="btn bg-deep-orange waves-effect" value="<?php $campaign->id_campaign ?>">Buat Laporan</button></form></td>
+                                        <td><form method= "POST" action="<?php echo base_url(); ?>penerima/C_penerima/VtambahBukti"><input type="hidden" name="id_campaign" value="<?php echo $campaign->id_campaign ?>"><button type="submit" class="btn bg-deep-orange waves-effect" value="<?php echo $campaign->id_campaign ?>">Buat Laporan</button></form></td>
                                     </tr>
                                     <?php }  ?>
                                 </tbody>
