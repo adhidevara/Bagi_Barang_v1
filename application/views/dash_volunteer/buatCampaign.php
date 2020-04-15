@@ -296,7 +296,7 @@
                     $("#quantity").val(" ");
                     $("#kategoriBarang").val("0");
                     $("#satuan").val("");
-                    $("#simpanTambahBarang").html("Simpan");
+                    $("#simpanTambahBarang").html("Simpan").removeAttr("disabled", "disabled");
 
                     tampil_data_barang();
                 })
