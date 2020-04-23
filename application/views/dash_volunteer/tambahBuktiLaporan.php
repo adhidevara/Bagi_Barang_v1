@@ -13,6 +13,24 @@
 						<?php error_reporting(0); echo $error; ?>
 						<form method="POST" enctype="multipart/form-data" action="<?php echo base_url() ?>penerima/C_penerima/proBuatLaporan">
 							<input type="hidden" value="<?php echo $id_campaign ?>" name="id_campaign">
+							<label for="Link Video">Nama Penerima</label>
+							<div class="form-group">
+								<div class="form-line">
+									<input type="text" id="namaPenerima" name="namaPenerima" class="form-control" placeholder="Enter your name">
+								</div>
+							</div>
+							<label for="Link Video">No KTP</label>
+							<div class="form-group">
+								<div class="form-line">
+									<input type="number" id="noKTP" name="noKTP" class="form-control" placeholder="Enter your identity number">
+								</div>
+							</div>
+							<label for="Link Video">Alamat Penerima</label>
+							<div class="form-group">
+								<div class="form-line">
+									<input type="text" id="alamat" name="alamat" class="form-control" placeholder="Enter your address">
+								</div>
+							</div>
 							<label for="Link Video">Link Video</label>
 							<div class="form-group">
 								<div class="form-line">

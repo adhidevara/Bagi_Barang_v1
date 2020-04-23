@@ -22,7 +22,8 @@ class C_penerima extends CI_Controller {
 			$this->load->view('dash_volunteer/profile', $getData);
 		}
 		else {
-			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+			$id_volunteer = $this->session->userdata('id_volunteer');
+			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
 			$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($this->session->userdata('id_volunteer'));
 
 			$this->load->view('dash_volunteer/dashboard', $getData);
@@ -98,8 +99,9 @@ class C_penerima extends CI_Controller {
 	public function proBuatCampaign()
 	{
 		$form = $this->input->post();
-
-		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id = substr($id_volunteer, 10, 4);
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-'.$id.'-');
 		$data = array('id_campaign' => $id_campaign,
 					  'id_volunteer' => $this->session->userdata('id_volunteer'),
 					  'judul_campaign' => $form['judulCampaign'],
@@ -161,8 +163,9 @@ class C_penerima extends CI_Controller {
 
 	public function VbuatLaporan()
 	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-		$getData['data2'] = $this->M_volunteer->selCampaign();
+		$getData['data2'] = $this->M_volunteer->selCampaignSelesai($id_volunteer);
 
 		$this->load->view('dash_volunteer/buatLaporan', $getData);
 	}
@@ -181,6 +184,7 @@ class C_penerima extends CI_Controller {
 	{
 		$form = $this->input->post();
 		$id_laporan = $this->M_akun->gen_id('laporan_donasi', 'id_laporan', 'RPRT-0001-');
+		$id_penerima = $this->M_akun->gen_id('penerima_donasi', 'id_penerima', 'PNRM-0001-');
 		$id_campaign = $this->input->post('id_campaign');
 		
 		$getData['data2'] = $this->M_volunteer->selCampaignById($id_campaign);
@@ -194,48 +198,74 @@ class C_penerima extends CI_Controller {
 
 		$this->load->library('upload', $config);
 		$this->upload->initialize($config);
+		
+		$link =  $this->input->post('link');
 
+		$rx = '~
+  				^(?:https?://)?                           
+   				(?:www[.])?                              
+   				(?:youtube[.]com/watch[?]v=|youtu[.]be/) 
+   				([^&]{11})                               
+    		  ~x';
+
+	if ($has_match = preg_match($rx, $link, $matches)) {
 		if ( ! $this->upload->do_upload('foto')){
-			$getData['error'] = $this->upload->display_errors();
-			$getData['id_campaign'] = $id_campaign;
-			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-			$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
-			$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
-		}
-		else{
-			$dataFot = $this->upload->data();
-
-			$config1['upload_path'] = './uploads/dokReport/';
-			$config1['allowed_types'] = 'xlsx|docx|doc|xls';
-			$config1['file_name'] = "doc_r-".$id_laporan;
-			$config1['max_size']  = '10000';
-
-			$this->load->library('upload', $config1);
-			$this->upload->initialize($config1);
-
-			if ( ! $this->upload->do_upload('dokumen')){
 				$getData['error'] = $this->upload->display_errors();
 				$getData['id_campaign'] = $id_campaign;
 				$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 				$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
 				$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
 			}
-			else {
-				$dataDok = $this->upload->data();
+			else{
+				$dataFot = $this->upload->data();
+	
+				$config1['upload_path'] = './uploads/dokReport/';
+				$config1['allowed_types'] = 'xlsx|docx|doc|xls|pdf';
+				$config1['file_name'] = "doc_r-".$id_laporan;
+				$config1['max_size']  = '10000';
+	
+				$this->load->library('upload', $config1);
+				$this->upload->initialize($config1);
+	
+				if ( ! $this->upload->do_upload('dokumen')){
+					$getData['error'] = $this->upload->display_errors();
+					$getData['id_campaign'] = $id_campaign;
+					$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+					$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
+					$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
+				}
+				else {
+					$dataDok = $this->upload->data();
+	
+					$data = array(
+						'id_laporan' => $id_laporan,
+						'id_campaign' => $id_campaign,
+						'link_video' => $form['link'],
+						'foto' => 'uploads/fotoLaporan/'.$dataFot['file_name'],
+						'dokumen' => 'uploads/dokReport/'.$dataDok['file_name'],
+						'status' => 'Pending'
+					);
 
-				$data = array(
-					'id_laporan' => $id_laporan,
-					'id_campaign' => $id_campaign,
-					'link_video' => $form['link'],
-					'foto' => 'uploads/fotoLaporan/'.$dataFot['file_name'],
-					'dokumen' => 'uploads/dokReport/'.$dataDok['file_name'],
-					'status' => 'Pending'
-				);
+					$data2 = array(
+						'id_penerima' => $id_penerima,
+						'nama_penerima' => $form['namaPenerima'],
+						'no_ktp' => $form['noKTP'],
+						'alamat' => $form['alamat']
+					);
 
-				$this->M_volunteer->insert('laporan_donasi', $data);
-				redirect('penerima/C_penerima/VbuatLaporan');
+					$this->M_volunteer->insert('laporan_donasi', $data);
+					$this->M_volunteer->insert('penerima_donasi', $data2);
+
+					redirect('penerima/C_penerima/VbuatLaporan');
+				}
 			}
-		}
+	} else {
+		$error = array('error' => $this->upload->display_errors());
+			echo "<pre>";
+			print_r ($error);
+			echo "</pre>";
+	}
+		
 	}
 
 	public function proTambahBarang()
@@ -268,14 +298,16 @@ class C_penerima extends CI_Controller {
 		echo json_encode($dataBarang);
 	}
 
-	public function detailCampaign()
+	public function VdetailCampaign()
 	{
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id_campaign = $this->input->get('id_campaign');
-		
+
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-		$getData['data_camp'] = $this->M_akun->selectWhere("*", 'campaign', 'id_campaign', $id_campaign);
-		$getData['data_don'] = $this->M_volunteer->selWhereJoin($id_volunteer, $id_campaign);
+        $getData['data1'] = $this->M_volunteer->selCampaignByIdAll($id_campaign);
+		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+        $getData['data3'] = $this->M_volunteer->selBarangDiterima($id_campaign);
+        $getData['data4'] = $this->M_volunteer->totalBarangDiterimaByKategori($id_campaign);
 		
 		$this->load->view('dash_volunteer/detailCampaign', $getData);
 	}
@@ -307,6 +339,7 @@ class C_penerima extends CI_Controller {
 			$this->M_akun->update('id_campaign', $camp[0]->id_campaign, 'campaign', $data);
 		}
 	}
+
 }
 
 /* End of file controllername.php */

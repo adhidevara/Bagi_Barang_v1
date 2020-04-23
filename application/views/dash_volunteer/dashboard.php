@@ -1,6 +1,6 @@
 <?php $this->load->view('dash_volunteer/head_foot/header'); ?>
-
-    <section class="content">
+    
+<section class="content">
         <div class="container-fluid">
             <div class="block-header">
                 <h2>DASHBOARD</h2>
@@ -52,53 +52,32 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="fh5co-blog-section" class="fh5co-section-gray">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-                        <h3>Campaign yang Sedang Berjalan</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row row-bottom-padded-md">
-                        <?php foreach ($data2 as $da) { ?>
-                        <div class="col-lg-4 col-md-4 col-sm-6">
-                            <div class="fh5co-blog animate-box">
-                                <a href=""><img class="img-responsive" src="<?=base_url().$da->gambar?>" style="width: 100%; height: 250px"></a>
-                                <div class="blog-text">
-                                    <div class="prod-title">
-                                        <h3><a href="" style="color: black;"><?=$da->judul_campaign?></a></h3>
-                                        <span class="comment"><small>Sisa Hari</small></span><br>
-                                        
-                                        <font style="color: orange; size: 5px"><?=$da->sisa?> Hari</font> 
-                                            <div class="progress" style="background-color: lightgrey">
-
-                                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-                                                    style=" width: <?=$da->hsl?>%; background-color: orange">
-                                                    <small style="color: white;margin-bottom: 5px;"><?=$da->hsl?>%&nbsp;(Sisa&nbsp;<?php echo $da->sisa; ?>&nbsp;Hari)</small>
-                                               </div>
-                                               
-                                           </div>
-
+            </div>       
+                <div class="container-fluid">
+                <h3>Campaign yang Sedang Berjalan</h3>
+                    <div class="row clearfix">
+                        <div class="col-lg-8 col-md-7 col-lg-6">
+                            <div class="card" style="margin-left:-300px; margin-right: 100px">
+                            <?php foreach ($data2 as $da) { ?>
+                                <div class="header bg-red">
+                                    <h3><a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>" style="color: black;"><?=$da->judul_campaign?></a></h3>
+                                </div>
+                                <div class="body">
+                                    <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>"><img class="img-responsive" src="<?=base_url().$da->gambar?>" style="width: 100%; height: 250px"></a>
+                                        <p><?=$da->ajakan_campaign?></p>
+                                            <span class="comment"><small>Sisa Hari</small></span><br>
+                                            <font style="color: orange; size: 5px"><?=$da->sisa?> Hari</font>
                                         <p style="text-align: center;">
-                                            <a href="<?=base_url()?>penerima/C_penerima/detailCampaign?id_campaign=<?=$da->id_campaign?>" class="btn btn-primary btn-sm">Detail Campaign</a>
+                                            <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>" class="btn btn-primary btn-sm">Detail Campaign</a>
                                         </p>
-                                    </div>
-                                </div> 
+                                </div>
+                                <?php } ?>
                             </div>
-                        </div>              
-                    <div class="clearfix visible-md-block"></div>
-                    <?php } ?>
-                </div>
-                <!-- <div class="row">
-                    <div class="col-md-4 col-md-offset-4 text-center animate-box">
-                        <a href="#" class="btn btn-primary btn-lg">Lebih Banyak</a>
+                        </div>
                     </div>
-                </div> -->
-            </div>
-        </div>
+                </div>
+            </section>
         </div>
     </section>
+    
 <?php $this->load->view('dash_volunteer/head_foot/footer'); ?>

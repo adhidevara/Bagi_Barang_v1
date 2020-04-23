@@ -14,13 +14,21 @@
  		$this->db->where($field, $val);
 		$this->db->update($table, $data);
 
- 	}
- 
- 	public function selCampaign()
- 	{
- 		$this->db->select('*, TIMESTAMPDIFF(day, now(), batas_campaign)');
+	}
+	 
+	public function selCampaign()
+	{
+		$this->db->select('*');
  		$this->db->from('campaign');
- 		$this->db->where('TIMESTAMPDIFF(day, now(), batas_campaign) < 0');
+
+ 		return $this->db->get()->result();
+	}
+ 
+ 	public function selCampaignByIdAll($where)
+ 	{
+ 		$this->db->select('*');
+ 		$this->db->from('campaign');
+ 		$this->db->where('id_campaign', $where);
 
  		return $this->db->get()->result();
  	}
@@ -74,15 +82,12 @@
 
  		return $this->db->get()->result();
  	}
- 	
+	 
  	public function selCampaignBerjalanById($where)
  	{
- 		$this->db->select("*, 
-			timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
-			timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
-			round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
+ 		$this->db->select("*, timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa' ");
 		$this->db->from('campaign');
-		$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) <= 100');
+		$this->db->where('timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) >= 0');
 		$this->db->where('id_volunteer', $where);
 		$this->db->order_by('id_campaign', 'desc');
 
@@ -114,7 +119,26 @@
  		$this->db->order_by('id_campaign', 'desc');
 
  		return $this->db->get()->result();
- 	}
+	}
+
+	public function selBarangDiterima($where)
+    {
+        $this->db->select('*');
+        $this->db->from('barang');
+		$this->db->where('id_campaign', $where);
+			
+        return $this->db->get()->result();
+	}
+	
+	public function totalBarangDiterimaByKategori($where)
+	{
+		$this->db->select('kategori_barang, SUM(jumlah_barang) AS Total');
+        $this->db->from('barang');
+		$this->db->where('id_campaign', $where);
+		$this->db->group_by('kategori_barang');
+
+        return $this->db->get()->result();
+	}
  }
  
  /* End of file modelName.php */
