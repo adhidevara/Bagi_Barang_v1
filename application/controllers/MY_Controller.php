@@ -12,10 +12,10 @@ class MY_Controller extends CI_Controller {
 
 	public function index($str = "index")
 	{
-		$data['campaignByPantiAsuhan'] = $this->M_Donatur->viewCampaignByKategori('Panti Asuhan');
-		$data['campaignByKemanusiaan'] = $this->M_Donatur->viewCampaignByKategori('Kemanusiaan');
-		$data['campaignByPendidikan'] = $this->M_Donatur->viewCampaignByKategori('Pendidikan');
-		$data['campaignByBencanaAlam'] = $this->M_Donatur->viewCampaignByKategori('Bencana Alam');
+		$data['campaignByBencanaAlam'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0001');
+		$data['campaignByKemanusiaan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0002');
+		$data['campaignByPendidikan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0003');
+		$data['campaignByPantiAsuhan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0004');
 
 		if ($this->input->post('btCari') == 'Cari') {
 			$form = $this->input->post();
@@ -174,6 +174,9 @@ class MY_Controller extends CI_Controller {
 					'nama' => $form['nama'],
 					'email' => $form['email'],
 					'password' => $password,
+					'privateKey' => $form['privateKey'],
+					'publicKey' => $form['publicKey'],
+					'address' => $form['address'],
 					'status' => 0
 				);
 				$insert = $this->M_akun->insert('donatur', $data);
@@ -255,6 +258,7 @@ class MY_Controller extends CI_Controller {
 	    );
 	    
 	    $send = $this->mailer->send($sendmail);
+//	    print_r($send);
   	}
 
   	public function reSendEmailVerif()
@@ -381,14 +385,11 @@ class MY_Controller extends CI_Controller {
 
 
   	//FUNCTION TESTING
-  	// public function test()
-  	// {
-  	// 	// $this->load->view('content_email');
-  	// 	$hasil = $this->M_akun->gen_id('donatur', 'id_donatur', 'DNTR-1059-');
-  	// 	echo "<pre>";
-  	// 	print_r ($hasil);
-  	// 	echo "</pre>";
-  	// }
+  	 public function test()
+  	 {
+//  	 	$this->load->view('dash_pengelola/nem_test');
+		 $this->send('adhidevara@yahoo.com', 'TEST', 'ARIEL', 'Donatur');
+  	 }
   
 }
 
