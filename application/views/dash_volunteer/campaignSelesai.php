@@ -55,20 +55,13 @@
             </div>       
             <section class="content">
                 <div class="container-fluid">
-                <?php foreach ($data2 as $da) { ?>
-                    <?php if ($da ==  null) { ?>
-                        <div class="row">
+                    <div class="row">
                         <div class="text-center">
-                            <h3 style="padding-left: -300px; color: #F44336">Selamat Datang <?php echo $this->session->userdata('nama'); ?> </h3>
-                        </div>
-                    </div>
-                    <?php } else { ?>
-                        <div class="row">
-                        <div class="text-center">
-                            <h3>Campaign yang Sedang Berjalan</h3>
+                            <h3>Campaign Telah Selesai</h3>
                         </div>
                     </div>
                     <div class="row clearfix">
+                    <?php foreach ($data2 as $da) { ?>
                         <div class="col-lg-9">
                             <div class="card">
                                 <div class="header bg-red">
@@ -90,10 +83,9 @@
                                 </div>
                                 <?php } ?>
                             </div>
-                            <br><div class="row"></div>
+                            <div class="row"></div>
                         </div>
                     </div>
-                    <?php } ?>
                 </div>
             </section>
         </div>

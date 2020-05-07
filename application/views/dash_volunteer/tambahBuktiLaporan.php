@@ -10,7 +10,7 @@
 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 				<div class="card">
 					<div class="body">
-						<?php error_reporting(0); echo $error; ?>
+						<?php error_reporting(0); ?>
 						<form method="POST" enctype="multipart/form-data" action="<?php echo base_url() ?>penerima/C_penerima/proBuatLaporan">
 							<input type="hidden" value="<?php echo $id_campaign ?>" name="id_campaign">
 							<label for="Link Video">Nama Penerima</label>
@@ -34,7 +34,7 @@
 							<label for="Link Video">Link Video</label>
 							<div class="form-group">
 								<div class="form-line">
-									<input type="text" id="link" name="link" class="form-control" placeholder="Enter your link video">
+									<input type="text" id="link" name="link" class="form-control" placeholder="Enter your link youtube video">
 								</div>
 							</div>
 							<label for="foto">Foto</label>
@@ -42,12 +42,14 @@
 								<div class="form-line">
 									<input type="file" id="foto" name="foto" class="form-control" placeholder="Enter your password">
 								</div>
+								<div class="help-info" style="color:red;">* JPEG, JPG and PNG. Max 1000 kb</div>
 							</div>
 							<label for="Data Penerima">Data Penerima Donasi</label>
 							<div class="form-group">
 								<div class="form-line">
 									<input type="file" id="dokumen" name="dokumen" class="form-control" placeholder="Enter your password">
 								</div>
+								<div class="help-info" style="color:red;">* PDF, Excel (xlsx/xls) dan Word (docx/doc). Max 1000 kb</div>
 							</div>
 							<br>
 							<div class="button-demo js-modal-buttons" style="float: right">

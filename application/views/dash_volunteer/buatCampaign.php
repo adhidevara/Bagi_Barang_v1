@@ -1,3 +1,33 @@
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    
+    <!-- Favicon-->
+    <link rel="icon" href="<?php echo base_url(); ?>assets/dashAssets/favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- JQuery DataTable Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- Custom Css -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
+
+    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
+    <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
+</head>
+
 <?php $this->load->view('dash_volunteer/head_foot/header'); ?>
 
  <section class="content">
@@ -23,13 +53,13 @@
                                         <label class="form-control">Kategori Campaign</label>
                                         <select class="form-control show-tick" name="kategoriCampaign" id="kategoriCampaign" >
                                            <option value="0">-- Pilih Kategori --</option>
-                                            <option value="Bencana Alam">Bencana Alam</option>
-                                            <option value="Pendidikan">Pendidikan</option>
-                                            <option value="Panti Asuhan">Panti Asuhan</option>
-                                            <option value="Difabel">Difabel</option>
-                                            <option value="Keluarga">Keluarga</option>
-                                            <option value="Kreatif">Kreatif</option>
-                                            <option value="Rumah Sakit">Rumah Sakit</option>
+                                            <option value="KTGR-CMPG-0001">Bencana Alam</option>
+                                            <option value="KTGR-CMPG-0002">Pendidikan</option>
+                                            <option value="KTGR-CMPG-0003">Panti Asuhan</option>
+                                            <option value="KTGR-CMPG-0004">Difabel</option>
+                                            <option value="KTGR-CMPG-0005">Keluarga</option>
+                                            <option value="KTGR-CMPG-0006">Kreatif</option>
+                                            <option value="KTGR-CMPG-0006">Rumah Sakit</option>
                                     </select>
                                     </div>
                                     <div class="form-group form-float">
@@ -140,11 +170,11 @@
                                                                 <label class="form-control">Kategori Barang</label>
                                                                 <select class="form-control show-tick" data-live-search="true" name="kategoriBarang" id="kategoriBarang">
                                                                     <option value="0">-- Pilih Kategori --</option>
-                                                                    <option value="Sembako">Sembako</option>
-                                                                    <option value="Pakaian">Pakaian</option>
-                                                                    <option value="Obat-Obatan">Obat-Obatan</option>
-                                                                    <option value="Obat-Obatan">Alat Medis</option>
-                                                                    <option value="Lainnya">Lainnya</option>
+                                                                    <option value="KTGR-BRGTH-0001">Sembako</option>
+                                                                    <option value="KTGR-BRGTH-0002">Pakaian</option>
+                                                                    <option value="KTGR-BRGTH-0003">Obat-Obatan</option>
+                                                                    <option value="KTGR-BRGTH-0004">Alat Medis</option>
+                                                                    <option value="KTGR-BRGTH-0005">Lainnya</option>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -175,6 +205,9 @@
 
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -219,10 +252,22 @@
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
 
+    <!-- Jquery DataTable Plugin Js -->
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/admin.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/forms/form-wizard.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/ui/modals.js"></script>
+    <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/tables/jquery-datatable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!-- Demo Js -->

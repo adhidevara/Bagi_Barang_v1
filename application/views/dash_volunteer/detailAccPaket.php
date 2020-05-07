@@ -13,18 +13,6 @@
                             <h2>
                                 ACC PAKET
                             </h2>
-                            <ul class="header-dropdown m-r--5">
-                                <li class="dropdown">
-                                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                                        <i class="material-icons">more_vert</i>
-                                    </a>
-                                    <ul class="dropdown-menu pull-right">
-                                        <li><a href="javascript:void(0);">Action</a></li>
-                                        <li><a href="javascript:void(0);">Another action</a></li>
-                                        <li><a href="javascript:void(0);">Something else here</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
                         </div>
                         <div class="body">
                             <div class="table-responsive">
@@ -55,9 +43,9 @@
                                                 <?php if ($dat->status != 'Telah diterima oleh Penerima Donasi') {  ?>
                                                 <a href="<?=base_url()?>penerima/C_penerima/proAccPaket?id_paket=<?=$dat->id_paket?>&id_campaign=<?php echo $id_campaign; ?>" class="btn btn-primary btn-sm">Terima Paket</a>
                                                 &nbsp; &nbsp; &nbsp;
-                                                <a href="<?=base_url()?>penerima/C_penerima/?>" class="btn btn-primary btn-sm">Detail</a>
+                                                <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?>" class="btn btn-primary btn-sm">Detail</a>
                                             <?php }else{ ?>
-                                                <a href="<?=base_url()?>penerima/C_penerima/?>" class="btn btn-primary btn-sm">Detail</a>
+                                                <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?>" class="btn btn-primary btn-sm">Detail</a>
                                                 <?php } ?>
                                             </td>
                                         </tr>

@@ -122,6 +122,34 @@ class C_penerima extends CI_Controller {
 		$this->load->view('dash_volunteer/uploadGambarCampaign', $getData);
 	}
 
+	public function VdetailCampaign()
+	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+        $getData['data1'] = $this->M_volunteer->selCampaignByIdAll($id_campaign);
+		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+        $getData['data3'] = $this->M_volunteer->selBarangDiterima($id_campaign);
+        $getData['data4'] = $this->M_volunteer->totalBarangDiterimaByKategori($id_campaign);
+		
+		$this->load->view('dash_volunteer/detailCampaign', $getData);
+	}
+
+	public function VcampaignSelesai()
+	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+        $getData['data1'] = $this->M_volunteer->selCampaignSelesaiAll($id_volunteer);
+		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+        $getData['data3'] = $this->M_volunteer->selBarangDiterima($id_campaign);
+        $getData['data4'] = $this->M_volunteer->totalBarangDiterimaByKategori($id_campaign);
+		
+		$this->load->view('dash_volunteer/campaignSelesai', $getData);
+	}
+
 	public function VaccPaket()
 	{
 		$id_volunteer = $this->session->userdata('id_volunteer');
@@ -155,8 +183,10 @@ class C_penerima extends CI_Controller {
 					  'tanggal_diterima' => DATE('Y-m-d H:i:s'),
 					  'status' => 'Telah diterima oleh Penerima Donasi' 
 					);
+		$data2 = array('flag' => 1);
 
 		$this->M_volunteer->update('id_paket', $id_paket, 'paket', $data);
+		$this->M_volunteer->update('id_campaign', $id_campaign, 'campaign', $data2);
 
 		redirect('penerima/C_penerima/VdetailAccPaket?id_campaign='.$id_campaign,'refresh');
 	}
@@ -165,19 +195,20 @@ class C_penerima extends CI_Controller {
 	{
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-		$getData['data2'] = $this->M_volunteer->selCampaignSelesai($id_volunteer);
+		$getData['data2'] = $this->M_volunteer->selCampaignSelesaiByPaket($id_volunteer);
 
 		$this->load->view('dash_volunteer/buatLaporan', $getData);
 	}
 
 	public function VtambahBukti()
 	{
+		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['id_campaign'] = $this->input->post('id_campaign');
 		
-		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
 		$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
 
-		 $this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
+		$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
 	}
 
 	public function proBuatLaporan()
@@ -253,17 +284,17 @@ class C_penerima extends CI_Controller {
 						'alamat' => $form['alamat']
 					);
 
+					$data3 = array('flag' => 2);
+
 					$this->M_volunteer->insert('laporan_donasi', $data);
 					$this->M_volunteer->insert('penerima_donasi', $data2);
+					$this->M_volunteer->update('id_campaign', $id_campaign, 'campaign', $data3);
 
 					redirect('penerima/C_penerima/VbuatLaporan');
 				}
 			}
 	} else {
-		$error = array('error' => $this->upload->display_errors());
-			echo "<pre>";
-			print_r ($error);
-			echo "</pre>";
+		// $this->load->view('dash_volunteer/error');
 	}
 		
 	}
@@ -298,19 +329,7 @@ class C_penerima extends CI_Controller {
 		echo json_encode($dataBarang);
 	}
 
-	public function VdetailCampaign()
-	{
-		$id_volunteer = $this->session->userdata('id_volunteer');
-		$id_campaign = $this->input->get('id_campaign');
-
-		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-        $getData['data1'] = $this->M_volunteer->selCampaignByIdAll($id_campaign);
-		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
-        $getData['data3'] = $this->M_volunteer->selBarangDiterima($id_campaign);
-        $getData['data4'] = $this->M_volunteer->totalBarangDiterimaByKategori($id_campaign);
-		
-		$this->load->view('dash_volunteer/detailCampaign', $getData);
-	}
+	
 
 	public function Vprofile()
 	{
@@ -340,6 +359,16 @@ class C_penerima extends CI_Controller {
 		}
 	}
 
+	public function proSearchCampaign()
+	{
+		
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
+		$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($id_volunteer);
+
+		echo json_encode($getData['data2']);
+
+	}
 }
 
 /* End of file controllername.php */

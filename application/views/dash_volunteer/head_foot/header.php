@@ -68,7 +68,7 @@
         <div class="search-icon">
             <i class="material-icons">search</i>
         </div>
-        <input type="text" placeholder="START TYPING...">
+        <input type="text" id="search" name="search" placeholder="START TYPING...">
         <div class="close-search">
             <i class="material-icons">close</i>
         </div>
@@ -85,7 +85,11 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <li>
+                        <a href="#" class="js-search" data-close="true">
+                            <i class="material-icons">search</i>
+                        </a>
+                    </li>
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
                     <li class="dropdown">
@@ -197,7 +201,7 @@
                     </li>
                     <!-- #END# Notifications -->
                     <!-- Tasks -->
-                    <li class="dropdown">
+                    <!-- <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">flag</i>
                             <span class="label-count"></span>
@@ -272,7 +276,7 @@
                                 <a href="javascript:void(0);">View All Tasks</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <!-- #END# Tasks -->
                     <li><a href="<?php echo base_url(); ?>MY_Controller/logout"><i class="material-icons">input</i></a></li>
                 </ul>
@@ -336,10 +340,10 @@
                         </a>
                     </li>
                     <li class="">
-                      <!--   <a href="index.html">
-                            <i class="material-icons">home</i>
-                            <span>Home</span>
-                        </a> -->
+                        <a href="<?php echo base_url(); ?>penerima/C_penerima/VcampaignSelesai">
+                            <i class="material-icons">assignment_turned_in</i>
+                            <span>Campaign Telah selesai</span>
+                        </a>
                     </li>
                     
                     <?php } ?>
@@ -502,3 +506,40 @@
         </aside>
         <!-- #END# Right Sidebar -->
     </section>
+
+    <script type="text/javascript">
+        $(document).ready(function(e) {
+            tampil_data_barang();
+
+            $("a[href='#finish']").click(function(e) {
+                console.log("terpencet");
+                e.preventDefault();
+
+                var search = $("#search").val();
+                
+                
+                $.ajax({
+                    url: '<?php echo base_url();?>penerima/C_penerima/proSearchCampaign',
+                    type: 'post',
+                    dataType: 'html',
+                    data: 'search='+ search ,
+                    success :
+                    function(pesan) {
+                        console.log(pesan);  
+                    }
+                })
+                .done(function() {
+                    console.log("success");
+                    // window.location.href = "<?php echo base_url(); ?>penerima/C_penerima/VuploadGambarCampaign";
+                })
+                .fail(function() {
+                    console.log("error");
+                })
+                .always(function() {
+                    console.log("complete");
+                });
+            });
+          
+        });
+
+    </script>
