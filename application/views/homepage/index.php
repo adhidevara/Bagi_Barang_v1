@@ -83,10 +83,12 @@
 					// echo "<pre>";
 					// print_r ($dt->id_campaign);
 					// echo "</pre>";
+
+					if ($dt->hsl > 0) { //memunculkan campaign yang aktif
 					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px"></a><br><br>
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px; border-radius: 10px"></a><br><br>
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
@@ -109,7 +111,7 @@
 								</div> 
 							</div>
 						</div>
-					<?php } ?>					
+					<?php } }?>					
 
 
 					<div class="clearfix visible-md-block"></div>
@@ -186,36 +188,36 @@
 						<ul id="fh5co-portfolio-list">
 
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Panti Asuhan" class="color-3">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0004" class="color-3">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByPantiAsuhan[0]->kategori_campaign; ?></h2>
+										<h2><?php echo $campaignByPantiAsuhan[0]->nama_kategori; ?></h2>
 									</div>
 								</a>
 							</li>
 						
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPendidikan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Pendidikan" class="color-4">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0003" class="color-4">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByPendidikan[0]->kategori_campaign; ?></h2>
+										<h2><?php echo $campaignByPendidikan[0]->nama_kategori; ?></h2>
 									</div>
 								</a>
 							</li>
 
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); "> 
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Bencana Alam" class="color-5">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0001" class="color-5">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByBencanaAlam[0]->kategori_campaign; ?></h2>
+										<h2><?php echo $campaignByBencanaAlam[0]->nama_kategori; ?></h2>
 									</div>
 								</a>
 							</li>
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByKemanusiaan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=Kemanusiaan" class="color-6">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0002" class="color-6">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByKemanusiaan[0]->kategori_campaign; ?></h2>
+										<h2><?php echo $campaignByKemanusiaan[0]->nama_kategori; ?></h2>
 									</div>
 								</a>
 							</li>
@@ -284,7 +286,7 @@
 		</div>
 		<!-- fh5co-content-section -->
 
-		<div id="fh5co-services-section">
+		<!-- <div id="fh5co-services-section">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
@@ -339,7 +341,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 
 		<!-- END What we do -->
 

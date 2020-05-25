@@ -18,12 +18,18 @@ class C_donatur extends CI_Controller {
 	{
 		$data['id'] = $this->input->get('id_campaign');
 		$data['data'] = $this->M_Donatur->viewDetailCampaign($data['id']);
+		$data['data2'] = $this->M_Donatur->barangDibutuhkan($data['id']);
+		$data['data3'] = $this->M_Donatur->barangTerkumpul($data['id']);
 		$this->load->view('dash_donatur/detailCampaign2',$data);
 	}
 
 	public function formDonasi($id_campaign)
 	{
 		$id['id_campaign'] = $id_campaign;
+		$id['data'] = $this->M_Donatur->viewFormDonasi($id_campaign);
+		$id['kategori'] = $this->M_Donatur->formkategoriBarang();
+		$id['nama'] = $this->M_Donatur->formNamaBarang($id_campaign);
+		$id['data2'] = $this->M_Donatur->barangDibutuhkan($id_campaign);
 		// $id_campaign['id_campaign'] = $this->input->post('id_campaign');
 		$this->load->view('dash_donatur/formDonasi',$id);
 	}
@@ -37,7 +43,7 @@ class C_donatur extends CI_Controller {
 			'id_barang' => $id_barang,
 			'id_donatur' => $this->session->userdata('id_donatur'),
 			'id_campaign' => $id_campaign,
-			'kategori_barang' => $form['kategori_barang'],
+			'id_kategori_barang' => $form['kategori_barang'],
 			'nama_barang' => $form['nama_barang'],
 			'jumlah_barang' => $form['jumlah_barang'],
 			'satuan_barang' => $form['satuan_barang'],
@@ -244,6 +250,7 @@ class C_donatur extends CI_Controller {
 	{
 		$id = $this->input->post('id_campaign');
 		$data['data'] = $this->M_Donatur->trackingBarang($id);
+		$data['data2'] = $this->M_Donatur->laporanDonasi($id);
 		$this->load->view('dash_donatur/trackingBarang',$data);
 	}
 

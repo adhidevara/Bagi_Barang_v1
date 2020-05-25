@@ -72,15 +72,12 @@
                         <div class="body">
                             <div class="row clearfix">
                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                    <div class="card">
-                                        <div class="body">   
-                                               <center><h2>Detail Campaign</h2></center> 
+                                    <h2 style="margin-left: 5%">Cerita</h2> 
                                                 <section>
                                                     <fieldset>
                                                         <div class="panel-body">
                                                             <div class="post">
                                                                 <div class="post-heading">
-                                                                    <p>Cerita</p> <br>
                                                                 </div>
                                                                 <div class="post-content">
                                                                     <p style=";padding-left: 50px;padding-right: 50px"><?php echo $data[0]->deskripsi_campaign; ?></p>
@@ -91,16 +88,72 @@
                                                                             <br>
                                                                     <p style=";padding-left: 50px;padding-right: 50px"><?php echo $data[0]->ajakan_campaign; ?></p>
                                                                     <br><br><br>
+
+                                                                    <h2 style="margin-left: 5%">Barang Yang Dibutuhkan</h2>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </fieldset>
                                                 </section>
+                                    
+                                        <div class="body"> 
+                                            <p style="margin-left: 5%">Berikut adalah list Barang yang dibutuhkan : </p> 
+                                                <table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
+                                                       <tr style="background-color: lightgrey">
+                                                           <th>Nama Barang</th>
+                                                           <th>Kategori Barang</th>
+                                                           <th>Jumlah</th>
+                                                           <th>Satuan</th>
+                                                       </tr> 
+                                                <?php foreach ($data2 as $data2) { ?>
+                                                        <tr>
+                                                            <td><?php echo $data2->nama_barang; ?></td>
+                                                            <td><?php echo $data2->nama_kategori; ?></td>
+                                                            <td><?php echo $data2->jumlah; ?></td>
+                                                            <td><?php echo $data2->satuan_barang; ?></td>
+                                                        </tr>
+                                                   
+                                                <?php } ?>
+                                                    </table>
+                                            <br><br>
+
+                                            <h2 style="margin-left: 5%">Barang Yang Terkumpul</h2>
+                                            <p style="margin-left: 5%">Berikut adalah list Barang yang sudah terkumpul : </p> 
+                                                <table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
+                                                       <tr style="background-color: lightgrey">
+                                                           <th>Nama Barang</th>
+                                                           <th>Kategori Barang</th>
+                                                           <th>Jumlah</th>
+                                                           <th>Satuan</th>
+                                                       </tr> 
+                                                <?php foreach ($data3 as $data3) { ?>
+                                                        <tr>
+                                                            <td><?php echo $data3->nama_barang; ?></td>
+                                                            <td><?php echo $data3->nama_kategori; ?></td>
+                                                            <td><?php echo $data3->jml; ?></td>
+                                                            <td><?php echo $data3->satuan_barang; ?></td>
+                                                        </tr>
+                                                   
+                                                <?php } ?>
+                                                    </table>
+                                            <br><br>
+
+                                            <p style="margin-left: 5%">
+                                                <b style="color: black">
+                                                Untuk Donasi, silahkan ikuti langkah berikut : <br>
+                                                <br>
+                                                1. Klik tombol "DONASI SEKARANG" <br>
+                                                2. Masukkan data form dengan benar <br>
+                                                3. Kemudian Klik Tombol "Donasi" <br></b>
+                                                <br>
+                                                Jangan lupa untuk <b style="color: black"> SHARE / SEBARKAN </b> informasi ini <br>
+                                                kepada saudara , rekan dan teman teman anda di sosial media atau di sekitar rumah anda, semoga amal baik anda terus mengalir dan di terima Alloh swt . Aamiin
+                                            </p>
                                         </div>
-                                    </div>
+                                    
                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/formDonasi/<?php echo $data[0]->id_campaign; ?>">
                                         <input type="hidden" name="id_campaign" value="<?php echo $data[0]->id_campaign; ?>">
-                                        <input type="submit" name="submit" value="Selanjutnya" class="btn btn-primary" style="float: right;">
+                                        <input type="submit" name="submit" value="DONASI SEKARANG" class="btn btn" style="float: right; background-color: #ff5722; color: white">
                                     </form>
                                 </div>
                             </div>

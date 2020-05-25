@@ -86,7 +86,7 @@
 					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px"></a><br><br>
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px; border-radius: 5px"></a><br><br>
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>

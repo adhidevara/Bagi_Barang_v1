@@ -2,7 +2,7 @@
 <br>
 <body style="background-color: lightgrey">
     <div class="col-md-8 col-md-offset-2 text-left " style="background-color: white; width: 70%;"> <br>
-        <center><h3>Tracking Barang</h3></center>
+        <h3>Tracking Barang</h3>
 
         <?php if (count($data)== 0) { ?>
             <table style="width: 100%" border="1">
@@ -65,11 +65,36 @@
             </tr>
 
         </table>
-            <br><br>
+            <br><hr><br>
+
+            <h3>Laporan Penerimaan Barang</h3>
+            <table border="0" style="width: 100%">
+                <tr>
+                    <td>Id Laporan &nbsp;</td>
+                    <td> : &nbsp;</td>
+                    <td><?php echo $data2[0]->id_laporan ?></td>
+                    <td rowspan="3"><img src="<?php echo base_url().$data2[0]->foto; ?>" alt="AdminBSB - Profile Image" style="width: 250px; height: 200px; border-top-left-radius: 50px;border-bottom-right-radius: 50px  " /></td>
+                </tr>
+                <tr>
+                    <td>Tanggal Barang Di Terima &nbsp;</td>
+                    <td> : &nbsp;</td>
+                    <td><?php echo $data2[0]->tanggal_diacc ?></td>
+                </tr>
+                <tr>
+                    <td>Link Video &nbsp;</td>
+                    <td> : &nbsp;</td>
+                    <td><?php echo $data2[0]->link_video ?></td>
+                </tr>
+            </table>
+
+            <br><br><br>
             <a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya" class="btn btn-primary btn-sm">Kembali</a>
             <br><br>
         <?php } ?>
     </div><br>
+
+
+
           
         <!-- fh5co-content-section -->
         <div id="fh5co-services-section">
