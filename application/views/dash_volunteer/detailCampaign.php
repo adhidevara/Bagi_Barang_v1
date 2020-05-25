@@ -41,12 +41,12 @@
                                             <th>Jumlah</th>
                                             <th>Satuan</th>
                                         </tr> 
-                                        <?php foreach ($data2 as $data2) { ?>
+                                        <?php foreach ($data2 as $dt2) { ?>
                                         <tr>
-                                            <td><?php echo $data2->nama_barang; ?></td>
-                                            <td><?php echo $data2->kategori_barang; ?></td>
-                                            <td><?php echo $data2->jumlah; ?></td>
-                                            <td><?php echo $data2->satuan_barang; ?></td>
+                                            <td><?php echo $dt2->nama_barang; ?></td>
+                                            <td><?php echo $dt2->kategori_barang; ?></td>
+                                            <td><?php echo $dt2->jumlah; ?></td>
+                                            <td><?php echo $dt2->satuan_barang; ?></td>
                                         </tr>                       
                                         <?php } ?>
                                     </table>

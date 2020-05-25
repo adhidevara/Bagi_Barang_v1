@@ -55,13 +55,13 @@
             </div>       
             <section class="content">
                 <div class="container-fluid">
-                    <div class="row">
+                <?php foreach ($data2 as $da) { ?>
+                        <div class="row">
                         <div class="text-center">
-                            <h3>Campaign Telah Selesai</h3>
+                            <h3>List Campaign Selesai</h3>
                         </div>
                     </div>
                     <div class="row clearfix">
-                    <?php foreach ($data2 as $da) { ?>
                         <div class="col-lg-9">
                             <div class="card">
                                 <div class="header bg-red">
@@ -70,22 +70,15 @@
                                 <div class="body">
                                     <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>"><img class="img-responsive" src="<?=base_url().$da->gambar?>" style="width: 100%; height: 250px"></a>
                                         <p><?=$da->ajakan_campaign?></p>
-                                            <span class="comment"><small>Sisa Hari</small></span><br>
-                                            <font style="color: orange; size: 5px"><?=$da->SisaHari?> Hari</font>
-                                            <div class="progress">
-                                                <div class="progress-bar progress-bar-warning progress-bar-striped active bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: <?=$da->Presentase?>%; background-color: orange">
-                                                    <small style="color: white;margin-bottom: 5px;"><?=$da->Presentase?>%&nbsp; Sisa &nbsp; <?php echo $da->SisaHari;?>&nbsp;Hari</small>
-                                                </div>
-                                            </div>
                                         <p style="text-align: center;">
                                             <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>" class="btn btn-primary btn-sm">Detail Campaign</a>
                                         </p>
                                 </div>
-                                <?php } ?>
                             </div>
-                            <div class="row"></div>
+                            <br><div class="row"></div>
                         </div>
                     </div>
+                    <?php } ?>
                 </div>
             </section>
         </div>

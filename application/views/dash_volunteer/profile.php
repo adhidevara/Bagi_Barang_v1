@@ -58,8 +58,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="email" class="col-sm-2 control-label">Nomor KTP</label>
-
+                                                <label for="text" class="col-sm-2 control-label">Nomor KTP</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="noKtp" name="noKtp" placeholder="Masukkan Nomor KTP">
@@ -67,20 +66,15 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                            <label for="text" class="col-sm-2 control-label">Jenis Kelamin</label>
+                                                <input type="radio" name="gender" id="male" class="with-gap" value="laki - laki ">
+                                                <label for="male">Laki - laki</label>
 
-                                                <div class="col-sm-10" style="padding-top: 5px">
-                                                        <div class="demo-radio-button">
-                                                            <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Laki - Laki" checked />
-                                                                <label for="radio_1">Laki - laki</label>
-                                                                <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Perempuan" />
-                                                                <label for="radio_2">Perempuan</label>
-                                                        </div>
-                                                </div>
+                                                <input type="radio" name="gender" id="female" class="with-gap" value="perempuan">
+                                                <label for="female" class="m-l-20">Perempuan</label>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">Alamat</label>
-
+                                                <label for="text" class="col-sm-2 control-label">Alamat</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="alamat" name="alamat" placeholder="Masukkan Alamat">
@@ -88,8 +82,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">No Telepon</label>
-
+                                                <label for="text" class="col-sm-2 control-label">No Telepon</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
                                                         <input type="text" class="form-control" id="noTlp" name="noTlp" placeholder="0821333491843">
@@ -97,18 +90,11 @@
                                                 </div>
                                             </div>
                                             <div class="form-group">
-                                                <label for="Email" class="col-sm-2 control-label">Foto</label>
-
+                                                <label for="file" class="col-sm-2 control-label">Foto</label>
                                                 <div class="col-sm-10">
                                                     <div class="">
                                                         <input type="file" class="btn btn-danger waves-effect" name="foto" placeholder="masukkan foto">
                                                     </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="col-sm-offset-2 col-sm-10">
-                                                    <input type="checkbox" id="terms_condition_check" class="chk-col-red filled-in" />
-                                                    <label for="terms_condition_check">I agree to the <a href="#">terms and conditions</a></label>
-                                                </div>
                                             </div>
                                             <div class="form-group">
                                                 <div class="col-sm-offset-2 col-sm-10">

@@ -1,33 +1,3 @@
-<head>
-    <meta charset="UTF-8">
-    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    
-    <!-- Favicon-->
-    <link rel="icon" href="<?php echo base_url(); ?>assets/dashAssets/favicon.ico" type="image/x-icon">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
-
-    <!-- Bootstrap Core Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
-
-    <!-- Waves Effect Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/node-waves/waves.css" rel="stylesheet" />
-
-    <!-- Animation Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/animate-css/animate.css" rel="stylesheet" />
-
-    <!-- JQuery DataTable Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
-
-    <!-- Custom Css -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/css/style.css" rel="stylesheet">
-
-    <!-- AdminBSB Themes. You can choose a theme from css/themes instead of get all themes -->
-    <link href="<?php echo base_url(); ?>assets/dashAssets/css/themes/all-themes.css" rel="stylesheet" />
-</head>
-
 <?php $this->load->view('dash_volunteer/head_foot/header'); ?>
 
  <section class="content">
@@ -50,16 +20,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group form-float">
+                                        <div class="form-line">
+                                            <label class="form-control">Alamat Tujuan Campaign</label>
+                                            <input type="text" class="form-control" name="alamatCampaign" id="alamatCampaign" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group form-float">
                                         <label class="form-control">Kategori Campaign</label>
                                         <select class="form-control show-tick" name="kategoriCampaign" id="kategoriCampaign" >
                                            <option value="0">-- Pilih Kategori --</option>
-                                            <option value="KTGR-CMPG-0001">Bencana Alam</option>
-                                            <option value="KTGR-CMPG-0002">Pendidikan</option>
-                                            <option value="KTGR-CMPG-0003">Panti Asuhan</option>
-                                            <option value="KTGR-CMPG-0004">Difabel</option>
-                                            <option value="KTGR-CMPG-0005">Keluarga</option>
-                                            <option value="KTGR-CMPG-0006">Kreatif</option>
-                                            <option value="KTGR-CMPG-0006">Rumah Sakit</option>
+                                           <?php foreach ($katCamp as $kat) { ?>
+                                           <option value="<?=$kat->id_kategori_campaign?>"><?=$kat->nama_kategori_campaign?></option>
+                                           <?php } ?>
                                     </select>
                                     </div>
                                     <div class="form-group form-float">
@@ -80,12 +52,6 @@
                                             <textarea name="deskripsiCampaign" cols="30" rows="3" class="form-control no-resize" id="deskripsiCampaign" ></textarea>
                                         </div>
                                     </div> 
-                                    <!-- <div class="form-group form-float">
-                                        <div class="form-group">
-                                            <label class="form-control">Gambar</label>
-                                            <input type="file" class="form-control" name="gambar" id="gambar">
-                                        </div>
-                                    </div>  -->
                                 </fieldset>
 
                                 <h3>LIST BARANG YANG DIBUTUHKAN</h3>
@@ -122,7 +88,7 @@
                                 <h3>KONFIRMASI</h3>
                                 <fieldset>
                                     <h2 class="card-inside-title">Galang dana ini ditujukan untuk keperluan ?</h2>
-                                        <div class="demo-radio-button">
+                                        <div class="demo-radio-button" required>
                                             <input name="group1" type="radio" id="radio_1" value="Saya sendiri" checked />
                                             <label class="form-control" style="height: 35px;" for="radio_1">Saya sendiri</label><br>
                                             <input name="group1" type="radio" id="radio_2" value="Keluarga atau Kerabat"/>
@@ -162,7 +128,7 @@
                                                                     <option value="<?=$brg->id_barang?>"><?=$brg->nama_barang?></option>
                                                                     <?php } ?>
                                                                 </select> -->
-                                                                <input type="text" name="barang" id="namaBarang" class="form-control" required="">
+                                                                <input type="text" name="barang" id="namaBarang" class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group form-float">
@@ -170,11 +136,9 @@
                                                                 <label class="form-control">Kategori Barang</label>
                                                                 <select class="form-control show-tick" data-live-search="true" name="kategoriBarang" id="kategoriBarang">
                                                                     <option value="0">-- Pilih Kategori --</option>
-                                                                    <option value="KTGR-BRGTH-0001">Sembako</option>
-                                                                    <option value="KTGR-BRGTH-0002">Pakaian</option>
-                                                                    <option value="KTGR-BRGTH-0003">Obat-Obatan</option>
-                                                                    <option value="KTGR-BRGTH-0004">Alat Medis</option>
-                                                                    <option value="KTGR-BRGTH-0005">Lainnya</option>
+                                                                    <?php foreach ($katBrg as $kat) { ?>
+                                                                    <option value="<?=$kat->id_kategori_barang?>"><?=$kat->nama_kategori_barang?></option>
+                                                                    <?php } ?>
                                                                 </select>
                                                             </div>
                                                         </div>
@@ -205,9 +169,6 @@
 
     <!-- Bootstrap Core Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap/js/bootstrap.js"></script>
-
-    <!-- Select Plugin Js -->
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
@@ -252,26 +213,17 @@
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
 
-    <!-- Jquery DataTable Plugin Js -->
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
-
     <!-- Custom Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/admin.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/forms/form-wizard.js"></script>
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/ui/modals.js"></script>
-    <script src="<?php echo base_url(); ?>assets/dashAssets/js/pages/tables/jquery-datatable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/demo.js"></script>
+
+    <!-- NEM-SDK -->
+    <script src="<?=base_url()?>assets/nem-sdk/dist/nem-sdk.js"></script>
 
     <script type="text/javascript">
         $(document).ready(function(e) {
@@ -281,18 +233,59 @@
                 console.log("terpencet");
                 e.preventDefault();
 
+                var nem = require("nem-sdk").default;
+
                 var judulCampaign = $("#judulCampaign").val();
+                var alamatCampaign = $("#alamatCampaign").val();
                 var kategoriCampaign = $("#kategoriCampaign").val();
                 var batasCampaign = $("#batasCampaign").val();
                 var ajakanCampaign = $("#ajakanCampaign").val();
                 var deskripsiCampaign = $("#deskripsiCampaign").val();
                 var keteranganCampaign = $("input[name='group1']:checked").val();
+
+                 //Create Address/Wallet
+                //Password - Private Key
+                var privateKey = nem.crypto.helpers.derivePassSha('<?php echo $this->session->userdata('password') ?>'+event.timeStamp+'<?php echo $this->session->userdata('email') ?>', 6000).priv;
+                // Create a key pair
+                var keyPair = nem.crypto.keyPair.create(privateKey);
+                //Signature
+                var data = "NEM is awesome !";
+                var signature = keyPair.sign(data);
+                // Verify Signature
+                var result = nem.crypto.verifySignature(keyPair.publicKey.toString(), data, signature.toString());
+                //Public Key
+                var publicKey = keyPair.publicKey.toString();
+                //Convert public key to an address
+                var address = nem.model.address.toAddress(publicKey, nem.model.network.data.testnet.id);
+                //Verify address validity
+                var isValid = nem.model.address.isValid(address);
+                var isFromNetwork = nem.model.address.isFromNetwork(address, nem.model.network.data.testnet.id);
+
+                //DEBUG
+                console.log(event.timeStamp);
+                console.log("PASS: "+'<?php echo $this->session->userdata('password') ?> '+'<?php echo $this->session->userdata('email') ?>');
+                console.log("PRIVATE KEY: "+privateKey);
+                console.log("KEYPAIR: "+keyPair);
+                console.log("Verify Signature: "+result);
+                console.log("PUBLIC KEY: "+publicKey);
+                console.log("Address: "+address);
+                console.log("Verify address: "+isValid);
+                console.log("Verify address TEST_NET: "+isFromNetwork);
                 
                 $.ajax({
                     url: '<?php echo base_url(); ?>penerima/C_penerima/proBuatCampaign',
-                    type: 'post',
-                    dataType: 'html',
-                    data: 'judulCampaign='+ judulCampaign + '&kategoriCampaign=' + kategoriCampaign + '&batasCampaign=' + batasCampaign + '&ajakanCampaign=' + ajakanCampaign + '&deskripsiCampaign=' + deskripsiCampaign + '&keteranganCampaign=' + keteranganCampaign,
+                    type: 'POST',
+                    dataType: 'HTML',
+                    data: '&judulCampaign='+ judulCampaign +
+                          '&alamatCampaign='+ alamatCampaign +
+                          '&kategoriCampaign=' + kategoriCampaign + 
+                          '&batasCampaign=' + batasCampaign + 
+                          '&ajakanCampaign=' + ajakanCampaign + 
+                          '&deskripsiCampaign=' + deskripsiCampaign + 
+                          '&keteranganCampaign=' + keteranganCampaign +
+                          '&privateKey=' + privateKey +
+                          '&publicKey=' + publicKey +
+                          '&address=' + address,
                     success :
                     function(pesan) {
                         console.log(pesan);  

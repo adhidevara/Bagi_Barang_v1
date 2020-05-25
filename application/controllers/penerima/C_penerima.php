@@ -9,6 +9,11 @@ class C_penerima extends CI_Controller {
 		if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 3) {
 			$this->load->model('M_akun');
 			$this->load->model('volunteer/M_volunteer');
+			$this->getData['notifData'] = $this->M_volunteer->notifCampaign($this->session->userdata('id_volunteer'))->result();
+			$this->getData['notifDataBarang'] = $this->M_volunteer->notifBarangDonasi($this->session->userdata('id_volunteer'))->result();
+			$hitHari = $this->getData['countNotif'] = $this->M_volunteer->notifCampaign($this->session->userdata('id_volunteer'))->num_rows();
+			$hitBarang = $this->getData['countNotifBarang'] = $this->M_volunteer->notifBarangDonasi($this->session->userdata('id_volunteer'))->num_rows();
+			$this->getData['totalNotif'] = $hitBarang + $hitHari;
 		}else{
 			redirect('MY_Controller/pages_404','refresh');
 		}
@@ -16,6 +21,7 @@ class C_penerima extends CI_Controller {
 
 	public function index()
 	{
+		$getData = $this->getData; 
 		if ($this->session->userdata('status') == 1) {
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 			
@@ -25,13 +31,14 @@ class C_penerima extends CI_Controller {
 			$id_volunteer = $this->session->userdata('id_volunteer');
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
 			$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($this->session->userdata('id_volunteer'));
-
-			$this->load->view('dash_volunteer/dashboard', $getData);
+			
+			 $this->load->view('dash_volunteer/dashboard', $getData);
 		}
 	}
 
 	public function v_Profile()
 	{
+		$getData = $this->getData; 
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 		$this->load->view('dash_volunteer/profile', $getData);
 	}
@@ -61,11 +68,12 @@ class C_penerima extends CI_Controller {
 
 			$data = array(
 				'no_ktp' => $form['noKtp'],
-				'jenis_kelamin' => $form['jenis_kelamin'],
+				'jenis_kelamin' => $form['gender'],
 				'alamat' => $form['alamat'],
 				'foto' => 'uploads/fotoProfil/ft_v/'.$dataFoto['file_name'],
 				'no_tlp' => $form['noTlp'],
 			);
+
 			$this->M_akun->update('id_volunteer', $this->session->userdata('id_volunteer'), 'volunteer', $data);
 			$session_data = array(
 				'role_id' => $this->session->userdata('role_id'),
@@ -74,7 +82,7 @@ class C_penerima extends CI_Controller {
 				'nama' => $this->session->userdata('nama'),
 				'no_ktp' => $form['noKtp'],
 				'password' => $this->session->userdata('password'),
-				'jenis_kelamin' => $form['jenis_kelamin'],
+				'jenis_kelamin' => $form['gender'],
 				'alamat' => $form['alamat'],
 				'foto' => 'uploads/fotoProfil/ft_v/'.$dataFoto['file_name'],
 				'no_tlp' => $form['noTlp'],
@@ -88,23 +96,33 @@ class C_penerima extends CI_Controller {
 
 	public function VbuatCampaign()
 	{
+		$getData = $this->getData; 
+		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-
-		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		
+		$id = substr($id_volunteer, 10, 4);
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-'.$id.'-');
 		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
+		$getData['katCamp'] = $this->M_akun->selectAll("*", "kategori_campaign");
+		$getData['katBrg'] = $this->M_akun->selectAll("*", "kategori_barang");
 
 		$this->load->view('dash_volunteer/buatCampaign', $getData);
 	}
 
 	public function proBuatCampaign()
 	{
-		$form = $this->input->post();
+		
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id = substr($id_volunteer, 10, 4);
+
+		$form = $this->input->post();
 		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-'.$id.'-');
+		$id_wallet = $this->M_akun->gen_id('wallet', 'id_wallet', 'WALL-'.$id.'-');
+		
 		$data = array('id_campaign' => $id_campaign,
 					  'id_volunteer' => $this->session->userdata('id_volunteer'),
 					  'judul_campaign' => $form['judulCampaign'],
+					  'alamat_campaign' => $form['alamatCampaign'],
 					  'kategori_campaign' => $form['kategoriCampaign'],
 					  'batas_campaign' => $form['batasCampaign'],
 					  'deskripsi_campaign' => $form['deskripsiCampaign'],
@@ -112,18 +130,28 @@ class C_penerima extends CI_Controller {
 					  'keterangan' => $form['keteranganCampaign'],
 		 );
 
+		$dataWallet = array('id_wallet' => $id_wallet,
+							 'id_campaign' => $id_campaign,
+							 'private_key' => $form['privateKey'],
+							 'public_key' => $form['publicKey'],
+							 'address' => $form['address']
+		);
+
 		$this->M_volunteer->insert('campaign', $data);
+		$this->M_volunteer->insert('wallet', $dataWallet);
 		echo json_encode($data);
 	}
 
 	public function VuploadGambarCampaign()
 	{
+		$getData = $this->getData; 
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 		$this->load->view('dash_volunteer/uploadGambarCampaign', $getData);
 	}
 
 	public function VdetailCampaign()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id_campaign = $this->input->get('id_campaign');
 
@@ -138,20 +166,19 @@ class C_penerima extends CI_Controller {
 
 	public function VcampaignSelesai()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id_campaign = $this->input->get('id_campaign');
 
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
-        $getData['data1'] = $this->M_volunteer->selCampaignSelesaiAll($id_volunteer);
-		$getData['data2'] = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
-        $getData['data3'] = $this->M_volunteer->selBarangDiterima($id_campaign);
-        $getData['data4'] = $this->M_volunteer->totalBarangDiterimaByKategori($id_campaign);
+        $getData['data2'] = $this->M_volunteer->selCampaignSelesaiAll($id_volunteer);
 		
 		$this->load->view('dash_volunteer/campaignSelesai', $getData);
 	}
 
 	public function VaccPaket()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id_campaign = $this->input->get('id_campaign');
 
@@ -164,6 +191,7 @@ class C_penerima extends CI_Controller {
 
 	public function VdetailAccPaket()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$id_campaign = $this->input->get('id_campaign');
 		$id_paket = $this->input->get('id_paket');
@@ -191,8 +219,24 @@ class C_penerima extends CI_Controller {
 		redirect('penerima/C_penerima/VdetailAccPaket?id_campaign='.$id_campaign,'refresh');
 	}
 
+	public function VdetailPaket()
+	{
+		$getData = $this->getData; 
+		
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id_campaign = $this->input->get('id_campaign');
+		$id_paket = $this->input->get('id_paket');
+		
+		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer',$id_volunteer);
+		$getData['data2'] = $this->M_volunteer->selDetailPaket($id_paket);
+		$getData['id_campaign'] = $id_campaign;
+
+		$this->load->view('dash_volunteer/detailPaket', $getData);
+	}
+
 	public function VbuatLaporan()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 		$getData['data2'] = $this->M_volunteer->selCampaignSelesaiByPaket($id_volunteer);
@@ -202,19 +246,21 @@ class C_penerima extends CI_Controller {
 
 	public function VtambahBukti()
 	{
+		$getData = $this->getData; 
 		$id_volunteer = $this->session->userdata('id_volunteer');
 		$getData['id_campaign'] = $this->input->post('id_campaign');
 		
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
-		$getData['data2'] = $this->M_volunteer->selCampaignById($getData['id_campaign']);
+		$getData['data2'] = $this->M_volunteer->selCampaignByLap($getData['id_campaign']);
 
-		$this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
+
+		 $this->load->view('dash_volunteer/tambahBuktiLaporan', $getData);
 	}
 
 	public function proBuatLaporan()
 	{
 		$form = $this->input->post();
-		$id_laporan = $this->M_akun->gen_id('laporan_donasi', 'id_laporan', 'RPRT-0001-');
+		$id_laporan = $this->M_akun->gen_id('penerimaan_barang', 'id_laporan', 'RPRT-0001-');
 		$id_penerima = $this->M_akun->gen_id('penerima_donasi', 'id_penerima', 'PNRM-0001-');
 		$id_campaign = $this->input->post('id_campaign');
 		
@@ -286,7 +332,7 @@ class C_penerima extends CI_Controller {
 
 					$data3 = array('flag' => 2);
 
-					$this->M_volunteer->insert('laporan_donasi', $data);
+					$this->M_volunteer->insert('penerimaan_barang', $data);
 					$this->M_volunteer->insert('penerima_donasi', $data2);
 					$this->M_volunteer->update('id_campaign', $id_campaign, 'campaign', $data3);
 
@@ -294,7 +340,11 @@ class C_penerima extends CI_Controller {
 				}
 			}
 	} else {
-		// $this->load->view('dash_volunteer/error');
+		echo "
+			<script>
+				alert('Data Tidak Lengkap! ')
+			</script>";
+		redirect('penerima/C_penerima/VbuatLaporan', 'refresh');
 	}
 		
 	}
@@ -304,8 +354,9 @@ class C_penerima extends CI_Controller {
 		$form = $this->input->post();
 
 		echo json_encode($form);
-
-		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id = substr($id_volunteer, 10, 4);
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-'.$id.'-');
 		$id_barang_butuh = $this->M_akun->gen_id('barang_dibutuhkan', 'id_barang_butuh', 'BRNG-BTH1-');
 
 		echo json_encode($id_campaign);
@@ -322,17 +373,18 @@ class C_penerima extends CI_Controller {
 
 	public function barangDibutuhkanJson()
 	{
-		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-0001-');
+		$id_volunteer = $this->session->userdata('id_volunteer');
+		$id = substr($id_volunteer, 10, 4);
+		$id_campaign = $this->M_akun->gen_id('campaign', 'id_campaign', 'CMPG-'.$id.'-');
 		
 		$dataBarang = $this->M_volunteer->selBarangDibutuhkan($id_campaign);
 
 		echo json_encode($dataBarang);
-	}
-
-	
+	}	
 
 	public function Vprofile()
 	{
+		$getData = $this->getData; 
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
 		$this->load->view('dash_volunteer/profile', $getData);
 	}
@@ -361,13 +413,140 @@ class C_penerima extends CI_Controller {
 
 	public function proSearchCampaign()
 	{
-		
 		$id_volunteer = $this->session->userdata('id_volunteer');
-		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
-		$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($id_volunteer);
+		$output = '';
+  		$query = '';
+  		
+  		if($this->input->post('query')){
+   			$query = $this->input->post('query');
+  		}
+		  $data = $this->M_volunteer->searchCampaign($id_volunteer, $query);
 
-		echo json_encode($getData['data2']);
+		  $data2 = $this->M_volunteer->allCampaign($this->session->userdata('id_volunteer'));
+		  $hasil = $data2->result() ;
 
+  		if ($data->num_rows() > 0) { //if data numrows > 0
+			foreach($hasil as $dt){
+				if ($dt->flag == 2) { // if data flag 2
+					$output .= '
+					<div class="row clearfix">
+						<div class="col-lg-9">
+							<div class="card">
+								<div class="header bg-red">
+									<h3><a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'" style="color: black;">'.$dt->judul_campaign.'</a></h3>
+								</div>
+								<div class="body">
+									<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'"><img class="img-responsive" src="'.base_url().$dt->gambar.'" style="width: 100%; height: 250px"></a>
+										<p>'.$dt->ajakan_campaign.'</p>
+										<span class="comment"><small>Sisa Hari</small></span><br>
+										<font style="color: orange; size: 5px">'.$dt->SisaHari.' Hari</font>
+										<div class="progress">
+											<div class="progress-bar progress-bar-warning progress-bar-striped active bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: '.$dt->Presentase.'%; background-color: orange">
+												<small style="color: white;margin-bottom: 5px;">'.$dt->Presentase.'%&nbsp; Sisa &nbsp; '. $dt->SisaHari.'&nbsp;Hari</small>
+											</div>
+										</div>
+										<p style="text-align: center;">
+											<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'" class="btn btn-primary btn-sm">Detail Campaign</a>
+										</p>
+								</div>
+							</div>
+							<div class="row"></div>
+						</div>
+					</div>
+				' ;
+				} else { //else data flag 0
+					$output .= '
+					<div class="row clearfix">
+						<div class="col-lg-9">
+							<div class="card">
+								<div class="header bg-red">
+									<h3><a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'" style="color: black;">'.$dt->judul_campaign.'</a></h3>
+								</div>
+								<div class="body">
+									<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'"><img class="img-responsive" src="'.base_url().$dt->gambar.'" style="width: 100%; height: 250px"></a>
+										<p>'.$dt->ajakan_campaign.'</p>
+										<span class="comment"><small>Sisa Hari</small></span><br>
+										<font style="color: orange; size: 5px">'.$dt->SisaHari.' Hari</font>
+										<div class="progress">
+											<div class="progress-bar progress-bar-warning progress-bar-striped active bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="width: '.$dt->Presentase.'%; background-color: orange">
+												<small style="color: white;margin-bottom: 5px;">'.$dt->Presentase.'%&nbsp; Sisa &nbsp; '. $dt->SisaHari.'&nbsp;Hari</small>
+											</div>
+										</div>
+										<p style="text-align: center;">
+											<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt->id_campaign.'" class="btn btn-primary btn-sm">Detail Campaign</a>
+										</p>
+								</div>
+							</div>
+							<div class="row"></div>
+						</div>
+					</div>
+				' ;
+				}
+				
+			}
+			  
+		  } else { //else data numrows <= 0
+			  foreach ($hasil as $dt2) {
+				  if ($dt2->flag == 2) {// if data flag 2
+					$output .= '
+					<div class="row clearfix">
+						<div class="col-lg-9">
+							<div class="card">
+								<div class="header bg-red">
+									<h3><a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'" style="color: black;">'.$dt2->judul_campaign.'</a></h3>
+								</div>
+								<div class="body">
+									<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'"><img class="img-responsive" src="'.base_url().$dt2->gambar.'" style="widt2h: 100%; height: 250px"></a>
+										<p>'.$dt2->ajakan_campaign.'</p>
+										<span class="comment"><small>Sisa Hari</small></span><br>
+										<font style="color: orange; size: 5px">'.$dt2->SisaHari.' Hari</font>
+										<div class="progress">
+											<div class="progress-bar progress-bar-warning progress-bar-striped active bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="widt2h: '.$dt2->Presentase.'%; background-color: orange">
+												<small style="color: white;margin-bottom: 5px;">'.$dt2->Presentase.'%&nbsp; Sisa &nbsp; '. $dt2->SisaHari.'&nbsp;Hari</small>
+											</div>
+										</div>
+										<p style="text-align: center;">
+											<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'" class="btn btn-primary btn-sm">Detail Campaign</a>
+										</p>
+								</div>
+							</div>
+							<div class="row"></div>
+						</div>
+					</div>
+				' ;
+				  } else { //else data flag 0
+					$output .= '
+					<div class="row clearfix">
+						<div class="col-lg-9">
+							<div class="card">
+								<div class="header bg-red">
+									<h3><a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'" style="color: black;">'.$dt2->judul_campaign.'</a></h3>
+								</div>
+								<div class="body">
+									<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'"><img class="img-responsive" src="'.base_url().$dt2->gambar.'" style="widt2h: 100%; height: 250px"></a>
+										<p>'.$dt2->ajakan_campaign.'</p>
+										<span class="comment"><small>Sisa Hari</small></span><br>
+										<font style="color: orange; size: 5px">'.$dt2->SisaHari.' Hari</font>
+										<div class="progress">
+											<div class="progress-bar progress-bar-warning progress-bar-striped active bg-orange" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"  style="widt2h: '.$dt2->Presentase.'%; background-color: orange">
+												<small style="color: white;margin-bottom: 5px;">'.$dt2->Presentase.'%&nbsp; Sisa &nbsp; '. $dt2->SisaHari.'&nbsp;Hari</small>
+											</div>
+										</div>
+										<p style="text-align: center;">
+											<a href="'.base_url().'penerima/C_penerima/VdetailCampaign?id_campaign='.$dt2->id_campaign.'" class="btn btn-primary btn-sm">Detail Campaign</a>
+										</p>
+								</div>
+							</div>
+							<div class="row"></div>
+						</div>
+					</div>
+				' ;
+				  }
+				  
+			  }
+		  }
+		  
+  		echo $output;
 	}
 }
 

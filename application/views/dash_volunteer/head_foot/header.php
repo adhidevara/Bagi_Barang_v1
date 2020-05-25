@@ -64,7 +64,7 @@
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
     <!-- Search Bar -->
-    <div class="search-bar">
+    <!-- <div class="search-bar">
         <div class="search-icon">
             <i class="material-icons">search</i>
         </div>
@@ -72,7 +72,7 @@
         <div class="close-search">
             <i class="material-icons">close</i>
         </div>
-    </div>
+    </div> -->
     <!-- #END# Search Bar -->
     <!-- Top Bar -->
     <nav class="navbar">
@@ -85,36 +85,53 @@
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li>
+                    <!-- <li>
                         <a href="#" class="js-search" data-close="true">
                             <i class="material-icons">search</i>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
                     <li class="dropdown">
                         <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="material-icons">notifications</i>
-                            <span class="label-count"></span>
+                            <span class="label-count"><?=$totalNotif?></span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header">NOTIFICATIONS</li>
                             <li class="body">
                                 <ul class="menu">
+                                    <?php foreach ($notifData as $not) { ?>
                                     <li>
                                         <a href="javascript:void(0);">
-                                            <div class="icon-circle bg-light-green">
-                                                <i class="material-icons">person_add</i>
+                                            <div class="icon-circle bg-deep-orange">
+                                                <i class="material-icons">assignment</i>
                                             </div>
                                             <div class="menu-info">
-                                                <h4>12 new members joined</h4>
+                                                <h4><?=$not->judul_campaign?></h4>
                                                 <p>
-                                                    <i class="material-icons">access_time</i> 14 mins ago
+                                                    <i class="material-icons">access_time</i> sisa campaign kurang <?=$not->sisaHari?> hari lagi
                                                 </p>
                                             </div>
                                         </a>
                                     </li>
+                                    <?php } ?>
+                                    <?php foreach ($notifDataBarang as $dtBrg) { ?>
                                     <li>
+                                        <a href="javascript:void(0);">
+                                            <div class="icon-circle bg-deep-orange">
+                                                <i class="material-icons">assignment</i>
+                                            </div>
+                                            <div class="menu-info">
+                                                <h4><?=$dtBrg->nama_barang?></h4>
+                                                <p>
+                                                    <i class="material-icons">access_time</i> jumlah barang di donasikan  <?=$dtBrg->jumlah_barang?> <?=$dtBrg->satuan_barang?>  
+                                                </p>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <?php } ?>
+                                    <!-- <li>
                                         <a href="javascript:void(0);">
                                             <div class="icon-circle bg-cyan">
                                                 <i class="material-icons">add_shopping_cart</i>
@@ -191,11 +208,8 @@
                                                 </p>
                                             </div>
                                         </a>
-                                    </li>
+                                    </li> -->
                                 </ul>
-                            </li>
-                            <li class="footer">
-                                <a href="javascript:void(0);">View All Notifications</a>
                             </li>
                         </ul>
                     </li>
@@ -506,40 +520,35 @@
         </aside>
         <!-- #END# Right Sidebar -->
     </section>
+    
+    <!-- Jquery Core Js -->
+    <script src="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery/jquery.min.js"></script>
 
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            tampil_data_barang();
+    <!-- <script type="text/javascript">
+        $(document).ready(function(){
 
-            $("a[href='#finish']").click(function(e) {
-                console.log("terpencet");
-                e.preventDefault();
+            load_data();
 
-                var search = $("#search").val();
-                
-                
+            function load_data(query)
+            {
                 $.ajax({
-                    url: '<?php echo base_url();?>penerima/C_penerima/proSearchCampaign',
-                    type: 'post',
-                    dataType: 'html',
-                    data: 'search='+ search ,
-                    success :
-                    function(pesan) {
-                        console.log(pesan);  
+                    url:"<?php echo base_url(); ?>penerima/C_penerima/proSearchCampaign",
+                    method:"POST",
+                    data:{query:query},
+                    success:function(data){
+                        $('#result').html(data);
                     }
                 })
-                .done(function() {
-                    console.log("success");
-                    // window.location.href = "<?php echo base_url(); ?>penerima/C_penerima/VuploadGambarCampaign";
-                })
-                .fail(function() {
-                    console.log("error");
-                })
-                .always(function() {
-                    console.log("complete");
-                });
-            });
-          
-        });
+            }
 
-    </script>
+            $('#search').keyup(function(){
+                var search = $(this).val();
+                if(search != ''){
+                    load_data(search);
+                }
+                else{
+                    load_data();
+                }
+            });
+        });
+    </script> -->

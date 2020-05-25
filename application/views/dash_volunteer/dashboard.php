@@ -55,19 +55,13 @@
             </div>       
             <section class="content">
                 <div class="container-fluid">
+                <div class="row">
+                    <div class="text-center">
+                        <h3>Campaign yang Sedang Berjalan</h3>
+                    </div>
+                </div>
                 <?php foreach ($data2 as $da) { ?>
-                    <?php if ($da ==  null) { ?>
-                        <div class="row">
-                        <div class="text-center">
-                            <h3 style="padding-left: -300px; color: #F44336">Selamat Datang <?php echo $this->session->userdata('nama'); ?> </h3>
-                        </div>
-                    </div>
-                    <?php } else { ?>
-                        <div class="row">
-                        <div class="text-center">
-                            <h3>Campaign yang Sedang Berjalan</h3>
-                        </div>
-                    </div>
+                    <div id="result"></div>
                     <div class="row clearfix">
                         <div class="col-lg-9">
                             <div class="card">
@@ -88,7 +82,6 @@
                                             <a href="<?=base_url()?>penerima/C_penerima/VdetailCampaign?id_campaign=<?=$da->id_campaign?>" class="btn btn-primary btn-sm">Detail Campaign</a>
                                         </p>
                                 </div>
-                                <?php } ?>
                             </div>
                             <br><div class="row"></div>
                         </div>
