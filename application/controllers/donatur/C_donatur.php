@@ -27,7 +27,7 @@ class C_donatur extends CI_Controller {
 	{
 		$id['id_campaign'] = $id_campaign;
 		$id['data'] = $this->M_Donatur->viewFormDonasi($id_campaign);
-		$id['kategori'] = $this->M_Donatur->formkategoriBarang();
+		$id['kategori'] = $this->M_Donatur->formkategoriBarang($id_campaign);
 		$id['nama'] = $this->M_Donatur->formNamaBarang($id_campaign);
 		$id['data2'] = $this->M_Donatur->barangDibutuhkan($id_campaign);
 		// $id_campaign['id_campaign'] = $this->input->post('id_campaign');

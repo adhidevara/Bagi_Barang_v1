@@ -22,11 +22,12 @@
 			return $this->db->get()->result();
 		}
 
-		function formKategoriBarang()
+		function formKategoriBarang($id_campaign)
 		{
 			$this->db->select('*');
-			$this->db->from('kategori_barang');
-			// $this->db->where('id_campaign', $id_campaign);
+			$this->db->from('barang_dibutuhkan c');
+			$this->db->join('kategori_barang k', 'c.kategori_barang = k.id_kategori_barang');
+			$this->db->where('id_campaign', $id_campaign);
 			return $this->db->get()->result();
 		}
 
@@ -47,8 +48,10 @@
 			$this->db->select("*, 
 				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
 				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
-				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
-			$this->db->from('campaign');
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl',
+				timestampdiff(day,tanggal_campaign, batas_campaign) as 'selisih'");
+			$this->db->from('campaign c');
+			$this->db->join('kategori_campaign k', 'c.kategori_campaign = k.id_kategori_campaign');
 			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) <= 100');
 
 			return $this->db->get()->result();
@@ -80,8 +83,8 @@
 		{
 			$this->db->select('*');
 			$this->db->from('campaign c');
-			$this->db->join('kategori_campaign k', 'c.id_kategori = k.id_kategori');
-			$this->db->where('c.id_kategori', $kategori);
+			$this->db->join('kategori_campaign k', 'c.kategori_campaign = k.id_kategori_campaign');
+			$this->db->where('c.kategori_campaign', $kategori);
 			$this->db->limit(1);
 
 			return $this->db->get()->result();
@@ -95,7 +98,7 @@
 				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
 			$this->db->from('campaign');
 			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) <= 100');
-			$this->db->where('id_kategori', $kategori);
+			$this->db->where('kategori_campaign', $kategori);
 
 			return $this->db->get()->result();
 		}
@@ -109,7 +112,7 @@
 			return $this->db->get()->result();
 		}
 
-		function progressCampaign($where)
+		function progressCampaign($where) //iki progress e sisa hari campaign 
 		{
 			$this->db->select('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as jml');
 			$this->db->from('campaign');
@@ -121,7 +124,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('barang b');
-			$this->db->join('kategori_barang_dibutuhkan k', 'b.id_kategori_barang = k.id_kategori_barang');
+			$this->db->join('kategori_barang k', 'b.kategori_barang = k.id_kategori_barang');
 			$this->db->where('id_donatur', $id);
 			$this->db->order_by('id_barang', 'desc');
 			return $this->db->get()->result();
@@ -139,7 +142,7 @@
 		{
 			$this->db->select('*');
 			$this->db->from('barang b');
-			$this->db->join('kategori_barang_dibutuhkan k', 'b.id_kategori_barang = k.id_kategori_barang');
+			$this->db->join('kategori_barang k', 'b.kategori_barang = k.id_kategori_barang');
 			$this->db->where('id_donatur', $id_d);
 			$this->db->where('id_barang', $id_b);
 			return $this->db->get()->result();
@@ -163,18 +166,18 @@
 		{
 			$this->db->select('*');
 			$this->db->from('barang_dibutuhkan b');
-			$this->db->join('kategori_barang_dibutuhkan k', 'b.id_kategori_barang = k.id_kategori_barang');
+			$this->db->join('kategori_barang k', 'b.kategori_barang = k.id_kategori_barang');
 			$this->db->where('id_campaign', $id);
 			return $this->db->get()->result();
 		}
 
 		function barangTerkumpul($id)
 		{
-			$this->db->select('*,sum(jumlah_barang) as jml');
+			$this->db->select('nama_barang, nama_kategori_barang, kategori_barang , SUM(jumlah_barang) as jml, satuan_barang');
 			$this->db->from('barang b');
 			$this->db->where('id_campaign', $id);
-			$this->db->join('kategori_barang k', 'b.id_kategori_barang = k.id_kategori_barang');
-			$this->db->group_by('nama_barang');
+			$this->db->join('kategori_barang k', 'b.kategori_barang = k.id_kategori_barang');
+			$this->db->group_by('nama_barang,kategori_barang, satuan_barang');
 			// $this->db->order_by('jumlah_barang', 'desc');
 			return $this->db->get()->result();
 		}

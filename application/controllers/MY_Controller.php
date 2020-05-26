@@ -12,10 +12,10 @@ class MY_Controller extends CI_Controller {
 
 	public function index($str = "index")
 	{
-		$data['campaignByBencanaAlam'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0001');
-		$data['campaignByKemanusiaan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0002');
-		$data['campaignByPendidikan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0003');
-		$data['campaignByPantiAsuhan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-0001-0004');
+		$data['campaignByBencanaAlam'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-CMPG-0001');
+		$data['campaignByPendidikan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-CMPG-0002');
+		$data['campaignByPantiAsuhan'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-CMPG-0003');
+		$data['campaignByDifabel'] 	= $this->M_Donatur->viewCampaignByKategori('KTGR-CMPG-0004');
 
 		if ($this->input->post('btCari') == 'Cari') {
 			$form = $this->input->post();
@@ -218,7 +218,7 @@ class MY_Controller extends CI_Controller {
 	public function logout()
 	{
     	$this->session->sess_destroy();
-    	redirect('','refresh');
+    	redirect('MY_Controller/index','refresh');
     }
 
     public function verifAcc()
@@ -385,10 +385,11 @@ class MY_Controller extends CI_Controller {
 
 
   	//FUNCTION TESTING
-//  	 public function test()
-//  	 {
-//  	 	echo "test";
-//  	 }
+  	 public function test()
+  	 {
+//  	 	$this->load->view('dash_pengelola/nem_test');
+		 // $this->send('adhidevara@yahoo.com', 'TEST', 'ARIEL', 'Donatur');
+  	 }
   
 }
 

@@ -108,7 +108,7 @@
                                                 <?php foreach ($data2 as $data2) { ?>
                                                         <tr>
                                                             <td><?php echo $data2->nama_barang; ?></td>
-                                                            <td><?php echo $data2->nama_kategori; ?></td>
+                                                            <td><?php echo $data2->nama_kategori_barang; ?></td>
                                                             <td><?php echo $data2->jumlah; ?></td>
                                                             <td><?php echo $data2->satuan_barang; ?></td>
                                                         </tr>
@@ -129,7 +129,7 @@
                                                 <?php foreach ($data3 as $data3) { ?>
                                                         <tr>
                                                             <td><?php echo $data3->nama_barang; ?></td>
-                                                            <td><?php echo $data3->nama_kategori; ?></td>
+                                                            <td><?php echo $data3->nama_kategori_barang; ?></td>
                                                             <td><?php echo $data3->jml; ?></td>
                                                             <td><?php echo $data3->satuan_barang; ?></td>
                                                         </tr>

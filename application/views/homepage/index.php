@@ -80,11 +80,16 @@
 					$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
 					$jml = $this->M_Donatur->progressCampaign($dt->id_campaign);
 					// $persen = ($jml[0]->jml/$dt->target_campaign)*100;
+					$date1=date_create($dt->tanggal_campaign);
+					$date2=date_create(date("Y-m-d H:i:s"));
+					$diff=date_diff($date1,$date2);
+					$selisih2 = (int) $diff->format("%a");
+					$persen = (int) (($selisih2 / $dt->selisih) * 100);
 					// echo "<pre>";
-					// print_r ($dt->id_campaign);
+					// print_r ($persen);
 					// echo "</pre>";
 
-					if ($dt->hsl > 0) { //memunculkan campaign yang aktif
+					// if ($dt->hsl > 0) { //memunculkan campaign yang aktif
 					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
@@ -92,14 +97,14 @@
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
-										<span class="comment"><small>Kategori : <?php echo $dt->kategori_campaign; ?></small></span><br>
+										<span class="comment"><small>Kategori : <?php echo $dt->nama_kategori_campaign; ?></small></span><br>
 										
 										<font style="color: orange; size: 5px">Waktu campaign</font> 
 											<div class="progress" style="background-color: lightgrey">
 
 				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-				                                    style=" width: <?=$dt->hsl?>%; background-color: orange">
-				                                    <small style="color: white;margin-bottom: 5px;"><?=$dt->hsl?>%&nbsp;(Sisa&nbsp;<?php echo $dt->sisa; ?>&nbsp;Hari)</small>
+				                                    style=" width: <?=$persen?>%; background-color: orange">
+				                                    <small style="color: white;margin-bottom: 5px;"><?=$persen?>%&nbsp;(Sisa&nbsp;<?php echo $dt->sisa; ?>&nbsp;Hari)</small>
 				                               </div>
 				                               
 				                           </div>
@@ -111,7 +116,7 @@
 								</div> 
 							</div>
 						</div>
-					<?php } }?>					
+					<?php } ?>					
 
 
 					<div class="clearfix visible-md-block"></div>
@@ -187,11 +192,11 @@
 					<div class="col-md-12">
 						<ul id="fh5co-portfolio-list">
 
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); ">
+							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); ">
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0004" class="color-3">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByPantiAsuhan[0]->nama_kategori; ?></h2>
+										<h2><?php echo $campaignByBencanaAlam[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
@@ -200,24 +205,24 @@
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0003" class="color-4">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByPendidikan[0]->nama_kategori; ?></h2>
+										<h2><?php echo $campaignByPendidikan[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 
-							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); "> 
+							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); "> 
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0001" class="color-5">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByBencanaAlam[0]->nama_kategori; ?></h2>
+										<h2><?php echo $campaignByPantiAsuhan[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
-							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByKemanusiaan[0]->gambar; ?>); ">
+							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByDifabel[0]->gambar; ?>); ">
 								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0002" class="color-6">
 									<div class="case-studies-summary">
 										<span>Give Love</span>
-										<h2><?php echo $campaignByKemanusiaan[0]->nama_kategori; ?></h2>
+										<h2><?php echo $campaignByDifabel[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>

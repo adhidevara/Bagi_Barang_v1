@@ -22,7 +22,7 @@
                             <select class="form-control" name="kategori_barang" required="">
                                 <option value="0">--- Pilih Kategori Barang ---</option>
                                 <?php foreach ($kategori as $kt) { ?>
-                                    <option value="<?php echo $kt->id_kategori_barang ?>"><?php echo $kt->nama_kategori;  ?></option>
+                                    <option value="<?php echo $kt->id_kategori_barang ?>"><?php echo $kt->nama_kategori_barang;  ?></option>
                                 <?php } ?>
                                 <!-- <option value="sembako">Sembako</option>
                                 <option value="Obat-obatan">Obat-obatan</option>
@@ -86,7 +86,7 @@
             <?php foreach ($data2 as $data2) { ?>
             <tr>
                 <td><?php echo $data2->nama_barang; ?></td>
-                <td><?php echo $data2->nama_kategori; ?></td>
+                <td><?php echo $data2->nama_kategori_barang; ?></td>
                 <td><?php echo $data2->jumlah; ?></td>
                 <td><?php echo $data2->satuan_barang; ?></td>
             </tr>
