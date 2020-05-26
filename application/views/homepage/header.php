@@ -253,7 +253,7 @@
                 <a href="#" class="fh5co-sub-ddown"><?php echo $this->session->userdata('nama'); ?></a>
                   <ul class="fh5co-sub-menu">
                     <li><b>Akun Pengelola</b></li>
-                    <li><a href="<?= base_url(); ?>pengelola/C_pengelola">Dashboard</a></li>
+                    <li><a href="<?= base_url(); ?>dashboard_pengelola">Dashboard</a></li>
                     <li><a href="<?php echo base_url(); ?>MY_Controller/logout">Logout</a></li>
                   </ul>
               </li>

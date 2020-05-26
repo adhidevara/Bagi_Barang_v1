@@ -50,5 +50,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'MY_Controller';
-$route['404_override'] = '';
+$route['dashboard_pengelola'] = 'pengelola/C_pengelola';
+$route['campaignList'] = 'pengelola/C_pengelola/campaignList';
+$route['listBarang'] = 'pengelola/C_pengelola/listBarangAll';
+$route['sortBarang'] = 'pengelola/C_pengelola/sortBarang';
+$route['verifLaporan'] = 'pengelola/C_pengelola/verifLapBelanja';
+$route['register_pengelola'] = 'pengelola/C_pengelola/addPengelola';
+$route['verifikasi_volunteer'] = 'pengelola/C_pengelola/VerifVolun';
+$route['404_override'] = 'MY_Controller/pages_404';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['test'] = 'pengelola/C_pengelola/test';
+//$route['testNEM'] = 'nem-lib/Nem_test/sendNem';

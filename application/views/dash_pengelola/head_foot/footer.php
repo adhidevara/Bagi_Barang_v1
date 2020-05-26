@@ -51,3 +51,57 @@
 
     <!-- Demo Js -->
     <script src="<?php echo base_url(); ?>assets/dashAssets/js/demo.js"></script>
+
+	<!--NEEM-SDK-->
+	<script src="<?=base_url()?>assets/nem-sdk/dist/nem-sdk.js"></script>
+
+	<!-- Script -->
+	<script type="text/javascript">
+		// MOSAIC TX
+		// var nem = require("nem-sdk").default;
+		// var endpoint = nem.model.objects.create("endpoint")(nem.model.nodes.defaultTestnet, nem.model.nodes.defaultPort);
+		//
+		// var common = nem.model.objects.create("common")("", "923b6d0f5148c2c9d7c542c156824d77efe00e3f81b87a9ef990e42bf7a3c0ff");
+		//
+		// var transferTransaction = nem.model.objects.create("transferTransaction")("TDOMJAHLOXWYUJH2SSTPICNVUEHPRXSFJXFGPGT5", 1, "test IDR Mosaic");
+		//
+		// var mosaicDefinitions = nem.model.objects.get("mosaicDefinitionMetaDataPair");
+		//
+		// var mosaicAttachment = nem.model.objects.create("mosaicAttachment")("donation", "idr", 1);
+		//
+		// transferTransaction.mosaics.push(mosaicAttachment);
+		//
+		// nem.com.requests.namespace.mosaicDefinitions(endpoint, mosaicAttachment.mosaicId.namespaceId).then(function (res) {
+		// 	var definitions = nem.utils.helpers.searchMosaicDefinitionArray(res.data, ["idr"]);
+		// 	var fullname = nem.utils.format.mosaicIdToName(mosaicAttachment.mosaicId);
+		//
+		// 	mosaicDefinitions[fullname] = {};
+		// 	mosaicDefinitions[fullname].mosaicDefinition = definitions[fullname];
+		//
+		// 	var preparedTransaction = nem.model.transactions.prepare('mosaicTransferTransaction')(common, transferTransaction, mosaicDefinitions, nem.model.network.data.testnet.id);
+		// 	preparedTransaction.fee = 1000000;
+		//
+		// 	nem.model.transactions.send(common, preparedTransaction, endpoint).then(function (res) {
+		// 		console.log(res);
+		// 	}, function (err) {
+		// 		console.log(err);
+		// 	});
+		//
+		// }, function (err) {
+		// 	console.log(err);
+		// });
+		// END OF MOSAIC TX
+
+		// XEM TX
+		// var nem = require("nem-sdk").default;
+		// var endpoint = nem.model.objects.create("endpoint")(nem.model.nodes.defaultTestnet, nem.model.nodes.defaultPort);
+		// var common = nem.model.objects.create("common")("", "923b6d0f5148c2c9d7c542c156824d77efe00e3f81b87a9ef990e42bf7a3c0ff");
+		// var transferTransaction = nem.model.objects.create("transferTransaction")("TDOMJAHLOXWYUJH2SSTPICNVUEHPRXSFJXFGPGT5", 2, "Cleaning...");
+		// var preparedTransaction = nem.model.transactions.prepare('transferTransaction')(common, transferTransaction, nem.model.network.data.testnet.id);
+		// 	nem.model.transactions.send(common, preparedTransaction, endpoint).then(function (res) {
+		// 		console.log(res);
+		// 	}, function (err) {
+		// 		console.log(err);
+		// 	});
+		// END XEM TX
+	</script>

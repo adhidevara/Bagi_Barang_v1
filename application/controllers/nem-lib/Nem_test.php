@@ -11,8 +11,9 @@ class Nem_test extends CI_Controller
 			'nis_address' => 'http://localhost:7890',
 			'private' => 'b0d702aa81007286bf72e3d2416e248e4034a1f3d7681c8cc035cf8b467c8c0c',
 			'public' => '1fb28e2f003bb1eee8c60eef5f0f766b6f488c3467e4140e4e904201b1a3b9f4',
-			'security_check' => false //leave it true if you are not sure];
+			'security_check' => false //leave it true if you are not sure;
 		];
+
 		return new NemPhp($config);
 	}
 

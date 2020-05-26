@@ -308,14 +308,14 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="<?= base_url(); ?>pengelola/C_pengelola">
+                        <a href="<?= base_url(); ?>dashboard_pengelola">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
                     
                     <li>
-                        <a href="<?= base_url() ?>pengelola/C_pengelola/campaignList">
+                        <a href="<?= base_url() ?>campaignList">
                             <i class="material-icons">assignment</i>
                             <span>Campaign List</span>
                         </a>
@@ -327,7 +327,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/listBarangAll">List Barang Donasi</a>
+                                <a href="<?= base_url() ?>listBarang">List Barang Donasi</a>
                             </li>
                             <!-- <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/addVendor">Input Data Vendor</a>
@@ -344,7 +344,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/sortBarang">Sorting Barang</a>
+                                <a href="<?= base_url() ?>sortBarang">Sorting Barang</a>
                             </li>
                         </ul>
                     </li>
@@ -355,7 +355,7 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/verifLapBelanja">Verifikasi Laporan</a>
+                                <a href="<?= base_url() ?>verifLaporan">Verifikasi Laporan</a>
                             </li>
                             <!-- <li>
                                 <a href="<?= base_url() ?>pengelola/C_pengelola/listTransDonasi">List Transaksi Donasi</a>
@@ -369,10 +369,10 @@
                         </a>
                         <ul class="ml-menu">
                             <li>
-                                <a href="<?php echo base_url(); ?>pengelola/C_pengelola/addPengelola">Tambah Pengelola Baru</a>
+                                <a href="<?php echo base_url(); ?>register_pengelola">Tambah Pengelola Baru</a>
                             </li>
                             <li>
-                                <a href="<?php echo base_url(); ?>pengelola/C_pengelola/VerifVolun">Verifikasi Volunteer
+                                <a href="<?php echo base_url(); ?>verifikasi_volunteer">Verifikasi Volunteer
                                 </a>
                             </li>
                         </ul>

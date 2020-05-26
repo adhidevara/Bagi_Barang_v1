@@ -17,7 +17,12 @@ class C_pengelola extends CI_Controller {
 
 	public function index() //Dashboard Awal
 	{
-		$this->load->view('dash_pengelola/hal_awal');
+		$data['c_campaign'] = $this->M_akun->selectAll('COUNT(id_campaign) as c_campaign', 'campaign');
+		$data['c_donatur'] = $this->M_akun->selectAll('COUNT(id_donatur) as c_donatur', 'donatur');
+		$data['c_volunteer'] = $this->M_akun->selectAll('COUNT(id_volunteer) as c_volunteer', 'volunteer');
+		$data['c_barang'] = $this->M_pengelola->c_barang();
+
+		$this->load->view('dash_pengelola/hal_awal', $data);
 	}
 
 	public function myProfil()
@@ -31,7 +36,7 @@ class C_pengelola extends CI_Controller {
 		
 		$config['base_url'] = base_url().'pengelola/C_pengelola/campaignList';
 		$config['total_rows'] = count($dataT['total']);
-		$config['per_page'] = 3;
+		$config['per_page'] = 6;
 		$config['uri_segment'] = 4;
 		$config['num_links'] = 4;
 
@@ -96,17 +101,36 @@ class C_pengelola extends CI_Controller {
 		$this->load->view('dash_pengelola/hal_addBarang');
 	}
 
+	public function selStatPak($id_paket, $jenis_barang, $id_campaign)
+	{
+		return $this->M_pengelola->$this->M_pengelola->selectStatusPaket($id_paket, $jenis_barang, $id_campaign);
+	}
+
 	public function sortBarang()
 	{
-		$data['paket0'] = $this->M_pengelola->selectWherePaket0();
-		$data['paket1'] = $this->M_pengelola->selectWherePaket1();
+		if (isset($_GET['error'])){
+			echo "
+			<script>
+  				alert('Paket Telah Tersedia');
+			</script>
+			";
+		}
+
+		$data['resultStatus'] = [];
+		$data['paket'] = $this->M_pengelola->selectAllPaket();
+
+		foreach ($data['paket'] as $val) {
+			$status = $this->M_pengelola->selectStatusPaket($val->id_paket, $val->jenis_barang, $val->id_campaign);
+			$data['resultStatus'][] = (object) array_merge((array) $status[0], (array) $val);
+		}
+
 		$this->load->view('dash_pengelola/hal_sortBarang', $data);
 	}
 
 	public function formPaket()
 	{
 		$data['data'] = $this->M_pengelola->selectCampPkt();
-		
+
 		$this->load->view('dash_pengelola/head_foot/header');
 		$this->load->view('dash_pengelola/hal_formPaket', $data);
 	}
@@ -115,13 +139,28 @@ class C_pengelola extends CI_Controller {
 	{
 		$get = $this->input->get();
 
+		if (isset($get['error'])) {
+			echo "
+			<script>
+  				alert('Jumlah Sortir Barang Melebihi Batas');
+			</script>
+			";
+		}
+
 		$data['id_paket'] = $get['id_paket'];
 		$data['id_campaign'] = $get['id_campaign'];
 		$data['jenis_barang'] = $get['jenis_barang'];
-		$data['data'] = $this->M_pengelola->selectBarangPaket($get['id_campaign'], $get['jenis_barang']);
+		$data['data_diterima'] = $this->M_pengelola->selectBarangPaket($get['id_campaign'], $get['jenis_barang']);
+		$data['data_sedang_kirim'] = $this->M_pengelola->selectBarangPaketNonactive($get['id_campaign'], $get['jenis_barang']);
 		$data['isi'] = $this->M_pengelola->isiPaket($get['id_campaign'], $get['jenis_barang']);
-		
+
 		$this->load->view('dash_pengelola/hal_barangPaket', $data);
+	}
+
+	public function kirimPaket()
+	{
+		$data = array();
+		$this->load->view('dash_pengelola/hal_kirimPaket', $data);
 	}
 
 	public function verifLapBelanja()
@@ -141,6 +180,12 @@ class C_pengelola extends CI_Controller {
 		$getData['volunteer1'] = $this->M_akun->selectWhere("*", 'volunteer', 'status', 1);
 		$getData['volunteer11'] = $this->M_akun->selectWhere("*", 'volunteer', 'status', 11);
 		$this->load->view('dash_pengelola/hal_verifVolunteer', $getData);
+	}
+
+	public function test()
+	{
+		$this->load->view('dash_pengelola/head_foot/header');
+		$this->load->view('dash_pengelola/head_foot/footer');
 	}
 }
 

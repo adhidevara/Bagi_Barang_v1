@@ -55,6 +55,7 @@
                                                         <th>Tanggal Dibuat</th>
                                                         <th>Link Video</th>
                                                         <th>Foto</th>
+														<th>Dokumen Laporan</th>
                                                         <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -66,6 +67,7 @@
                                                         <th>Tanggal Dibuat</th>
                                                         <th>Link Video</th>
                                                         <th>Foto</th>
+														<th>Dokumen Laporan</th>
                                                         <th>Status</th>
                                                         <th>Aksi</th>
                                                     </tr>
@@ -82,6 +84,7 @@
                                                         <td>
                                                             <img src="<?= base_url().$vol->foto ?>" width="200" height="130">
                                                         </td>
+														<td><a href="<?= base_url().$vol->dokumen ?>"><button type="button" class="btn btn-info">Download File</button></a></td>
                                                         <th style="background-color: lightpink"><?= $vol->status ?></th>
                                                         <td>
                                                             <a href="<?=base_url()?>pengelola/C_laporan/acc_laporan?id_laporan=<?=$vol->id_laporan?>&id_campaign=<?=$vol->id_campaign?>" class="btn btn-danger btn-danger item_acc" data="<?= $vol->id_laporan ?>">Approve Laporan</a>
@@ -106,6 +109,7 @@
                                                         <th>Tanggal Approve</th>
                                                         <th>Link Video</th>
                                                         <th>Foto</th>
+														<th>Dokumen</th>
                                                         <th>Status</th>
                                                     </tr>
                                                 </thead>
@@ -117,6 +121,7 @@
                                                         <th>Tanggal Approve</th>
                                                         <th>Link Video</th>
                                                         <th>Foto</th>
+														<th>Dokumen</th>
                                                         <th>Status</th>
                                                     </tr>
                                                 </tfoot>
@@ -133,6 +138,7 @@
                                                         <td>
                                                             <img src="<?= base_url().$vol->foto ?>" width="200" height="130">
                                                         </td>
+														<td><a href="<?= base_url().$vol->dokumen ?>"><button type="button" class="btn btn-info">Download File</button></a></td>
                                                         <th style="background-color: lightgreen;"><?= $vol->status ?></th>
                                                     </tr>
                                                 <?php } ?>

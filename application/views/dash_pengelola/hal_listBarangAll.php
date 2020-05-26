@@ -129,19 +129,20 @@
                                             <td><?php echo $vol->jumlah_barang; ?></td>
                                             <td><?php echo $vol->satuan_barang; ?></td>
                                             <td><?php echo $vol->resi; ?></td>
-                                            <?php if ($vol->status == "Sedang Dikirim") { ?>
-                                            <td style="background-color: yellow; color: black;"><?php echo $vol->status; ?></td>
-                                            <?php } else if ($vol->status == "Menunggu Pengiriman") { ?>
-                                            <td style="background-color: lightblue; color: black;"><?php echo $vol->status; ?></td>
-                                            <?php } else if ($vol->status == "Di Terima (Warehouse)") { ?>
-                                            <td style="background-color: lightgreen; color: black;"><?php echo $vol->status; ?></td>
-                                            <?php } ?>
-                                            <td>
-                                            <a href="<?php echo base_url();?>pengelola/C_pengelola/listBarang?id_campaign=<?php echo $vol->id_campaign;?>" class="btn btn-info waves-effect" role="button">Detail</a> 
-                                            <?php if ($vol->status == "Sedang Dikirim") { ?>
-                                            <a id="terimaBrg" href="<?php echo base_url(); ?>pengelola/C_barang/terimaBarang?id_barang=<?php echo $vol->id_barang ?>" class="btn btn-success waves-effect" role="button">Terima Barang</a>
-                                            <?php } ?>
-                                            </td>
+                                            	<?php if ($vol->status == "Sedang Dikirim") { ?>
+                                            		<td style="background-color: yellow; color: black;"><?php echo $vol->status; ?></td>
+                                            	<?php } else if ($vol->status == "Menunggu Pengiriman") { ?>
+                                            		<td style="background-color: lightblue; color: black;"><?php echo $vol->status; ?></td>
+                                            	<?php } else if ($vol->status == "Di Terima (Warehouse)") { ?>
+                                            		<td style="background-color: lightgreen; color: black;"><?php echo $vol->status; ?></td>
+                                            	<?php } ?>
+												<?php if ($vol->status == "Sedang Dikirim" || $vol->status == "") { ?>
+													<td style="background-color: yellow; color: black;">Sedang Dikirim.</td>
+													<td>
+														<a href="<?php echo base_url();?>pengelola/C_pengelola/listBarang?id_campaign=<?php echo $vol->id_campaign;?>" class="btn btn-info waves-effect" role="button">Detail</a>
+														<a id="terimaBrg" href="<?php echo base_url(); ?>pengelola/C_barang/terimaBarang?id_barang=<?php echo $vol->id_barang ?>" class="btn btn-success waves-effect" role="button">Terima Barang</a>
+													</td>
+												<?php } ?>
                                         </tr>
                                     <?php } ?>
                                     </tbody>

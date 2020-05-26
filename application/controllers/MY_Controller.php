@@ -218,7 +218,7 @@ class MY_Controller extends CI_Controller {
 	public function logout()
 	{
     	$this->session->sess_destroy();
-    	redirect('MY_Controller/index','refresh');
+    	redirect('','refresh');
     }
 
     public function verifAcc()
@@ -385,11 +385,10 @@ class MY_Controller extends CI_Controller {
 
 
   	//FUNCTION TESTING
-  	 public function test()
-  	 {
-//  	 	$this->load->view('dash_pengelola/nem_test');
-		 $this->send('adhidevara@yahoo.com', 'TEST', 'ARIEL', 'Donatur');
-  	 }
+//  	 public function test()
+//  	 {
+//  	 	echo "test";
+//  	 }
   
 }
 

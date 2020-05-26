@@ -44,13 +44,13 @@
                                             <option value="Lainnya">Lainnya</option>
                                         </select>
                                     </div>
-                                    <div class="col-sm-4">
-                                        <div class="form-group">
-                                            <div class="form-line">
-                                                <input type="text" name="tujuan" class="form-control" placeholder="Tujuan Paket" />
-                                            </div>
-                                        </div>
-                                    </div>
+<!--                                    <div class="col-sm-4">-->
+<!--                                        <div class="form-group">-->
+<!--                                            <div class="form-line">-->
+<!--                                                <input type="text" name="tujuan" class="form-control" placeholder="Tujuan Paket" />-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
                                     <div class="col-sm-12">
                                         <div class="form-group">
                                             <div class="form-line">

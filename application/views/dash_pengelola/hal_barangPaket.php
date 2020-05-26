@@ -61,18 +61,23 @@
                                             <input type="hidden" name="jenis_barang" value="<?=$jenis_barang?>">
                                             <select class="form-control show-tick" name="id_barang" required>
                                                 <option value="">-- Pilih Barang --</option>
-                                                <?php foreach ($data as $da) { ?>
-                                                <option value="<?=$da->id_barang?>"><?=$da->nama_barang?></option>
+                                                <?php foreach ($data_diterima as $da) { ?>
+                                                	<option value="<?=$da->id_barang?>"><?=$da->nama_barang?></option>
                                                 <?php } ?>
+												<?php foreach ($data_sedang_kirim as $da) {
+														if ($da->status !== "Di Terima (Warehouse)"){
+													?>
+													<option disabled value="<?=$da->id_barang?>"><?=$da->nama_barang?> <i><b>(<?=$da->status?>)</b></i></option>
+												<?php }} ?>
                                             </select>
                                         </div>
                                         <div class="col-sm-1">
-                                            Jumlah Sortir :
+                                            Jumlah Barang Rusak :
                                         </div>
                                         <div class="col-sm-1">
                                             <div class="input-group spinner" data-trigger="spinner">
                                                 <div class="form-line">
-                                                    <input type="text" class="form-control text-center" value="1" data-rule="quantity" name="qty" required>
+                                                    <input type="text" class="form-control text-center" value="0" name="qty" required>
                                                 </div>
                                                 <span class="input-group-addon">
                                                     <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
@@ -95,7 +100,8 @@
                                                         <th>ID Campaign</th>
                                                         <th>Jenis Barang</th>
                                                         <th>Nama Barang</th>
-                                                        <th>Jumlah</th>
+                                                        <th>Jumlah Barang</th>
+														<th>Jumlah Rusak</th>
                                                         <th>Satuan</th>
                                                     </tr>
                                                 </thead>
@@ -106,7 +112,8 @@
                                                         <th>ID Campaign</th>
                                                         <th>Jenis Barang</th>
                                                         <th>Nama Barang</th>
-                                                        <th>Jumlah</th>
+                                                        <th>Jumlah Barang</th>
+														<th>Jumlah Rusak</th>
                                                         <th>Satuan</th>
                                                     </tr>
                                                 </tfoot>
@@ -118,7 +125,8 @@
                                                         <td><?= $vol->id_campaign ?></td>
                                                         <td><?= $vol->kategori_barang ?></td>
                                                         <td><?= $vol->nama_barang ?></td>
-                                                        <td><?= $vol->jumlah_barang ?></td>
+                                                        <td><?= $vol->total_brg ?></td>
+														<td><?= $vol->jumlah_barang_rusak ?></td>
                                                         <td><?= $vol->satuan_barang ?></td>
                                                     </tr>
                                                 <?php } ?>

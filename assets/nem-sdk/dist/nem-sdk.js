@@ -9107,7 +9107,7 @@ var address = function address(input) {
 * @return {string} - A date string
 */
 var nemDate = function nemDate(data) {
-    var nemesis = Date.UTC(2015, 2, 29, 0, 6, 25);
+    var nemesis = Date.UTC(2015, 2, 29, 7, 6, 25);
     if (data === undefined) return data;
     var o = data;
     var t = new Date(nemesis + o * 1000);

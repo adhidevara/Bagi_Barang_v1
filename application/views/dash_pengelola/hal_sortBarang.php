@@ -37,8 +37,14 @@
                                 <li role="presentation">
                                     <a href="#profile_with_icon_title" data-toggle="tab">
                                         <i class="material-icons">receipt</i> Data Paket (Siap Dikirim)
+										<span style="color: red;font-size: 20px;"><?=count($resultStatus)?></span>
                                     </a>
                                 </li>
+								<li role="presentation">
+									<a href="#profile_with_icon_title1" data-toggle="tab">
+										<i class="material-icons">local_shipping</i> Data Paket (Sedang Dikirim)
+									</a>
+								</li>
                             </ul>
 
                             <!-- Tab panes -->
@@ -69,7 +75,10 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody id="show_data">
-                                                    <?php foreach ($paket0 as $vol) { ?>
+													<?php
+														foreach ($resultStatus as $vol){
+															if ($vol->res < 0 || $vol->jml == ""){
+													?>
                                                     <tr>
                                                         <td><?= $vol->id_paket ?></td>
                                                         <td><?= $vol->id_campaign ?></td>
@@ -77,10 +86,12 @@
                                                         <td><?= $vol->tanggal_sortir ?></td>
                                                         <td><?= $vol->keterangan ?></td>
                                                         <td>
-                                                            <a href="<?=base_url()?>pengelola/C_pengelola/barangPaket?id_paket=<?=$vol->id_paket?>&id_campaign=<?=$vol->id_campaign?>&jenis_barang=<?=$vol->jenis_barang?>" class="btn btn-info btn-info item_acc" data="<?= $vol->id_paket ?>">Detail Paket</a>
+                                                            <a href="<?=base_url()?>pengelola/C_pengelola/barangPaket?id_paket=<?=$vol->id_paket?>&id_campaign=<?=$vol->id_campaign?>&jenis_barang=<?=$vol->jenis_barang?>" class="btn btn-danger item_acc" data="<?= $vol->id_paket ?>">
+																Sortir Barang
+															</a>
                                                         </td>
                                                     </tr>
-                                                <?php } ?>
+                                                <?php }} ?>
                                                 </tbody>
                                             </table>
                                         </div>
@@ -120,7 +131,10 @@
                                                     </tr>
                                                 </tfoot>
                                                 <tbody id="show_data">
-                                                    <?php foreach ($paket1 as $vol) { ?>
+												<?php
+													foreach ($resultStatus as $vol){
+														if ($vol->res == 0 && $vol->jml > 0 && $vol->status == "Proses Penyortiran"){
+												?>
                                                     <tr>
                                                         <td><?= $vol->id_paket ?></td>
                                                         <td><?= $vol->id_campaign ?></td>
@@ -132,15 +146,76 @@
                                                         <td><?= $vol->tanggal_sortir ?></td>
                                                         <td><?= $vol->keterangan ?></td>
                                                         <td>
-                                                            <a href="javascript:;" class="btn btn-info btn-success item_acc" data="<?= $vol->id_paket ?>">Siap Kirim</a>
+                                                            <a href="<?=base_url()?>pengelola/C_pengelola/kirimPaket?id_paket=<?=$vol->id_paket?>" class="btn btn-info btn-success item_acc" data="<?= $vol->id_paket ?>">
+																Siap Kirim
+															</a>
                                                         </td>
                                                     </tr>
-                                                <?php } ?>
+                                                <?php }} ?>
                                                 </tbody>
                                             </table>
                                         </div>
                                     </div>
                                 </div>
+								<div role="tabpanel" class="tab-pane fade" id="profile_with_icon_title1">
+									<div class="body">
+										<div class="table-responsive">
+											<table class="table table-bordered table-striped table-hover dataTable js-exportable">
+												<thead>
+												<tr>
+													<th>ID Paket</th>
+													<th>ID Campaign</th>
+													<th>Jenis Barang</th>
+													<th>Nama Kurir</th>
+													<th>No Resi</th>
+													<th>Tanggal Kirim</th>
+													<th>Tanggal Terima</th>
+													<th>Tanggal Dibuat</th>
+													<th>Keterangan</th>
+													<th>Aksi</th>
+												</tr>
+												</thead>
+												<tfoot>
+												<tr>
+													<th>ID Paket</th>
+													<th>ID Campaign</th>
+													<th>Jenis Barang</th>
+													<th>Nama Kurir</th>
+													<th>No Resi</th>
+													<th>Tanggal Kirim</th>
+													<th>Tanggal Terima</th>
+													<th>Tanggal Dibuat</th>
+													<th>Keterangan</th>
+													<th>Aksi</th>
+												</tr>
+												</tfoot>
+												<tbody id="show_data">
+												<?php
+												foreach ($resultStatus as $vol){
+													if ($vol->status == "Paket Sedang Dikirim"){
+														?>
+														<tr>
+															<td><?= $vol->id_paket ?></td>
+															<td><?= $vol->id_campaign ?></td>
+															<td><?= $vol->jenis_barang ?></td>
+															<td><?= $vol->nama_kurir ?></td>
+															<td><?= $vol->no_resi ?></td>
+															<td><?= $vol->tanggal_pengiriman ?></td>
+															<td><?= $vol->tanggal_diterima ?></td>
+															<td><?= $vol->tanggal_sortir ?></td>
+															<td><?= $vol->keterangan ?></td>
+															<td>
+																<a href="#" class="btn btn-info btn-info item_acc" data="<?= $vol->id_paket ?>">
+																	Detail Paket
+																</a>
+															</td>
+														</tr>
+													<?php }} ?>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
                             </div>
                         </div>
                     </div>
