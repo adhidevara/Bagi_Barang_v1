@@ -43,7 +43,7 @@ class C_donatur extends CI_Controller {
 			'id_barang' => $id_barang,
 			'id_donatur' => $this->session->userdata('id_donatur'),
 			'id_campaign' => $id_campaign,
-			'id_kategori_barang' => $form['kategori_barang'],
+			'kategori_barang' => $form['kategori_barang'],
 			'nama_barang' => $form['nama_barang'],
 			'jumlah_barang' => $form['jumlah_barang'],
 			'satuan_barang' => $form['satuan_barang'],

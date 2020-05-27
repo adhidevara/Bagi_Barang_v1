@@ -353,7 +353,7 @@
         //fungsi tampil barang
         function tampil_data_barang(){
             $.ajax({
-                type  : 'get',
+                type  : 'ajax',
                 url   : '<?php echo base_url()?>penerima/C_penerima/barangDibutuhkanJson',
                 async : false,
                 dataType : 'json',

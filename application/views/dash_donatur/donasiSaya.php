@@ -106,7 +106,7 @@
                                         
                                             <tr>
                                                 <td><?php echo $dt->id_barang; ?></td>
-                                                <td><?php echo $dt->nama_kategori; ?></td>
+                                                <td><?php echo $dt->kategori_barang; ?></td>
                                                 <td><?php echo $dt->nama_barang; ?></td>
                                                 <td><?php echo $dt->jumlah_barang; ?></td>
                                                 <td><?php if($dt->resi == null){ echo "<div class='alert alert-warning'>Input No Resi</div>"; }else{ echo "<div class='alert alert-info'>Data Lengkap</div>"; } ?></td>
