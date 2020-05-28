@@ -43,6 +43,90 @@ class C_penerima extends CI_Controller {
 		$this->load->view('dash_volunteer/profile', $getData);
 	}
 
+	public function ubahBiodata(){
+		$form = $this->input->post();
+
+		$config['upload_path'] = './uploads/fotoProfil/ft_v';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$config['file_name'] = "ft_v-".$this->session->userdata('id_volunteer')."-".$this->session->userdata('nama');
+		$config['max_size']  = '10000';
+		$config['max_width']  = '10240';
+		$config['max_height']  = '7680';
+			
+		$this->load->library('upload', $config);
+		$this->upload->initialize($config);
+			
+		if ( ! $this->upload->do_upload('foto')){
+			$error = array('error' => $this->upload->display_errors());
+			echo "<pre>";
+			print_r ($error);
+			echo "</pre>";
+		}
+		else{
+			$dataFoto = $this->upload->data();
+
+			$data = array(
+				'nama' => $form['nama'],
+				'email' => $form['email'],
+				'no_ktp' => $form['noKtp'],
+				'jenis_kelamin' => $form['gender'],
+				'alamat' => $form['alamat'],
+				'foto' => 'uploads/fotoProfil/ft_v/'.$dataFoto['file_name'],
+				'no_tlp' => $form['noTlp'],
+			);
+
+			$this->M_akun->update('id_volunteer', $this->session->userdata('id_volunteer'), 'volunteer', $data);
+			$session_data = array(
+				'role_id' => $this->session->userdata('role_id'),
+				'id_volunteer' => $this->session->userdata('id_volunteer'),
+				'email' => $this->session->userdata('email'),
+				'nama' => $this->session->userdata('nama'),
+				'no_ktp' => $form['noKtp'],
+				'jenis_kelamin' => $form['gender'],
+				'alamat' => $form['alamat'],
+				'foto' => 'uploads/fotoProfil/ft_v/'.$dataFoto['file_name'],
+				'no_tlp' => $form['noTlp']
+			);
+			$this->session->set_userdata($session_data);
+
+			redirect('penerima/C_penerima/index','refresh');
+		}
+	}
+
+
+	public function ubahPassword(){
+		$form = $this->input->post();
+		
+		$oldPasswordDB = $this->encryption->decrypt($this->session->userdata('password'));
+
+		if($oldPasswordDB == $form['OldPassword']){
+			if($form['NewPassword'] == $form['NewPasswordConfirm']){
+				$data = array(
+					'password' => $this->encryption->encrypt($form['NewPassword'])
+				);
+	
+				$this->M_akun->update('id_volunteer', $this->session->userdata('id_volunteer'), 'volunteer', $data);
+	
+				$session_data = array(
+					'password' => $this->session->userdata('password')
+				);
+				$this->session->set_userdata($session_data);
+	
+				redirect('penerima/C_penerima/index','refresh');
+			}else{
+				echo "
+				<script>
+					alert('Password Tidak Sama! ')
+				</script>";
+			}
+		}else{
+			echo "
+				<script>
+					alert('Password Tidak Sama dengan Data Base! ')
+				</script>";
+		}
+	}
+
 	public function prosesIsiData()
 	{
 		$form = $this->input->post();

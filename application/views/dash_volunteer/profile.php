@@ -218,12 +218,12 @@
                                         </div>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
-                                        <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>penerima/C_penerima/ubahBiodata">
+                                        <form id="1" class="form-horizontal" method="POST" enctype="multipart/form-data" action="<?php echo base_url(); ?>penerima/C_penerima/ubahBiodata">
                                             <div class="form-group">
                                                 <label for="NameSurname" class="col-sm-2 control-label">Nama Lengkap</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" id="NameSurname" name="NameSurname" placeholder="Name Surname" value="<?php echo $this->session->userdata('nama'); ?>" required>
+                                                        <input type="text" class="form-control" id="nama" name="nama" placeholder="Name Surname" value="<?php echo $this->session->userdata('nama'); ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -231,7 +231,7 @@
                                                 <label for="Email" class="col-sm-2 control-label">Email</label>
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="email" class="form-control" id="Email" name="Email" placeholder="Email" value="<?php echo $this->session->userdata('email'); ?>" required>
+                                                        <input type="email" class="form-control" id="email" name="email" placeholder="Email" value="<?php echo $this->session->userdata('email'); ?>">
                                                     </div>
                                                 </div>
                                             </div>
@@ -240,7 +240,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <textarea class="form-control" id="InputExperience" name="InputExperience" rows="3" placeholder="Alamat"></textarea>
+                                                        <textarea class="form-control" id="alamat" name="alamat" rows="3" placeholder="Alamat" ></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -249,7 +249,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="text" class="form-control" id="InputSkills" name="InputSkills" placeholder="No KTP">
+                                                        <input type="number" class="form-control" id="noKtp" name="noKtp" placeholder="No KTP">
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,11 +258,20 @@
                                                 <label for="text" class="col-sm-2 control-label">Jenis Kelamin</label>
 
                                                 <div class="col-sm-10" style="padding-top: 5px">
-                                                    <div class="demo-radio-button">
-                                                        <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Laki - Laki" checked />
-                                                        <label for="jenis_kelamin">Laki - laki</label>
-                                                        <input name="jenis_kelamin" type="radio" id="jenis_kelamin" value="Perempuan" />
-                                                        <label for="jenis_kelamin">Perempuan</label>
+                                                <input type="radio" name="gender" id="male" class="with-gap" value="laki - laki ">
+                                                <label for="male">Laki - laki</label>
+
+                                                <input type="radio" name="gender" id="female" class="with-gap" value="perempuan">
+                                                <label for="female" class="m-l-20">Perempuan</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="InputSkills" class="col-sm-2 control-label">No Telepon</label>
+
+                                                <div class="col-sm-10">
+                                                    <div class="form-line">
+                                                        <input type="number" class="form-control" id="noTlp" name="noTlp" placeholder="0821235290788">
                                                     </div>
                                                 </div>
                                             </div>
@@ -272,7 +281,7 @@
 
                                                 <div class="col-sm-10">
                                                     <div class="form-line">
-                                                        <input type="file" class="form-control" id="InputSkills" name="InputSkills" placeholder="No KTP" required>
+                                                        <input type="file" class="form-control" id="foto" name="foto" placeholder="Foto">
                                                     </div>
                                                 </div>
                                             </div>
@@ -284,7 +293,7 @@
                                         </form>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="change_password_settings">
-                                        <form class="form-horizontal" method="POST" action="<?php echo base_url(); ?>penerima/C_penerima/ubahPassword">
+                                        <form id="2" class="form-horizontal" method="POST" action="<?php echo base_url(); ?>penerima/C_penerima/ubahPassword">
                                             <div class="form-group">
                                                 <label for="OldPassword" class="col-sm-3 control-label">Old Password</label>
                                                 <div class="col-sm-9">
