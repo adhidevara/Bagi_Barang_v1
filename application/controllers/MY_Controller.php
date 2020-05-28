@@ -8,6 +8,7 @@ class MY_Controller extends CI_Controller {
 		parent::__construct();
 		$this->load->model('M_akun');
 		$this->load->model('donatur/M_Donatur');
+		$this->load->model('M_nem');
 	}
 
 	public function index($str = "index")
@@ -105,6 +106,9 @@ class MY_Controller extends CI_Controller {
 						'alamat' => $getDataD[0]->alamat,
 						'foto' => $getDataD[0]->foto,
 						'no_tlp' => $getDataD[0]->no_tlp,
+						'privateKey' => $getDataD[0]->privateKey,
+						'publicKey' => $getDataD[0]->publicKey,
+						'address' => $getDataD[0]->address,
 						'status' => $getDataD[0]->status
 					);
 					$this->session->set_userdata($session_data);
@@ -385,11 +389,10 @@ class MY_Controller extends CI_Controller {
 
 
   	//FUNCTION TESTING
-  	 public function test()
-  	 {
-//  	 	$this->load->view('dash_pengelola/nem_test');
-		 // $this->send('adhidevara@yahoo.com', 'TEST', 'ARIEL', 'Donatur');
-  	 }
+	public function test()
+	{
+
+	}
   
 }
 

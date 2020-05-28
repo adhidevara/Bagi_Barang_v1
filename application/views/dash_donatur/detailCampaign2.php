@@ -138,6 +138,38 @@
                                                     </table>
                                             <br><br>
 
+											<br><br>
+
+											<h2 style="margin-left: 5%">Blockchain Transaction List</h2>
+											<p style="margin-left: 5%">Berikut adalah list transaksi donasi : </p>
+											<table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
+												<tr style="background-color: lightgrey">
+													<th>ID Donasi</th>
+													<th>Tanggal Donasi</th>
+													<th>Message</th>
+													<th>Timestamp</th>
+													<th>Recipient</th>
+													<th>Namespace</th>
+													<th>Mosaic</th>
+													<th>Quantity</th>
+													<th>Transaction Hash</th>
+												</tr>
+												<?php foreach ($dataBC as $dataBC) { ?>
+													<tr>
+														<td><?=$dataBC->id_donasi?></td>
+														<td><?=$dataBC->tanggal_donasi?></td>
+														<td><?=$dataBC->message?></td>
+														<td><?=$dataBC->timeStamp?></td>
+														<td><?=$dataBC->recipient?></td>
+														<td><?=$dataBC->namespaceId?></td>
+														<td><?=$dataBC->mosaicName?></td>
+														<td><?=$dataBC->quantity?></td>
+														<td><?=$dataBC->txHash?></td>
+													</tr>
+												<?php } ?>
+											</table>
+											<br><br>
+
                                             <p style="margin-left: 5%">
                                                 <b style="color: black">
                                                 Untuk Donasi, silahkan ikuti langkah berikut : <br>
