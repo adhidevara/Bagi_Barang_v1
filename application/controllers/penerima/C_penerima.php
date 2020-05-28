@@ -31,8 +31,16 @@ class C_penerima extends CI_Controller {
 			$id_volunteer = $this->session->userdata('id_volunteer');
 			$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $id_volunteer);
 			$getData['data2'] = $this->M_volunteer->selCampaignBerjalanById($this->session->userdata('id_volunteer'));
-			
-			 $this->load->view('dash_volunteer/dashboard', $getData);
+			$getData['data3']= $this->M_volunteer->countCampaignJalan($id_volunteer);
+			$getData['data4'] = $this->M_volunteer->countCampaignSelesai($id_volunteer);
+			$getData['data5'] = $this->M_volunteer->totalBarangDiterima($id_volunteer);
+			$getData['data6'] = $this->M_volunteer->countDonatur($id_volunteer);
+
+			// echo"<pre>";
+			// print_r($getData);
+			// echo"</pre>";
+
+			$this->load->view('dash_volunteer/dashboard', $getData);
 		}
 	}
 
@@ -256,7 +264,11 @@ class C_penerima extends CI_Controller {
 
 		$getData['data'] = $this->M_akun->selectWhere("*", 'volunteer', 'id_volunteer', $this->session->userdata('id_volunteer'));
         $getData['data2'] = $this->M_volunteer->selCampaignSelesaiAll($id_volunteer);
-		
+		$getData['data3']= $this->M_volunteer->countCampaignJalan($id_volunteer);
+		$getData['data4'] = $this->M_volunteer->countCampaignSelesai($id_volunteer);
+		$getData['data5'] = $this->M_volunteer->totalBarangDiterima($id_volunteer);
+		$getData['data6'] = $this->M_volunteer->countDonatur($id_volunteer);
+
 		$this->load->view('dash_volunteer/campaignSelesai', $getData);
 	}
 

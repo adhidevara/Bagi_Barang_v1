@@ -56,28 +56,54 @@
 	 
 	public function selCampaignBerjalanById($where)
  	{
-		$this->db->select("*, flag, TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'hariBerjalan',
+		$this->db->select("*, flag,  
+							TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'hariBerjalan',
 		 					TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'SisaHari', 
 		 					(DAY(batas_campaign) - DAY(tanggal_campaign)) AS 'DurasiCampaign', 
 		 					ROUND((TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign)) / TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign)*100, 2) AS 'Presentase'");
 		$this->db->from('campaign');
 		$this->db->where('TIMESTAMPDIFF(DAY, NOW(), batas_campaign) >= 0');
 		$this->db->where('ROUND((TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign)) / TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign)*100, 2) < 100');
+		$this->db->where('flag= 0');
 		$this->db->where('id_volunteer', $where);
+		$this->db->group_by('id_campaign');
 		$this->db->order_by('id_campaign', 'desc');
 
 		return $this->db->get()->result();	
  	}
 	
+	public function countCampaignJalan($where)
+	{
+		$this->db->select("COUNT(id_campaign) AS 'TotalCampaignJalan'");
+		$this->db->from('campaign');
+		$this->db->where('id_volunteer', $where);
+		$this->db->where('flag = 0');
+		// $this->db->group_by('id_campaign');
+		
+		return $this->db->get()->result();
+	}
+
+	public function countCampaignSelesai($where)
+	{
+		$this->db->select("COUNT(id_campaign) AS 'TotalCampaignSelesai'");
+		$this->db->from('campaign');
+		$this->db->where('id_volunteer', $where);
+		$this->db->where('flag = 2');
+		// $this->db->group_by('id_campaign');
+		
+		return $this->db->get()->result();
+	}
+
 	public function selCampaignSelesaiAll($where){ 
-		$this->db->select("*, flag, TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'hariBerjalan',
+		$this->db->select("*, flag, 
+							TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'hariBerjalan',
 							TIMESTAMPDIFF(DAY, NOW(), batas_campaign) AS 'SisaHari', 
 							(DAY(batas_campaign) - DAY(tanggal_campaign)) AS 'DurasiCampaign', 
 							ROUND((TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign) - TIMESTAMPDIFF(DAY, NOW(), batas_campaign)) / TIMESTAMPDIFF(DAY, tanggal_campaign, batas_campaign)*100, 2) AS 'Presentase'");
 		$this->db->from('campaign');
+		$this->db->where('flag = 2');
 		$this->db->where('id_volunteer', $where);
 		$this->db->where('TIMESTAMPDIFF(DAY, NOW(), batas_campaign) < 0');
-		$this->db->where('flag = 2');
 		
 		return $this->db->get()->result();
 	}
@@ -208,6 +234,17 @@
         return $this->db->get()->result();
 	}
 
+	public function totalBarangDiterima($where)
+	{
+		$this->db->select("SUM(jumlah_barang - jumlah_barang_rusak) AS 'TotalBarang'");
+		$this->db->from('campaign');
+		$this->db->join('barang', 'campaign.id_campaign = barang.id_campaign');
+		$this->db->where('id_volunteer', $where);
+		// $this->db->group_by('id_barang');
+
+		return $this->db->get()->result();
+	}
+
 	// query untuk paket
 	
 	public function selWhereJoinPaket($where)
@@ -228,6 +265,17 @@
 
  		return $this->db->get()->result();
  	}
+
+	 public function countDonatur($where)
+	 {
+		$this->db->select("COUNT(id_donatur) AS 'CountDonatur'");
+		$this->db->from('campaign');
+		$this->db->join('barang', 'campaign.id_campaign = barang.id_campaign');
+		$this->db->where('id_volunteer', $where);
+		// $this->db->group_by('id_barang');
+
+		return $this->db->get()->result();
+	 }
 
  }
 
