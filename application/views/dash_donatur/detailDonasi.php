@@ -28,7 +28,7 @@
                 <th style="color: black;text-align: center;">Aksi</th>
             </tr>
             <tr style="text-align: center;">
-                <td style="padding: 5px;"><?php echo $data[0]->nama_kategori ?></td>
+                <td style="padding: 5px;"><?php echo $data[0]->nama_kategori_barang ?></td>
                 <td><?php echo $data[0]->nama_barang ?></td>
                 <td><?php echo $data[0]->jumlah_barang ?></td>
                 <td><?php echo $data[0]->satuan_barang ?></td>

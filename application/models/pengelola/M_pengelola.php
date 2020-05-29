@@ -26,7 +26,10 @@ class M_pengelola extends CI_Model {
 
 	public function selectStatusPaket($id_paket, $kategori_barang, $id_campaign)
 	{
-		$this->db->select("SUM(IF(id_paket IS NOT NULL, '1', '0')) as jml, COUNT(id_barang) as cnt, (SUM(IF(id_paket IS NOT NULL, '1', '0'))-COUNT(id_barang)) as res,id_barang, id_paket, id_campaign");
+		$this->db->select("
+					SUM(IF(id_paket IS NOT NULL, '1', '0')) as jml,
+					COUNT(id_barang) as cnt, (SUM(IF(id_paket IS NOT NULL, '1', '0'))-COUNT(id_barang)) as res
+					");
 		$this->db->from("barang");
 		$this->db->where("id_paket = '$id_paket' OR id_paket IS NULL");
 		$this->db->where("kategori_barang = '$kategori_barang'");

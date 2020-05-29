@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 25 Feb 2020 pada 02.51
+-- Waktu pembuatan: 29 Bulan Mei 2020 pada 04.49
 -- Versi server: 8.0.13-4
--- Versi PHP: 7.2.24-0ubuntu0.18.04.3
+-- Versi PHP: 7.2.24-0ubuntu0.18.04.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,10 +32,11 @@ CREATE TABLE `barang` (
   `id_barang` varchar(255) NOT NULL,
   `id_donatur` varchar(255) NOT NULL,
   `id_campaign` varchar(255) NOT NULL,
-  `id_paket` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `id_paket` varchar(255) DEFAULT NULL,
   `kategori_barang` varchar(255) NOT NULL,
   `nama_barang` varchar(255) NOT NULL,
   `jumlah_barang` varchar(255) NOT NULL,
+  `jumlah_barang_rusak` varchar(255) NOT NULL,
   `satuan_barang` varchar(255) NOT NULL,
   `catatan_barang` varchar(255) NOT NULL,
   `resi` varchar(255) NOT NULL,
@@ -46,11 +47,10 @@ CREATE TABLE `barang` (
 -- Dumping data untuk tabel `barang`
 --
 
-INSERT INTO `barang` (`id_barang`, `id_donatur`, `id_campaign`, `id_paket`, `kategori_barang`, `nama_barang`, `jumlah_barang`, `satuan_barang`, `catatan_barang`, `resi`, `status`) VALUES
-('BRNG-1701-0001', 'DNTR-1502-0001', 'CMPG-0001-0001', NULL, 'Sembako', 'Mie Instan', '100', 'Box', 'Untuk para korban', '', 'Menunggu Pengiriman'),
-('BRNG-1701-0002', 'DNTR-1502-0001', 'CMPG-0001-0001', 'PCKG-0001-0001', 'Sembako', 'Beras', '100', 'Karung', 'untuk para korban', '902184891729', 'Di Terima (Warehouse)'),
-('BRNG-1701-0003', 'DNTR-1502-0001', 'CMPG-0001-0001', 'PCKG-0001-0001', 'Sembako', 'Teh Tong Tji', '500', 'dus', 'Untuk para korban', '971947917249179', 'Di Terima (Warehouse)'),
-('BRNG-1701-0004', 'DNTR-1502-0001', 'CMPG-0001-0002', NULL, 'sembako', 'Beras', '100', 'karung', '', '127647FGFGFG17', 'Sedang Dikirim');
+INSERT INTO `barang` (`id_barang`, `id_donatur`, `id_campaign`, `id_paket`, `kategori_barang`, `nama_barang`, `jumlah_barang`, `jumlah_barang_rusak`, `satuan_barang`, `catatan_barang`, `resi`, `status`) VALUES
+('BRNG-1701-0001', 'DNTR-1502-0001', 'CMPG-0002-0002', NULL, 'KTBR-0001-0003', 'Hand Sanitizer', '10', '', 'Dirigen/20L', '10 Dirigen/20L Hand Sanitizer', '', 'Menunggu Pengiriman'),
+('BRNG-1701-0002', 'DNTR-1502-0002', 'CMPG-0001-0001', NULL, 'KTBR-0001-0003', 'Hand Sanitizer', '100', '', 'Dirigen/20L', '', '431FJ49J9G3JY', 'Di Terima (Warehouse)'),
+('BRNG-1701-0003', 'DNTR-1502-0002', 'CMPG-0001-0001', NULL, 'KTBR-0001-0004', 'Masker', '20', '', 'Box', '', '', 'Menunggu Pengiriman');
 
 -- --------------------------------------------------------
 
@@ -59,12 +59,12 @@ INSERT INTO `barang` (`id_barang`, `id_donatur`, `id_campaign`, `id_paket`, `kat
 --
 
 CREATE TABLE `barang_dibutuhkan` (
-  `id_barang_butuh` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_campaign` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `nama_barang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `kategori_barang` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `id_barang_butuh` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_campaign` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `nama_barang` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `kategori_barang` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `jumlah` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `satuan_barang` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `satuan_barang` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -72,14 +72,11 @@ CREATE TABLE `barang_dibutuhkan` (
 --
 
 INSERT INTO `barang_dibutuhkan` (`id_barang_butuh`, `id_campaign`, `nama_barang`, `kategori_barang`, `jumlah`, `satuan_barang`) VALUES
-('BRNG-BTH1-0001', 'CMPG-0001-0001', 'Beras', 'Sembako', '100', 'Karung'),
-('BRNG-BTH1-0002', 'CMPG-0001-0002', 'ST', 'Sembako', '100', 'BSD'),
-('BRNG-BTH1-0003', 'CMPG-0001-0002', 'Mie Instan', 'Sembako', '100', 'dus'),
-('BRNG-BTH1-0004', 'CMPG-0001-0013', 'JKK', 'Pakaian', '10', 'JKK'),
-('BRNG-BTH1-0005', 'CMPG-0001-0013', 'JKKK', 'Sembako', '10', 'j'),
-('BRNG-BTH1-0006', 'CMPG-0001-0013', 'JK', 'Sembako', '90', 'kk'),
-('BRNG-BTH1-0007', 'CMPG-0001-0014', 'Mie Instan', 'Sembako', '100', 'Dus'),
-('BRNG-BTH1-0008', 'CMPG-0001-0014', 'Slimut', 'Pakaian', '120', 'Pcs');
+('BRNG-BTH1-0001', 'CMPG-0001-0001', 'APD', 'KTBR-0001-0004', '1000', 'Box'),
+('BRNG-BTH1-0002', 'CMPG-0001-0001', 'Masker', 'KTBR-0001-0004', '2000', 'Box'),
+('BRNG-BTH1-0003', 'CMPG-0001-0001', 'Hand Sanitizer', 'KTBR-0001-0003', '1000', 'Dirigen/20L'),
+('BRNG-BTH1-0004', 'CMPG-0002-0002', 'Buku Tulis', 'KTBR-0001-0006', '10000', 'Pax'),
+('BRNG-BTH1-0005', 'CMPG-0002-0002', ' Tas', 'KTBR-0001-0006', '900000', 'Pcs');
 
 -- --------------------------------------------------------
 
@@ -89,35 +86,55 @@ INSERT INTO `barang_dibutuhkan` (`id_barang_butuh`, `id_campaign`, `nama_barang`
 
 CREATE TABLE `campaign` (
   `id_campaign` varchar(255) NOT NULL,
-  `id_volunteer` varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `id_volunteer` varchar(255) NOT NULL,
   `judul_campaign` varchar(255) NOT NULL,
+  `alamat_campaign` varchar(255) NOT NULL,
+  `kategori_campaign` varchar(255) NOT NULL,
   `tanggal_campaign` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `batas_campaign` datetime NOT NULL,
-  `deskripsi_campaign` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `ajakan_campaign` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `kategori_campaign` varchar(255) NOT NULL,
+  `deskripsi_campaign` text NOT NULL,
+  `ajakan_campaign` text NOT NULL,
   `keterangan` varchar(255) NOT NULL,
-  `gambar` varchar(255) NOT NULL
+  `gambar` varchar(255) NOT NULL,
+  `flag` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `campaign`
 --
 
-INSERT INTO `campaign` (`id_campaign`, `id_volunteer`, `judul_campaign`, `batas_campaign`, `deskripsi_campaign`, `ajakan_campaign`, `kategori_campaign`, `keterangan`, `gambar`) VALUES
-('CMPG-0001-0001', 'VLNT-1503-0001', 'Bantuan Bencana Gempa Bumi Gondala', '2020-01-03 00:00:00', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana Alam', 'Saya sendiri', 'uploads/gambarCampaign/bencn.jpeg'),
-('CMPG-0001-0002', 'VLNT-1503-0001', 'Yuk Bantu Warga Hidup dengan Layak', '2020-02-29 00:00:00', 'Perbuatan (baik atau buruk). Contoh, ia dihormati orang karena amalnya yang baik, bukan karena kedudukan atau kekayaannya. Arti lainnya dari kata amal adalah perbuatan baik yang mendatangkan pahala (menurut ajaran agama islam). Contoh, berbuat amal ibadat manusia kepada Allah.', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Kemanusiaan', 'Saya sendiri', 'uploads/gambarCampaign/kemanusiaan.jpeg'),
-('CMPG-0001-0003', 'VLNT-1503-0001', 'Bantu Para Anak Yatim di Kalimantan', '2020-03-29 00:00:00', 'Beberapa pengertian Panti asuhan di antaranya: Menurut Depsos RI (2004: 4), Panti Sosial Asuhan anak adalah suatu lembaga usaha kesejahteraan sosial yang mempunyai tanggung jawab untuk memberikan pelayanan kesejahteraan sosial pada anak telantar dengan melaksanakan penyantunan dan pengentasan anak telantar, memberikan pelayanan pengganti orang tua/wali anak dalam memenuhi kebutuhan fisik, mental dan sosial kepada anak asuh sehingga memperoleh kesempatan yang luas,tepat dan memadai bagi pengembangan kepribadianya sesuai dengan yang diharapkan sebagai bagian dari generasi penerus cita- cita bangsa dan sebagai insan yang akan turut serta aktif dalam bidang pembangunan nasional', 'Panti Asuhan atau Panti Sosial Asuhan Anak juga Lembaga Kesejahteraan Sosial Anak (LKSA) ialah lembaga sosial nirlaba yang menampung, mendidik dan memelihara anak-anak yatim, yatim piatu dan anak telantar.', 'Panti Asuhan', 'Saya sendiri', 'uploads/gambarCampaign/fams.jpg'),
-('CMPG-0001-0004', 'VLNT-1503-0001', 'Bantu Korban Banjir di Sumatera Utara', '2021-02-21 00:00:00', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana Alam', 'Saya sendiri', 'uploads/gambarCampaign/bencana.jpg'),
-('CMPG-0001-0005', 'VLNT-1503-0001', 'Bantu Perbaiki Sekolah di SD Bandung', '2021-02-02 00:00:00', 'Pendidikan adalah pembelajaran pengetahuan, keterampilan, dan kebiasaan sekelompok orang yang diturunkan dari satu generasi ke generasi berikutnya melalui pengajaran, pelatihan, atau penelitian. Pendidikan sering terjadi di bawah bimbingan orang lain, tetapi juga memungkinkan secara otodidak.', 'MENDIDIK adalah memelihara dan memberi latihan mengenai akhlak dan kecerdasan pikiran. Mendidik dapat diartikan sebagai suatu usaha untuk mengantarkan anak didik ke arah kedewasaan baik secara jasmani maupun rohani. Oleh karena itu mendidik dikatakan sebagai upaya pembinaan pribadi, sikap mental dan akhlak anak didik', 'Pendidikan', 'Saya sendiri', 'uploads/gambarCampaign/pendidikan3.jpg'),
-('CMPG-0001-0006', 'VLNT-1503-0001', 'Bantu Korban Banjir di Bandung', '2020-08-20 00:00:00', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana Alam', 'Saya sendiri', 'uploads/gambarCampaign/bencn.jpeg'),
-('CMPG-0001-0007', 'VLNT-1503-0001', 'Bantu Korban Bencana Alam di Jawa Barat', '2020-11-29 00:00:00', 'Mari Bantu Saudara Kita Mari Bantu Saudara Kita Ma...', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Kemanusiaan', 'Saya sendiri', 'uploads/gambarCampaign/v4.jpg'),
-('CMPG-0001-0008', 'VLNT-1503-0001', 'Bantu Membelikan Seragam Anak-anak Sekolah Dasar', '2021-03-22 00:00:00', 'Pendidikan adalah pembelajaran pengetahuan, keterampilan, dan kebiasaan sekelompok orang yang diturunkan dari satu generasi ke generasi berikutnya melalui pengajaran, pelatihan, atau penelitian. Pendidikan sering terjadi di bawah bimbingan orang lain, tetapi juga memungkinkan secara otodidak.', 'MENDIDIK adalah memelihara dan memberi latihan mengenai akhlak dan kecerdasan pikiran. Mendidik dapat diartikan sebagai suatu usaha untuk mengantarkan anak didik ke arah kedewasaan baik secara jasmani maupun rohani. Oleh karena itu mendidik dikatakan sebagai upaya pembinaan pribadi, sikap mental dan akhlak anak didik', 'Pendidikan', 'Saya sendiri', 'uploads/gambarCampaign/pendidikan.jpg'),
-('CMPG-0001-0009', 'VLNT-1503-0001', 'Bantu Adik-adik kecil untuk bertahan hidup', '2022-01-19 00:00:00', 'Beberapa pengertian Panti asuhan di antaranya: Menurut Depsos RI (2004: 4), Panti Sosial Asuhan anak adalah suatu lembaga usaha kesejahteraan sosial yang mempunyai tanggung jawab untuk memberikan pelayanan kesejahteraan sosial pada anak telantar dengan melaksanakan penyantunan dan pengentasan anak telantar, memberikan pelayanan pengganti orang tua/wali anak dalam memenuhi kebutuhan fisik, mental dan sosial kepada anak asuh sehingga memperoleh kesempatan yang luas,tepat dan memadai bagi pengembangan kepribadianya sesuai dengan yang diharapkan sebagai bagian dari generasi penerus cita- cita bangsa dan sebagai insan yang akan turut serta aktif dalam bidang pembangunan nasional', 'Panti Asuhan atau Panti Sosial Asuhan Anak juga Lembaga Kesejahteraan Sosial Anak (LKSA) ialah lembaga sosial nirlaba yang menampung, mendidik dan memelihara anak-anak yatim, yatim piatu dan anak telantar.', 'Panti Asuhan', 'Saya sendiri', 'uploads/gambarCampaign/panti.png'),
-('CMPG-0001-0010', 'VLNT-1503-0001', 'Bantu Korban Bencana Alam di Bandung', '2020-12-29 00:00:00', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.Bencana alam adalah bencana yang diakibatkan oleh peristiwa atau serangkaian peristiwa yang disebabkan oleh alam antara lain berupa gempa bumi, tsunami, gunung meletus, banjir, kekeringan, angin topan, dan tanah longsor.', 'Bencana Alam', 'Saya sendiri', 'uploads/gambarCampaign/bencana.jpg'),
-('CMPG-0001-0011', 'VLNT-1503-0001', 'Meningkatkan Pendidikan di Indonesia', '2020-07-15 00:00:00', 'Pendidikan adalah pembelajaran pengetahuan, keterampilan, dan kebiasaan sekelompok orang yang diturunkan dari satu generasi ke generasi berikutnya melalui pengajaran, pelatihan, atau penelitian. Pendidikan sering terjadi di bawah bimbingan orang lain, tetapi juga memungkinkan secara otodidak.', 'MENDIDIK adalah memelihara dan memberi latihan mengenai akhlak dan kecerdasan pikiran. Mendidik dapat diartikan sebagai suatu usaha untuk mengantarkan anak didik ke arah kedewasaan baik secara jasmani maupun rohani. Oleh karena itu mendidik dikatakan sebagai upaya pembinaan pribadi, sikap mental dan akhlak anak didik', 'Pendidikan', 'Saya sendiri', 'uploads/gambarCampaign/pendidikan2.jpg'),
-('CMPG-0001-0012', 'VLNT-1503-0001', 'Bantu Anak Yatim Piatu Firdaus', '2019-12-25 00:00:00', 'Beberapa pengertian Panti asuhan di antaranya: Menurut Depsos RI (2004: 4), Panti Sosial Asuhan anak adalah suatu lembaga usaha kesejahteraan sosial yang mempunyai tanggung jawab untuk memberikan pelayanan kesejahteraan sosial pada anak telantar dengan melaksanakan penyantunan dan pengentasan anak telantar, memberikan pelayanan pengganti orang tua/wali anak dalam memenuhi kebutuhan fisik, mental dan sosial kepada anak asuh sehingga memperoleh kesempatan yang luas,tepat dan memadai bagi pengembangan kepribadianya sesuai dengan yang diharapkan sebagai bagian dari generasi penerus cita- cita bangsa dan sebagai insan yang akan turut serta aktif dalam bidang pembangunan nasional', 'Panti Asuhan atau Panti Sosial Asuhan Anak juga Lembaga Kesejahteraan Sosial Anak (LKSA) ialah lembaga sosial nirlaba yang menampung, mendidik dan memelihara anak-anak yatim, yatim piatu dan anak telantar.', 'Panti Asuhan', 'Saya sendiri', 'uploads/gambarCampaign/fams.jpg'),
-('CMPG-0001-0013', 'VLNT-1503-0001', 'Bantu Panti Asuhan Dayeuhkolot', '2022-04-10 00:00:00', 'panti ini dlll', 'mari bantu panti dayeuhkolot', 'Panti Asuhan', 'Saya sendiri', 'uploads/gambarCampaign/CMPG-0001-00131.jpg');
+INSERT INTO `campaign` (`id_campaign`, `id_volunteer`, `judul_campaign`, `alamat_campaign`, `kategori_campaign`, `batas_campaign`, `deskripsi_campaign`, `ajakan_campaign`, `keterangan`, `gambar`, `flag`) VALUES
+('CMPG-0001-0001', 'VLNT-1503-0001', 'Donasi COVID-19 Bandung dan Sekitarnya', 'Jl. Adhyaksa Raya No.33A, Sukapura, Bandung, Jawa Barat', 'KTGR-CMPG-0001', '2020-07-12 00:00:00', 'Mari bantu lawan COVID-19 untuk warga Bandung #DiRumahAja', 'Mari bantu lawan COVID-19 untuk warga Bandung #DiRumahAja', 'Organisasi', 'uploads/gambarCampaign/CMPG-0001-0001.jpg', 0),
+('CMPG-0002-0002', 'VLNT-1503-0002', 'Bantuan untuk Sekolah di Pelosok Indonesia', 'Kelapa Gading, Jakarta Timur', 'KTGR-CMPG-0002', '2020-05-27 00:00:00', 'Pendidikan merupakan aset terpenting di negara ini', 'Mari kita memajukan pendidikan di Indonesia', 'Organisasi', 'uploads/gambarCampaign/CMPG-0001-002.jpg', 1),
+('CMPG-0002-0003', 'VLNT-1503-0002', 'Bantuan Anak Panti Asuhan di Pelosok Indonesia', 'Kelapa Gading, Jakarta Timur', 'KTGR-CMPG-0003', '2020-07-01 00:00:00', 'Pendidikan merupakan aset terpenting di negara ini', 'Pendidikan merupakan aset terpenting di negara ini', 'Organisasi', 'uploads/gambarCampaign/CMPG-0001-003.jpg', 0),
+('CMPG-0002-0004', 'VLNT-1503-0002', 'Bantu Para Difabel untuk bertahan hidup', 'Kelapa Gading, Jakarta Timur', 'KTGR-CMPG-0004', '2020-08-26 00:00:00', 'Pendidikan merupakan aset terpenting di negara ini', 'Pendidikan merupakan aset terpenting di negara ini', 'Organisasi', 'uploads/gambarCampaign/CMPG-0001-004.jpg', 0),
+('CMPG-0002-0005', 'VLNT-1503-0002', 'Bantu Anak-anak berjuang melawan Covid-19', 'Kelapa Gading, Jakarta Timur', 'KTGR-CMPG-0005', '2020-07-12 00:00:00', 'Pendidikan merupakan aset terpenting di negara ini', 'Pendidikan merupakan aset terpenting di negara ini', 'Organisasi', 'uploads/gambarCampaign/CMPG-0001-006.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `donasi`
+--
+
+CREATE TABLE `donasi` (
+  `id_donasi` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `tanggal_donasi` datetime NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `timeStamp` varchar(255) NOT NULL,
+  `recipient` varchar(255) NOT NULL,
+  `namespaceId` varchar(255) NOT NULL,
+  `mosaicName` varchar(255) NOT NULL,
+  `quantity` int(11) NOT NULL,
+  `txHash` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `donasi`
+--
+
+INSERT INTO `donasi` (`id_donasi`, `id_campaign`, `tanggal_donasi`, `message`, `timeStamp`, `recipient`, `namespaceId`, `mosaicName`, `quantity`, `txHash`) VALUES
+('DONATE-0001-0001', 'CMPG-0001-0001', '2020-05-28 23:22:14', 'BRNG-1701-0001 Hand Sanitizer', '163070147', 'TBYGKIMBHH737XLZIMYIKJJD4VZI2V4SV3KYY23M', 'bagibarang', 'barang', 10, 'b2f0c88d4010fe0bfcdfa9f553213baad209a5f474a524377204be64efc2d272');
 
 -- --------------------------------------------------------
 
@@ -135,6 +152,9 @@ CREATE TABLE `donatur` (
   `jenis_kelamin` varchar(255) NOT NULL,
   `foto` varchar(255) NOT NULL,
   `no_tlp` varchar(255) NOT NULL,
+  `privateKey` varchar(255) NOT NULL,
+  `publicKey` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL,
   `status` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -142,35 +162,57 @@ CREATE TABLE `donatur` (
 -- Dumping data untuk tabel `donatur`
 --
 
-INSERT INTO `donatur` (`id_donatur`, `email`, `nama`, `no_ktp`, `password`, `alamat`, `jenis_kelamin`, `foto`, `no_tlp`, `status`) VALUES
-('DNTR-1502-0001', 'richardmaulana354@gmail.com', 'Richard Maulana', '01284012851205', '00b1ac7a7cb7222a66a6bd2523db4e033c663efb27498fb8dd5ef74e6b029662df0e5d3ae61170d20481a0bd39203ced19fff019c80972b3feca94f6559587b1CdismUtTVKSuFt/OkrktaTFZ+honJsLXkQUBY0q9R9s=', 'Bandung', 'laki-laki', 'uploads/fotoProfil/ft_d/8924586d-4f69-4267-8ab6-9adb25c8962e.JPG', '082233338115', 1),
-('DNTR-1502-0002', 'desevenfoldism2133@gmail.com', 'Ariel Adhidevara', '', 'b94a7f5c6f7a282e9b655b29606a88ca5cc0592e8daabcb65459d3f0b1af4e348d6e9f128b53330b1de07b473ecf2e9126db1077984bcd92a640c51eeea6b429O74Nlu2HEw2OWp8rCjJtJo/UEQHzN1GcPSMp5OVuHI0=', '', '', '', '', 1),
-('DNTR-1502-0003', 'rià', 'ric', '', '3c3bc7e41a0c8c2c670cf8d71c7827505a5884a9eddf496d2196b955eb779b16e1a69df694c3b0e68147f952d0983fc9b3e92b8b6e49efe3ded054a70f9a90b4MB6TfC1Dmtffs1eOEjaplUdtGO/4nFpEG36W5mYv7I4=', '', '', '', '', 0),
-('DNTR-1502-0004', 'riàd', 'ric', '', '28a11741c9428cbbc3be947df3e0fed41cfb78c863ce6015d2ce40594906df33ee4050c97f4e59c0e48ec6b1c76e3e5228f580ab222a0c753ac0c9c942b168511yjtVd7T1PWpeFDRqNoJwPYG8RLLRZJ1ohPPGDuVlYc=', '', '', '', '', 0),
-('DNTR-1502-0005', 'antonandre@gmail.com', 'Anton Andre ', '', 'be016c42c37af33c2474490ec7163f736c820c1ad55cd2f8e781390c7415d00064031bed04d00c827809db79400beb2ecc77a0df3eb463e8c67fe66e5ad9d4e18VsCdTJPZfSPTGq8mSu+T8pQJ42nRd7uw9uxkH/bpWI=', '', '', '', '', 1);
+INSERT INTO `donatur` (`id_donatur`, `email`, `nama`, `no_ktp`, `password`, `alamat`, `jenis_kelamin`, `foto`, `no_tlp`, `privateKey`, `publicKey`, `address`, `status`) VALUES
+('DNTR-1502-0001', 'alviputra48@gmail.com', 'Alvi Putra', '', '30ded8451def1c67259755f9b1f0c03f4b57ab54da081fa41fc85713dbe9aecb132472661221b18b84b0073d988f7045a94d17860d102117f118205a88f05849BDxV77/kVMLjGWKVAUnRG5HfrwVC8oyE/L02WXXEEhE=', '', '', '', '', '3fb581c79819540041d12f4d02f7fe630b853a8a95cb4afd2bb69bdf7d85048f', 'a00ab5b508271a43127e05fc9b29957236181a419ebe386856e3aebecb4b8588', 'TDJ6K4DN7EUDTLFHWPSS7OQ3BIXLLC4NR3X4GRLP', 1),
+('DNTR-1502-0002', 'richardmaulana354@gmail.com', 'richard', '', '9fa85f85bbc61cf82b619cbf3e559b9af00dfc1f0a603bdfdf9258647816b44dc7a9fcb3e9ee5fa9c29f3f7e7ab87d6c90d95667df7b33d86dd3621f749c6725GKnwyv+/WeljAvYJLx14mgWM1rm6p9lTG8CQ2BGuhFY=', '', '', 'uploads/fotoProfil/ft_d/Donatur.JPG', '', '536f603a776caa4739c28bd44bacdc618d2ca15a553524a06651f617161ee0c0', '606d394a3171bed5a83eef38e767f88129c36751ad511c5541a556cc4d16b476', 'TC5OMTGYJWNONTUFIYSOFTYQDX5Y2ZOXGLRIS24K', 1);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `laporan_donasi`
+-- Struktur dari tabel `kategori_barang`
 --
 
-CREATE TABLE `laporan_donasi` (
-  `id_laporan` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `id_campaign` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `tanggal_dibuat` datetime NOT NULL,
-  `tanggal_diacc` datetime DEFAULT NULL,
-  `link_video` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `status` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+CREATE TABLE `kategori_barang` (
+  `id_kategori_barang` varchar(255) NOT NULL,
+  `nama_kategori_barang` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data untuk tabel `laporan_donasi`
+-- Dumping data untuk tabel `kategori_barang`
 --
 
-INSERT INTO `laporan_donasi` (`id_laporan`, `id_campaign`, `tanggal_dibuat`, `tanggal_diacc`, `link_video`, `foto`, `status`) VALUES
-('RPRT-0001-0001', 'CMPG-0001-0001', '2020-01-08 04:14:15', '2019-12-26 03:42:29', 'https://www.youtube.com/embed/Z8TcWaeV1QI', 'uploads/laporan_foto/bantuan-bank-indonesia_20170113_151603.jpg', 'Approved');
+INSERT INTO `kategori_barang` (`id_kategori_barang`, `nama_kategori_barang`) VALUES
+('KTBR-0001-0001', 'Sembako'),
+('KTBR-0001-0002', 'Pakaian'),
+('KTBR-0001-0003', 'Obat-obatan'),
+('KTBR-0001-0004', 'Alat Medis'),
+('KTBR-0001-0005', 'Perlengkapan Anak'),
+('KTBR-0001-0006', 'Perlengkapan Sekolah'),
+('KTBR-0001-0007', 'Lainnya');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `kategori_campaign`
+--
+
+CREATE TABLE `kategori_campaign` (
+  `id_kategori_campaign` varchar(255) NOT NULL,
+  `nama_kategori_campaign` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kategori_campaign`
+--
+
+INSERT INTO `kategori_campaign` (`id_kategori_campaign`, `nama_kategori_campaign`) VALUES
+('KTGR-CMPG-0001', 'Bencana Alam'),
+('KTGR-CMPG-0002', 'Pendidikan'),
+('KTGR-CMPG-0003', 'Panti Asuhan'),
+('KTGR-CMPG-0004', 'Difabel'),
+('KTGR-CMPG-0005', 'Keluarga'),
+('KTGR-CMPG-0006', 'Kreatif'),
+('KTGR-CMPG-0007', 'Rumah Sakit');
 
 -- --------------------------------------------------------
 
@@ -181,6 +223,7 @@ INSERT INTO `laporan_donasi` (`id_laporan`, `id_campaign`, `tanggal_dibuat`, `ta
 CREATE TABLE `paket` (
   `id_paket` varchar(255) NOT NULL,
   `id_campaign` varchar(255) NOT NULL,
+  `id_penerima_donasi` varchar(255) NOT NULL,
   `jenis_barang` varchar(255) NOT NULL,
   `nama_kurir` varchar(255) NOT NULL,
   `no_resi` varchar(255) NOT NULL,
@@ -197,9 +240,46 @@ CREATE TABLE `paket` (
 -- Dumping data untuk tabel `paket`
 --
 
-INSERT INTO `paket` (`id_paket`, `id_campaign`, `jenis_barang`, `nama_kurir`, `no_resi`, `tanggal_sortir`, `tanggal_pengiriman`, `tanggal_diterima`, `asal`, `tujuan`, `keterangan`, `status`) VALUES
-('PCKG-0001-0001', 'CMPG-0001-0001', 'Sembako', 'TIKI', '971947917249179', '2019-12-27 07:31:18', NULL, '2020-01-08 10:29:21', 'GUDANG DONASI JAKARTA', 'KALIMANTAN', '', 'Telah diterima oleh Penerima Donasi'),
-('PCKG-1901-0002', 'CMPG-0001-0002', 'Sembako', '', '', '2019-12-26 03:39:48', NULL, NULL, 'Warehouse (Jakarta)', 'Palu', 'Untuk korban bencana', 'Proses Penyortiran');
+INSERT INTO `paket` (`id_paket`, `id_campaign`, `id_penerima_donasi`, `jenis_barang`, `nama_kurir`, `no_resi`, `tanggal_sortir`, `tanggal_pengiriman`, `tanggal_diterima`, `asal`, `tujuan`, `keterangan`, `status`) VALUES
+('PCKG-1901-0001', 'CMPG-0001-0001', 'PNRM-0001-0001', 'OBAT-OBATAN', 'J&T', '5GH683H9F923', '2020-05-22 00:00:00', '2020-05-24 00:00:00', '2020-05-27 00:00:00', 'Warehouse Bagi Barang ', 'Sulawesi, Palu', '', 'Paket Sedang Dikirim');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penerimaan_barang`
+--
+
+CREATE TABLE `penerimaan_barang` (
+  `id_laporan` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `id_campaign` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `tanggal_dibuat` datetime NOT NULL,
+  `tanggal_diacc` datetime DEFAULT NULL,
+  `link_video` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `foto` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `dokumen` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `flag` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci ROW_FORMAT=COMPACT;
+
+--
+-- Dumping data untuk tabel `penerimaan_barang`
+--
+
+INSERT INTO `penerimaan_barang` (`id_laporan`, `id_campaign`, `tanggal_dibuat`, `tanggal_diacc`, `link_video`, `foto`, `dokumen`, `status`, `flag`) VALUES
+('LPRN-0001-0001', 'CMPG-0001-0001', '2020-05-28 00:00:00', '2020-05-29 00:00:00', 'http://youtube.com/bagibarang', 'uploads/gambarCampaign/kemanusiaan.jpeg', '', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `penerima_donasi`
+--
+
+CREATE TABLE `penerima_donasi` (
+  `id_penerima` varchar(255) NOT NULL,
+  `nama_penerima` varchar(255) NOT NULL,
+  `no_ktp` varchar(255) NOT NULL,
+  `alamat` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -251,8 +331,31 @@ CREATE TABLE `volunteer` (
 --
 
 INSERT INTO `volunteer` (`id_volunteer`, `email`, `nama`, `no_ktp`, `password`, `jenis_kelamin`, `alamat`, `foto`, `no_tlp`, `status`) VALUES
-('VLNT-1503-0001', 'antonandre7@gmail.com', 'Antonius Andre Yuwono P', '3514131223', '373ddeb1f939096f041c8b46d7bb58a2ae07faa8c51c93d805a71c53b581d3aeccb0964bdd0de393d7d998accb832a99dc5dae754b072f112afe08e93f18493cnq5ksSwn3Ew9vJvYIADU6p/a9CKJOKCNe/dLJquIvbw=', 'Laki - Laki', 'Jln. Adhiyaksa no 33a Sukapura Bandung Jawa Barat(2345)', 'uploads/fotoProfil/ft_v/ft_v-VLNT-1503-0001-Antonius_Andre.jpg', '084347131931', 11),
-('VLNT-1503-0002', 'm.renaldy.alvianto@gmail.com', 'Alvin', '3514131223', '41a5ce018fbcf487116e355e13bfb8a40c8c6be30ab490c21e1669debb5b8791f7a8f8583f521a000afcf00063738ccce3f2d8e2024f7eb6cbb2919866d3e6bfRgbrM9PFQwbZtUXvBXafP+QTUGKr1ju4z213EbQrLGE=', 'Laki - Laki', 'Jln. Adhiyaksa no 33a Sukapura Bandung Jawa Barat(2345)', 'uploads/fotoProfil/ft_v//ft_v-VLNT-1503-0001-Antonius_Andre.jpg', '084347131931', 1);
+('VLNT-1503-0001', 'adhidevara@student.telkomuniversity.ac.id', 'Adhi Devara', '2341324134', '9c4d5e47ddcc2c505de9f6485da0fb38f04b5fecd4709259da72df311b59729a891702b3b64c5555b7aadd84197f16505d4d3c1b18262e19906f2862a6827421mi4+duaHs/fgp6PifP9eug1jSRWQNnbCW9nucvJ+UNY=', 'laki - laki ', 'Bandung', 'uploads/fotoProfil/ft_v/ft_v-VLNT-1503-0001-Adhi_Devara.png', '0816382864', 11),
+('VLNT-1503-0002', 'antonandre7@gmail.com', 'Antonius Andre', '', '59aef1e829c987490c5108669c8f4f74cbef85a413fb0e19ca160598194d8a0d7397f99433065996cf78646021ceb988a3b6e7f9894f933e273f19adf5bf52faFjRS7+k9nOcvgZFlVA9H1IVCKR47eQROmPKZ9iQSNvQ=', 'laki - laki ', '', 'uploads/fotoProfil/ft_v/ft_v-VLNT-1503-0002-Antonius_Andre2.jpg', '', 11),
+('VLNT-1503-0003', 'talithasyahdas@gmail.com', 'Talitha Syahda Salsabila', '3306065502990001', '2f5df6a98f0d757aa1b8b7525c789aa2bf66812189bfba943d76b6b6f774276913674751d13c2eb9cb5753934848697f2a11269c9cc1076ade74366ff201a9a09Wjul56ADPKaMWLzv/XiKARZ8fj96vgYMMbulilqMZg=', 'perempuan', 'Pangenjurutengah rt2 rw3 purworejo jateng', 'uploads/fotoProfil/ft_v/ft_v-VLNT-1503-0003-Talitha_Syahda_Salsabila1.jpeg', '081236015766', 11);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `wallet`
+--
+
+CREATE TABLE `wallet` (
+  `id_wallet` varchar(255) NOT NULL,
+  `id_campaign` varchar(255) NOT NULL,
+  `private_key` varchar(255) NOT NULL,
+  `public_key` varchar(255) NOT NULL,
+  `address` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `wallet`
+--
+
+INSERT INTO `wallet` (`id_wallet`, `id_campaign`, `private_key`, `public_key`, `address`) VALUES
+('WALL-0001-0001', 'CMPG-0001-0001', 'a260ab09c0f2818264085aa69d1f257ad1a6a8d260131c37ff5f9828796021c6', '7814d38b5c0d24ba3a32591bcc412026197ce40dc6c957721cfef5c278789569', 'TBYGKIMBHH737XLZIMYIKJJD4VZI2V4SV3KYY23M'),
+('WALL-0002-0002', 'CMPG-0002-0002', '1c2c141b15da80842737336413fad91a6f9d2937d3b4375b378cc963c7cad4ec', 'a3c89bbbcc23f9a9e77a4de3267c0fcf468b99b5a291bb17736bb3bb70be8e20', 'TBYYH7LWMD573BGGISGKKOYJREXZ5XW63KKJRW3U');
 
 --
 -- Indexes for dumped tables
@@ -282,16 +385,28 @@ ALTER TABLE `campaign`
   ADD KEY `id_volunteer` (`id_volunteer`);
 
 --
+-- Indeks untuk tabel `donasi`
+--
+ALTER TABLE `donasi`
+  ADD PRIMARY KEY (`id_donasi`);
+
+--
 -- Indeks untuk tabel `donatur`
 --
 ALTER TABLE `donatur`
   ADD PRIMARY KEY (`id_donatur`);
 
 --
--- Indeks untuk tabel `laporan_donasi`
+-- Indeks untuk tabel `kategori_barang`
 --
-ALTER TABLE `laporan_donasi`
-  ADD PRIMARY KEY (`id_laporan`);
+ALTER TABLE `kategori_barang`
+  ADD PRIMARY KEY (`id_kategori_barang`);
+
+--
+-- Indeks untuk tabel `kategori_campaign`
+--
+ALTER TABLE `kategori_campaign`
+  ADD PRIMARY KEY (`id_kategori_campaign`);
 
 --
 -- Indeks untuk tabel `paket`
@@ -299,6 +414,18 @@ ALTER TABLE `laporan_donasi`
 ALTER TABLE `paket`
   ADD PRIMARY KEY (`id_paket`),
   ADD KEY `id_campaign` (`id_campaign`);
+
+--
+-- Indeks untuk tabel `penerimaan_barang`
+--
+ALTER TABLE `penerimaan_barang`
+  ADD PRIMARY KEY (`id_laporan`);
+
+--
+-- Indeks untuk tabel `penerima_donasi`
+--
+ALTER TABLE `penerima_donasi`
+  ADD PRIMARY KEY (`id_penerima`);
 
 --
 -- Indeks untuk tabel `pengelola`
@@ -311,6 +438,12 @@ ALTER TABLE `pengelola`
 --
 ALTER TABLE `volunteer`
   ADD PRIMARY KEY (`id_volunteer`);
+
+--
+-- Indeks untuk tabel `wallet`
+--
+ALTER TABLE `wallet`
+  ADD PRIMARY KEY (`id_wallet`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
