@@ -9,6 +9,7 @@ class C_pengelola extends CI_Controller {
 		if ($this->session->has_userdata('role_id') && $this->session->userdata('role_id') == 1) {
 			$this->load->model('M_akun');
 			$this->load->model('pengelola/M_pengelola');
+			$this->load->model('M_nem');
 		}
 		else{
 			redirect('MY_Controller/pages_404','refresh');
@@ -82,11 +83,25 @@ class C_pengelola extends CI_Controller {
 		}		
 	}
 
+	public function listDonasi()
+	{
+		$data['campaign'] = $this->M_akun->selectAll('*', 'campaign');
+		$this->load->view('dash_pengelola/hal_listDonasi', $data);
+	}
+
+	public function transaksiDonasi()
+	{
+		$get = $this->input->get();
+		$data['txDonasi'] = $this->M_akun->selectWhere('*', 'donasi', 'id_campaign', $get['id_campaign']);
+		$this->load->view('dash_pengelola/hal_transaksiDonasi', $data);
+	}
+
 	public function listBarangAll()
 	{
 		$data['barang'] = $this->M_akun->selectAll('*', 'barang');
 		$this->load->view('dash_pengelola/hal_listBarangAll', $data);
 	}
+
 
 	public function addVendor()
 	{

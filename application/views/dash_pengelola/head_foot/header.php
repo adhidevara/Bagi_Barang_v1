@@ -329,12 +329,12 @@
                             <li>
                                 <a href="<?= base_url() ?>listBarang">List Barang Donasi</a>
                             </li>
-                            <!-- <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/addVendor">Input Data Vendor</a>
-                            </li>
                             <li>
-                                <a href="<?= base_url() ?>pengelola/C_pengelola/addBarang">Input Data Barang</a>
-                            </li> -->
+                                <a href="<?= base_url() ?>listDonasi">List Donasi</a>
+                            </li>
+<!--                            <li>-->
+<!--                                <a href="--><?//= base_url() ?><!--pengelola/C_pengelola/addBarang">Input Data Barang</a>-->
+<!--                            </li>-->
                         </ul>
                     </li>
                     <li>

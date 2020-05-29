@@ -53,6 +53,7 @@ $route['default_controller'] = 'MY_Controller';
 $route['dashboard_pengelola'] = 'pengelola/C_pengelola';
 $route['campaignList'] = 'pengelola/C_pengelola/campaignList';
 $route['listBarang'] = 'pengelola/C_pengelola/listBarangAll';
+$route['listDonasi'] = 'pengelola/C_pengelola/listDonasi';
 $route['sortBarang'] = 'pengelola/C_pengelola/sortBarang';
 $route['verifLaporan'] = 'pengelola/C_pengelola/verifLapBelanja';
 $route['register_pengelola'] = 'pengelola/C_pengelola/addPengelola';
