@@ -148,6 +148,7 @@
 													<th>Tanggal Donasi</th>
 													<th>Message</th>
 													<th>Timestamp</th>
+													<th>Sender</th>
 													<th>Recipient</th>
 													<th>Namespace</th>
 													<th>Mosaic</th>
@@ -160,11 +161,12 @@
 														<td><?=$dataBC->tanggal_donasi?></td>
 														<td><?=$dataBC->message?></td>
 														<td><?=$dataBC->timeStamp?></td>
-														<td><?=$dataBC->recipient?></td>
+														<td><a target="_blank" href="https://testnet-explorer.nemtool.com/#/s_account?account=<?=$dataBC->sender?>"><?=substr($dataBC->sender, 0, 15)."..."?></a></td>
+														<td><a target="_blank" href="https://testnet-explorer.nemtool.com/#/s_account?account=<?=$dataBC->recipient?>"><?=substr($dataBC->recipient, 0, 15)."..."?></a></td>
 														<td><?=$dataBC->namespaceId?></td>
 														<td><?=$dataBC->mosaicName?></td>
 														<td><?=$dataBC->quantity?></td>
-														<td><?=$dataBC->txHash?></td>
+														<td><a target="_blank" href="https://testnet-explorer.nemtool.com/#/s_tx?hash=<?=$dataBC->txHash?>"><?=substr($dataBC->txHash, 0, 15)."..."?></a></td>
 													</tr>
 												<?php } ?>
 											</table>

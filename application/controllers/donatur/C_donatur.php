@@ -81,9 +81,12 @@ class C_donatur extends CI_Controller {
 		$data = array(
 			'id_donasi' => $id_donasi,
 			'id_campaign' => $id_campaign,
+			'id_donatur' => $this->session->userdata('id_donatur'),
+			'id_barang' => $id_barang,
 			'tanggal_donasi' => date("Y-m-d H:i:s"),
-			'message' => $id_barang.' '.$form['nama_barang'],
+			'message' => $form['nama_barang'],
 			'timeStamp' => $sendMosaic['resultPrepare']['timeStamp'],
+			'sender' => $this->session->userdata('address'),
 			'recipient' => $sendMosaic['resultPrepare']['recipient'],
 			'namespaceId' => $sendMosaic['resultPrepare']['mosaics'][0]['mosaicId']['namespaceId'],
 			'mosaicName' => $sendMosaic['resultPrepare']['mosaics'][0]['mosaicId']['name'],
