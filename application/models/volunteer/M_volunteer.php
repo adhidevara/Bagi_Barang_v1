@@ -176,9 +176,10 @@
 	}
 
 	public function notifBarangDonasi($where){
-		$this->db->select("nama_barang, jumlah_barang, satuan_barang");
+		$this->db->select("barang.id_campaign, id_barang, id_volunteer, barang.id_donatur, nama, judul_campaign, nama_barang, jumlah_barang");
 		$this->db->from('campaign');
 		$this->db->join('barang', 'campaign.id_campaign = barang.id_campaign');
+		$this->db->join('donatur', 'barang.id_donatur = donatur.id_donatur');
 		$this->db->where('id_volunteer', $where);
 
 		return $this->db->get();

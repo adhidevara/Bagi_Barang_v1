@@ -105,7 +105,7 @@
                                     <li>
                                         <a href="javascript:void(0);">
                                             <div class="icon-circle bg-deep-orange">
-                                                <i class="material-icons">assignment</i>
+                                                <i class="material-icons">date_range</i>
                                             </div>
                                             <div class="menu-info">
                                                 <h4><?=$not->judul_campaign?></h4>
@@ -120,12 +120,12 @@
                                     <li>
                                         <a href="javascript:void(0);">
                                             <div class="icon-circle bg-deep-orange">
-                                                <i class="material-icons">assignment</i>
+                                                <i class="material-icons">archive</i>
                                             </div>
                                             <div class="menu-info">
-                                                <h4><?=$dtBrg->nama_barang?></h4>
+                                                <h4><?=$dtBrg->nama?></h4>
                                                 <p>
-                                                    <i class="material-icons">access_time</i> jumlah barang di donasikan  <?=$dtBrg->jumlah_barang?> <?=$dtBrg->satuan_barang?>  
+                                                    <i class="material-icons">control_point</i> donasi di campaign  <?=$dtBrg->judul_campaign?>   
                                                 </p>
                                             </div>
                                         </a>
