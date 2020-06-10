@@ -67,7 +67,38 @@ class C_donatur extends CI_Controller {
 			$id_barang.' '.$form['nama_barang'],
 			$jumlah_barang
 		);
-		redirect('donatur/C_donatur/prosesFormDonasi2?id_barang='.$id_barang.'&id_campaign='.$id_campaign.'&nama_barang='.$form['nama_barang'].'&jumlah_barang='.$jumlah_barang);
+
+		//Donatur to Campaign
+		$address = $this->M_akun->selectWhere('*', "wallet", 'id_campaign', $id_campaign);
+		$sendNem = $this->sendNem($address[0]->address);
+		$sendMosaic = $this->sendMosaic(
+			$this->session->userdata('privateKey'),
+			$this->session->userdata('publicKey'),
+			$address[0]->address,
+			$id_barang.' '.$form['nama_barang'],
+			$jumlah_barang
+		);
+		$id_donasi = $this->M_akun->gen_id('donasi', 'id_donasi', 'DONATE-0001-');
+		$data = array(
+			'id_donasi' => $id_donasi,
+			'id_campaign' => $id_campaign,
+			'id_donatur' => $this->session->userdata('id_donatur'),
+			'id_barang' => $id_barang,
+			'tanggal_donasi' => date("Y-m-d H:i:s"),
+			'message' => $form['nama_barang'],
+			'timeStamp' => $sendMosaic['resultPrepare']['timeStamp'],
+			'sender' => $this->session->userdata('address'),
+			'recipient' => $sendMosaic['resultPrepare']['recipient'],
+			'namespaceId' => $sendMosaic['resultPrepare']['mosaics'][0]['mosaicId']['namespaceId'],
+			'mosaicName' => $sendMosaic['resultPrepare']['mosaics'][0]['mosaicId']['name'],
+			'quantity'=> $sendMosaic['resultPrepare']['mosaics'][0]['quantity'],
+			'txHash' => $sendMosaic['resultCommit']['result']['transactionHash']['data']
+		);
+		$this->M_akun->insert('donasi', $data);
+		// END OF NEM TRANSACTION
+
+		//redirect('donatur/C_donatur/prosesFormDonasi2?id_barang='.$id_barang.'&id_campaign='.$id_campaign.'&nama_barang='.$form['nama_barang'].'&jumlah_barang='.$jumlah_barang);
+		redirect('donatur/C_donatur/donasiSaya');
 	}
 
 	public function prosesFormDonasi2()
