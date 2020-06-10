@@ -61,5 +61,5 @@ $route['verifikasi_volunteer'] = 'pengelola/C_pengelola/VerifVolun';
 $route['404_override'] = 'MY_Controller/pages_404';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['test'] = 'pengelola/C_pengelola/test';
+$route['test'] = 'MY_Controller/pages_404';
 //$route['testNEM'] = 'nem-lib/Nem_test/sendNem';

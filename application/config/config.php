@@ -2,6 +2,8 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 date_default_timezone_set('Asia/Jakarta');
+
+$config['node_nis'] = "http://8c0ddf5f7629.ngrok.io";
 /*
 |--------------------------------------------------------------------------
 | Base Site URL

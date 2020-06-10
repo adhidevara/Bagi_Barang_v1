@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 require_once APPPATH.'controllers/nem-lib/nem-php.php';
-	
+
 class C_donatur extends CI_Controller {
 
 	public function __construct()
@@ -16,7 +16,7 @@ class C_donatur extends CI_Controller {
 			redirect('MY_Controller/pages_404','refresh');
 		}
 	}
-	
+
 	public function detailCampaign()
 	{
 		$data['id'] = $this->input->get('id_campaign');
@@ -67,24 +67,29 @@ class C_donatur extends CI_Controller {
 			$id_barang.' '.$form['nama_barang'],
 			$jumlah_barang
 		);
+		redirect('donatur/C_donatur/prosesFormDonasi2?id_barang='.$id_barang.'&id_campaign='.$id_campaign.'&nama_barang='.$form['nama_barang'].'&jumlah_barang='.$jumlah_barang);
+	}
+
+	public function prosesFormDonasi2()
+	{
 		//Donatur to Campaign
-		$address = $this->M_akun->selectWhere('*', "wallet", 'id_campaign', $id_campaign);
+		$address = $this->M_akun->selectWhere('*', "wallet", 'id_campaign', $_GET['id_campaign']);
 		$sendNem = $this->sendNem($address[0]->address);
 		$sendMosaic = $this->sendMosaic(
 			$this->session->userdata('privateKey'),
 			$this->session->userdata('publicKey'),
 			$address[0]->address,
-			$id_barang.' '.$form['nama_barang'],
-			$jumlah_barang
-			);
+			$_GET['id_barang'].' '.$_GET['nama_barang'],
+			$_GET['jumlah_barang']
+		);
 		$id_donasi = $this->M_akun->gen_id('donasi', 'id_donasi', 'DONATE-0001-');
 		$data = array(
 			'id_donasi' => $id_donasi,
-			'id_campaign' => $id_campaign,
+			'id_campaign' => $_GET['id_campaign'],
 			'id_donatur' => $this->session->userdata('id_donatur'),
-			'id_barang' => $id_barang,
+			'id_barang' => $_GET['id_barang'],
 			'tanggal_donasi' => date("Y-m-d H:i:s"),
-			'message' => $form['nama_barang'],
+			'message' => $_GET['nama_barang'],
 			'timeStamp' => $sendMosaic['resultPrepare']['timeStamp'],
 			'sender' => $this->session->userdata('address'),
 			'recipient' => $sendMosaic['resultPrepare']['recipient'],
@@ -120,16 +125,16 @@ class C_donatur extends CI_Controller {
 
 		if ( ! $this->upload->do_upload('foto')){
 			$data = array(
-						'id_donatur' 	=> $this->session->userdata('id_donatur'),
-						'nama' 		 	=> $form['nama'],
-					  	'email' 	 	=> $form['email'],
-					  	'no_tlp' 	 	=> $form['no_tlp'],
-					  	'password' 	 	=> $this->session->userdata('password'),
-					  	'jenis_kelamin' => $form['jekel'],
-					  	'no_ktp' 		=> $form['no_ktp'],
-					  	'alamat' 		=> $form['alamat'],
-					  	'status' 		=> $this->session->userdata('status')
-					  	);
+				'id_donatur' 	=> $this->session->userdata('id_donatur'),
+				'nama' 		 	=> $form['nama'],
+				'email' 	 	=> $form['email'],
+				'no_tlp' 	 	=> $form['no_tlp'],
+				'password' 	 	=> $this->session->userdata('password'),
+				'jenis_kelamin' => $form['jekel'],
+				'no_ktp' 		=> $form['no_ktp'],
+				'alamat' 		=> $form['alamat'],
+				'status' 		=> $this->session->userdata('status')
+			);
 
 			$this->session->set_userdata($data);
 			$this->M_Donatur->updateData('donatur','id_donatur',$data,$where);
@@ -139,16 +144,16 @@ class C_donatur extends CI_Controller {
 		else{
 			$dataFoto = $this->upload->data();
 			$data = array(
-						'id_donatur' 	=> $this->session->userdata('id_donatur'),
-						'nama' 		 	=> $form['nama'],
-					  	'email' 	 	=> $form['email'],
-					  	'no_tlp' 	 	=> $form['no_tlp'],
-					  	'password' 	 	=> $this->session->userdata('password'),
-					  	'jenis_kelamin' => $form['jekel'],
-					  	'no_ktp' 		=> $form['no_ktp'],
-					  	'alamat' 		=> $form['alamat'],
-					  	'status' 		=> $this->session->userdata('status'),
-					  	'foto' 			=> 'uploads/fotoProfil/ft_d/'.$dataFoto['file_name']);
+				'id_donatur' 	=> $this->session->userdata('id_donatur'),
+				'nama' 		 	=> $form['nama'],
+				'email' 	 	=> $form['email'],
+				'no_tlp' 	 	=> $form['no_tlp'],
+				'password' 	 	=> $this->session->userdata('password'),
+				'jenis_kelamin' => $form['jekel'],
+				'no_ktp' 		=> $form['no_ktp'],
+				'alamat' 		=> $form['alamat'],
+				'status' 		=> $this->session->userdata('status'),
+				'foto' 			=> 'uploads/fotoProfil/ft_d/'.$dataFoto['file_name']);
 
 			$this->session->set_userdata($data);
 			$this->M_Donatur->updateData('donatur','id_donatur',$data,$where);
@@ -200,41 +205,41 @@ class C_donatur extends CI_Controller {
 								  </script>";
 			$this->load->view('dash_donatur/profile',$data);
 		}
-		
+
 	}
 
-	// public function prosesDonasi()
-	// {
-	// 	$form = $this->input->post();
-	// 	$id_donasi = $this->M_akun->gen_id('donasi','id_donasi','DNSI-1101-');
+	 /*public function prosesDonasi()
+	 {
+	 	$form = $this->input->post();
+	 	$id_donasi = $this->M_akun->gen_id('donasi','id_donasi','DNSI-1101-');
 
-	// 	if ($form['metode_bayar'] == "Virtual Account") {
-	// 		$data = array(
-	// 				'id_donasi' => $id_donasi,
-	// 				'id_campaign' => $form['id_campaign'],
-	// 				'id_donatur' => $this->session->userdata('id_donatur'),
-	// 				'nominal_donasi' => $form['nominal'],
-	// 				'nominal_transfer' => $form['nominal'],
-	// 				'metode_pembayaran' => $form['metode_bayar'],
-	// 				'status' => "pending"
-	// 			);
-	// 		$insert = $this->M_Donatur->insertData('donasi', $data);
-	// 	}
-	// 	else{
-	// 		$data = array(
-	// 				'id_donasi' => $id_donasi,
-	// 				'id_campaign' => $form['id_campaign'],
-	// 				'id_donatur' => $this->session->userdata('id_donatur'),
-	// 				'nominal_donasi' => $form['nominal'],
-	// 				'nominal_transfer' => 0,
-	// 				'metode_pembayaran' => $form['metode_bayar'],
-	// 				'status' => 'pending'
-	// 			);
-	// 		$insert = $this->M_Donatur->insertData('donasi', $data);
-	// 	}
+	 	if ($form['metode_bayar'] == "Virtual Account") {
+	 		$data = array(
+	 				'id_donasi' => $id_donasi,
+	 				'id_campaign' => $form['id_campaign'],
+	 				'id_donatur' => $this->session->userdata('id_donatur'),
+	 				'nominal_donasi' => $form['nominal'],
+	 				'nominal_transfer' => $form['nominal'],
+	 				'metode_pembayaran' => $form['metode_bayar'],
+	 				'status' => "pending"
+	 			);
+	 		$insert = $this->M_Donatur->insertData('donasi', $data);
+	 	}
+	 	else{
+	 		$data = array(
+	 				'id_donasi' => $id_donasi,
+	 				'id_campaign' => $form['id_campaign'],
+	 				'id_donatur' => $this->session->userdata('id_donatur'),
+	 				'nominal_donasi' => $form['nominal'],
+	 				'nominal_transfer' => 0,
+	 				'metode_pembayaran' => $form['metode_bayar'],
+	 				'status' => 'pending'
+	 			);
+	 		$insert = $this->M_Donatur->insertData('donasi', $data);
+	 	}
 
-	// 	echo json_encode($insert);
-	// }
+	 	echo json_encode($insert);
+	 }*/
 
 	public function donasiSaya()
 	{
@@ -242,7 +247,7 @@ class C_donatur extends CI_Controller {
 		$data['data'] = $this->M_Donatur->tampilDonasi($id);
 		$this->load->view('dash_donatur/donasiSaya',$data);
 	}
-	
+
 	public function tampilanEditDonasi()
 	{
 		$id_c = $this->input->post('id');
@@ -303,7 +308,7 @@ class C_donatur extends CI_Controller {
 	{
 		$config = [
 			'net' => 'testnet',
-			'nis_address' => 'http://da6b5019653b.ngrok.io',
+			'nis_address' => $this->config->item('node_nis'),
 			'private' => 'b0d702aa81007286bf72e3d2416e248e4034a1f3d7681c8cc035cf8b467c8c0c',
 			'public' => '1fb28e2f003bb1eee8c60eef5f0f766b6f488c3467e4140e4e904201b1a3b9f4',
 			'security_check' => false //leave it true if you are not sure;
@@ -332,7 +337,7 @@ class C_donatur extends CI_Controller {
 	{
 		$config = [
 			'net' => 'testnet',
-			'nis_address' => 'http://da6b5019653b.ngrok.io',
+			'nis_address' => $this->config->item('node_nis'),
 			'private' => $privateKey,
 			'public' => $publicKey,
 			'security_check' => false //leave it true if you are not sure;
@@ -371,7 +376,7 @@ class C_donatur extends CI_Controller {
 	}
 
 }
-	
+
 /* End of file controllername.php */
 /* Location: ./application/controllers/controllername.php */
 ?>
