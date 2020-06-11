@@ -2,7 +2,7 @@
 	<div class="fh5co-hero">
 		<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/banner.jpg);">
 			<div class="desc animate-box">
-				<h2><strong>DONASI  </strong> UNTUK <strong>ANAK-ANAK MISKIN</strong></h2>
+				<h2><strong>DONASI  </strong> UNTUK <strong>PENDIDIKAN ANAK INDONESIA</strong></h2>
 				<span>Yuk <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">Donasi Sekarang Juga</a></span>
 				<span><a class="btn btn-primary btn-lg" href="#">Donasi Sekarang</a></span>
 			</div>
