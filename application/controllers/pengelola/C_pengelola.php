@@ -145,6 +145,7 @@ class C_pengelola extends CI_Controller {
 	public function formPaket()
 	{
 		$data['data'] = $this->M_pengelola->selectCampPkt();
+		$data['dataKt'] = $this->M_pengelola->selectKategoriBrg();
 
 		$this->load->view('dash_pengelola/head_foot/header');
 		$this->load->view('dash_pengelola/hal_formPaket', $data);

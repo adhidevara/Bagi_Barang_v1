@@ -38,10 +38,9 @@
                                     <div class="col-sm-4">
                                         <select class="form-control show-tick" name="jenis_barang">
                                             <option value="">-- Kategori Paket --</option>
-                                            <option value="Sembako">Sembako</option>
-                                            <option value="Pakaian">Pakaian</option>
-                                            <option value="Obat-Obatan">Obat-Obatan</option>
-                                            <option value="Lainnya">Lainnya</option>
+											<?php foreach ($dataKt as $da) { ?>
+                                            <option value="<?=$da->id_kategori_barang?>"><?=$da->nama_kategori_barang?></option>
+											<?php } ?>
                                         </select>
                                     </div>
 <!--                                    <div class="col-sm-4">-->

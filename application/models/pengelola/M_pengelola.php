@@ -48,6 +48,14 @@ class M_pengelola extends CI_Model {
 		return $this->db->get()->result();
 	}
 
+	public function selectKategoriBrg()
+	{
+		$this->db->select('*');
+		$this->db->from('kategori_barang');
+
+		return $this->db->get()->result();
+	}
+
 	public function selectBarangPaket($id_campaign, $jenis_barang)
 	{
 		$this->db->select('*');
