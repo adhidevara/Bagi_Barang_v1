@@ -301,11 +301,14 @@ class C_penerima extends CI_Controller {
 
 	public function proAccPaket()
 	{
+		
+		$id_penerima = $this->M_akun->gen_id('penerima_donasi', 'id_penerima', 'PNRM-0001-');
 		$id_paket = $this->input->get('id_paket');
 		$id_campaign = $this->input->get('id_campaign');
 		$data = array('id_paket' => $id_paket,
 					  'tanggal_diterima' => DATE('Y-m-d H:i:s'),
-					  'status' => 'Telah diterima oleh Penerima Donasi' 
+					  'status' => 'Telah diterima oleh Penerima Donasi',
+					  'id_penerima_donasi' => $id_penerima
 					);
 		$data2 = array('flag' => 1);
 
@@ -431,6 +434,7 @@ class C_penerima extends CI_Controller {
 					$this->M_volunteer->insert('penerimaan_barang', $data);
 					$this->M_volunteer->insert('penerima_donasi', $data2);
 					$this->M_volunteer->update('id_campaign', $id_campaign, 'campaign', $data3);
+					
 
 					redirect('penerima/C_penerima/VbuatLaporan');
 				}
