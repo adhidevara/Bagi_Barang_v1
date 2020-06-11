@@ -10,7 +10,7 @@ class C_laporan extends C_pengelola {
 		$get = $this->input->get();
 
 		$data = array('tanggal_diacc' => date('Y-m-d H:i:s'), 'status' => 'Approved');
-		$this->M_akun->update('id_laporan', $get['id_laporan'], 'laporan_donasi', $data);
+		$this->M_akun->update('id_laporan', $get['id_laporan'], 'penerimaan_donasi', $data);
 		redirect('pengelola/C_pengelola/verifLapBelanja','refresh');
 	}
 
