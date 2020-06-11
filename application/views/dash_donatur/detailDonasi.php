@@ -49,7 +49,9 @@
                 <?php } ?>
             </tr>
         </table>
-        <br><br>
+        <br>
+        <small>Catatan : <br> Jika tombol lacak belum muncul / tidak dapat di akses pada kolom aksi, barang yang anda kirim belum sampai ke pengelola & pengelola belum mengirimkan barang ke penerima donasi.</small> <br> <br>
+        <br>
         <a href="<?php echo base_url(); ?>donatur/C_donatur/donasiSaya" class="btn btn-primary btn-sm">Kembali</a>
         <br><br>
     </div><br>
@@ -80,7 +82,7 @@
                                 <a href="#"><i class="icon-dribbble2"></i></a>
                                 <a href="#"><i class="icon-youtube"></i></a>
                             </p>
-                            <p>Copyright 2016 Free Html5 <a href="#">Charity</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+                            <p><b>@ 2020 Bagi Barang</b><br><small>BagiBarang adalah merek dagang dari PT Bagi Barang yang sudah terdaftar di Republik Indonesia.</small></p>
                         </div>
                     </div>
                 </div>

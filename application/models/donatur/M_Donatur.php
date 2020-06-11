@@ -24,7 +24,7 @@
 
 		function formKategoriBarang($id_campaign)
 		{
-			$this->db->select('*');
+			$this->db->select('DISTINCT(nama_kategori_barang) as nama_kategori_barang, id_kategori_barang');
 			$this->db->from('barang_dibutuhkan c');
 			$this->db->join('kategori_barang k', 'c.kategori_barang = k.id_kategori_barang');
 			$this->db->where('id_campaign', $id_campaign);
@@ -62,8 +62,10 @@
 			$this->db->select("*, 
 				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
 				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
-				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
-			$this->db->from('campaign');
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl',
+				timestampdiff(day,tanggal_campaign, batas_campaign) as 'selisih'");
+			$this->db->from('campaign c');
+			$this->db->join('kategori_campaign k', 'c.kategori_campaign = k.id_kategori_campaign');
 			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) <= 100');
 			$this->db->like('judul_campaign',$where);
 
@@ -95,8 +97,10 @@
 			$this->db->select("*, 
 				timestampdiff(day, tanggal_campaign, batas_campaign) as 'awal', 
 				timestampdiff(day, tanggal_campaign,batas_campaign) - timestampdiff(day,tanggal_campaign, now()) as 'sisa', 
-				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl'");
-			$this->db->from('campaign');
+				round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) as 'hsl',
+				timestampdiff(day,tanggal_campaign, batas_campaign) as 'selisih'");
+			$this->db->from('campaign c');
+			$this->db->join('kategori_campaign k', 'c.kategori_campaign = k.id_kategori_campaign');
 			$this->db->where('round(timestampdiff(day,tanggal_campaign, now()) / timestampdiff(day, tanggal_campaign,batas_campaign) * 100, 2) <= 100');
 			$this->db->where('kategori_campaign', $kategori);
 
@@ -184,9 +188,11 @@
 
 		function laporanDonasi($id)
 		{
-			$this->db->select('*');
-			$this->db->from('penerimaan_barang');
-			$this->db->where('id_campaign', $id);
+			$this->db->select('id_laporan, nama_penerima, tanggal_diacc, link_video, dokumen');
+			$this->db->from('penerima_donasi pd');
+			$this->db->join('paket pk', 'pd.id_penerima=pk.id_penerima_donasi');
+			$this->db->join('penerimaan_barang pb', 'pk.id_campaign=pb.id_campaign');
+			$this->db->where('pk.id_campaign', $id);
 			return $this->db->get()->result();
 		}
 

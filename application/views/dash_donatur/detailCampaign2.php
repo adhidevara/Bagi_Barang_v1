@@ -140,7 +140,7 @@
 
 											<br><br>
 
-											<h2 style="margin-left: 5%">Blockchain Transaction List</h2>
+											<!-- <h2 style="margin-left: 5%">Blockchain Transaction List</h2>
 											<p style="margin-left: 5%">Berikut adalah list transaksi donasi : </p>
 											<table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
 												<tr style="background-color: lightgrey">
@@ -170,7 +170,7 @@
 													</tr>
 												<?php } ?>
 											</table>
-											<br><br>
+											<br><br> -->
 
                                             <p style="margin-left: 5%">
                                                 <b style="color: black">

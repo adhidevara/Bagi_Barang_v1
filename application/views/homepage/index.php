@@ -2,7 +2,7 @@
 	<div class="fh5co-hero">
 		<div class="fh5co-cover text-center" data-stellar-background-ratio="0.5" style="background-image: url(<?php echo base_url(); ?>assets/images/banner.jpg);">
 			<div class="desc animate-box">
-				<h2><strong>Donate</strong> for the <strong>Poor Children</strong></h2>
+				<h2><strong>DONASI  </strong> UNTUK <strong>ANAK-ANAK MISKIN</strong></h2>
 				<span>Yuk <a href="http://frehtml5.co/" target="_blank" class="fh5co-site-name">Donasi Sekarang Juga</a></span>
 				<span><a class="btn btn-primary btn-lg" href="#">Donasi Sekarang</a></span>
 			</div>
@@ -19,9 +19,9 @@
 								<i class="icon-profile-male"></i>
 							</span>
 							<div class="feature-copy">
-								<h3>Become a volunteer</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<h3>Menjadi volunteer</h3>
+								<p>Menjadi Sukarelawan untuk membantu sesama.</p>
+								<p><a href="#">Pelajari lebih lanjut</a></p>
 							</div>
 						</div>
 
@@ -33,9 +33,9 @@
 								<i class="icon-happy"></i>
 							</span>
 							<div class="feature-copy">
-								<h3>Happy Giving</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<h3>Senang Memberi</h3>
+								<p>Dengan memberi anda membuat beban mereka menjadi ringan.</p>
+								<p><a href="#">Pelajari lebih lanjut</a></p>
 							</div>
 						</div>
 
@@ -46,9 +46,9 @@
 								<i class="icon-wallet"></i>
 							</span>
 							<div class="feature-copy">
-								<h3>Donation</h3>
-								<p>Facilis ipsum reprehenderit nemo molestias. Aut cum mollitia reprehenderit.</p>
-								<p><a href="#">Learn More</a></p>
+								<h3>Donasi</h3>
+								<p>Berdonasi barang-barang yang sudah tidak terpakai tapi masih layak digunakan.</p>
+								<p><a href="#">Pelajari lebih lanjut</a></p>
 							</div>
 						</div>
 					</div>
@@ -60,8 +60,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Recent From Blog</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+						<h3>Pilihan Kampanye Bagi Barang</h3>
+						<p>pilih kampanye yang direkomendasikan oleh kita.</p>
 					</div>
 				</div>
 			</div>
@@ -154,20 +154,20 @@
 				<div class="row">
 					<div class="col-md-4">
 						<div class="feature-text">
-							<h3>Love</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<h3>Cinta</h3>
+							<p>Cinta juga dapat diartikan sebagai suatu perasaan dalam diri seseorang akibat faktor pembentuknya. Dalam konteks filosofi cinta merupakan sifat baik yang mewarisi semua kebaikan, perasaan belas kasih dan kasih sayang.</p>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="feature-text">
-							<h3>Compassion</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<h3>Berbelas Kasih</h3>
+							<p> kepedulian adalah emosi manusia yang muncul akibat penderitaan orang lain. Lebih kuat daripada empati, perasaan ini biasanya memunculkan usaha mengurangi penderitaan orang lain.</p>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="feature-text">
-							<h3>Charity</h3>
-							<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+							<h3>Memberi</h3>
+							<p>Memberi itu adalah melepaskan sama sekali kendali tentang sesuatu hal kepada orang lain, sehingga mereka bisa melakukan apa pun yang mereka suka kepada barang yang diberikan.</p>
 						</div>
 					</div>
 				</div>
@@ -182,7 +182,7 @@
 
 				<div class="row">
 					<div class="col-md-6 col-md-offset-3 text-center heading-section animate-box">
-						<h3>Berdasarkan Kategori</h3>
+						<h3>Pilih Kategori Favoritmu</h3>
 						<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p> -->
 					</div>
 				</div>
@@ -193,35 +193,35 @@
 						<ul id="fh5co-portfolio-list">
 
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByBencanaAlam[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0004" class="color-3">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-CMPG-0001" class="color-3">
 									<div class="case-studies-summary">
-										<span>Give Love</span>
+										<span>Beri Cinta</span>
 										<h2><?php echo $campaignByBencanaAlam[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 						
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPendidikan[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0003" class="color-4">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-CMPG-0002" class="color-4">
 									<div class="case-studies-summary">
-										<span>Give Love</span>
+										<span>Beri Cinta</span>
 										<h2><?php echo $campaignByPendidikan[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 
 							<li class="one-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByPantiAsuhan[0]->gambar; ?>); "> 
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0001" class="color-5">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-CMPG-0003" class="color-5">
 									<div class="case-studies-summary">
-										<span>Give Love</span>
+										<span>Beri Cinta</span>
 										<h2><?php echo $campaignByPantiAsuhan[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
 							</li>
 							<li class="two-third animate-box" data-animate-effect="fadeIn" style="background-image: url(<?php echo base_url().$campaignByDifabel[0]->gambar; ?>); ">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-0001-0002" class="color-6">
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/viewCampaignByKategori?id=KTGR-CMPG-0004" class="color-6">
 									<div class="case-studies-summary">
-										<span>Give Love</span>
+										<span>Beri Cinta</span>
 										<h2><?php echo $campaignByDifabel[0]->nama_kategori_campaign; ?></h2>
 									</div>
 								</a>
@@ -246,8 +246,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
-						<h3>Our Philantrophist</h3>
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit est facilis maiores, perspiciatis accusamus asperiores sint consequuntur debitis.</p>
+						<h3>Para Filantropi</h3>
+						<p> Filantropi adalah konseptualisasi dari praktek memberi (giving), pelayanan (services) dan asosiasi (association) secara sukarela untuk membantu pihak lain yang membutuhkan sebagai ekspresi rasa cinta.</p>
 					</div>
 				</div>
 			</div>
@@ -256,34 +256,34 @@
 					<div class="col-md-4">
 						<div class="fh5co-testimonial text-center animate-box">
 							<figure>
-								<img src="<?php echo base_url(); ?>assets/images/person_1.jpg" alt="user">
+								<img src="<?php echo base_url(); ?>assets/images/profile.png" alt="user">
 							</figure>
 							<blockquote>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+								<p>&ldquo;dan berilah kabar yang menykakan kepada orang yang sabar;(Yaitu) orang-orang yang apabila menimpa kepada mereka suatu musibah, mereka berkata : sesungguhnya kita ini dari Allah dan sesungguhnya kepadaNyalah kita semua akan kembali(Qs. Al-baqarah 155-156).&rdquo;</p>
 							</blockquote>
-							<span>Jean Doe, XYZ Co.</span>
+							<span>Rina S.</span>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="fh5co-testimonial text-center animate-box">
 							<figure>
-								<img src="<?php echo base_url(); ?>assets/images/person_2.jpg" alt="user">
+								<img src="<?php echo base_url(); ?>assets/images/profile.png" alt="user">
 							</figure>
 							<blockquote>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+								<p>&ldquo;Sudahkan anda menabung untuk akhirat kelak nanti ? Bersedekahlah sebelum terlambat.&rdquo;</p><br><br><br><br>
 							</blockquote>
-							<span>John Doe, XYZ Co.</span>
+							<span>Amanda S.</span>
 						</div>
 					</div>
 					<div class="col-md-4">
 						<div class="fh5co-testimonial text-center animate-box">
 							<figure>
-								<img src="<?php echo base_url(); ?>assets/images/person_3.jpg" alt="user">
+								<img src="<?php echo base_url(); ?>assets/images/profile.png" alt="user">
 							</figure>
 							<blockquote>
-								<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.&rdquo;</p>
+								<p>&ldquo;Dan apa yang kamu infakkan allah akan menggantinya dan Dialah pemberi rezeki yang sebaik-baiknya(Qs. Saba : 39).&rdquo;</p><br><br><br>
 							</blockquote>
-							<span>John Doe, XYZ Co.</span>
+							<span>Supri S.</span>
 						</div>
 					</div>
 				</div>
@@ -365,7 +365,7 @@
 								<a href="#"><i class="icon-dribbble2"></i></a>
 								<a href="#"><i class="icon-youtube"></i></a>
 							</p>
-							<p>Copyright 2016 Free Html5 <a href="#">Charity</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+							<p><b>@ 2020 Bagi Barang</b><br><small>BagiBarang adalah merek dagang dari PT Bagi Barang yang sudah terdaftar di Republik Indonesia.</small></p>
 						</div>
 					</div>
 				</div>

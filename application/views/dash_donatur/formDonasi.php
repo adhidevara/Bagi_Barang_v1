@@ -123,7 +123,7 @@
                                 <a href="#"><i class="icon-dribbble2"></i></a>
                                 <a href="#"><i class="icon-youtube"></i></a>
                             </p>
-                            <p>Copyright 2016 Free Html5 <a href="#">Charity</a>. All Rights Reserved. <br>Made with <i class="icon-heart3"></i> by <a href="http://freehtml5.co/" target="_blank">Freehtml5.co</a> / Demo Images: <a href="https://unsplash.com/" target="_blank">Unsplash</a></p>
+                            <p><b>@ 2020 Bagi Barang</b><br><small>BagiBarang adalah merek dagang dari PT Bagi Barang yang sudah terdaftar di Republik Indonesia.</small></p>
                         </div>
                     </div>
                 </div>

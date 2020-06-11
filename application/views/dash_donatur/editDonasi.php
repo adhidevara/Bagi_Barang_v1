@@ -54,19 +54,19 @@
                     </div>
                     <div class="form-group">
                         <div class="form-line">
-                            Resi <small style="color: red">*</small><input type="text" class="form-control" name="resi" placeholder="Masukkan No Resi" required="" />
+                            Resi <small style="color: red">*</small><input type="text" class="form-control" name="resi" value="<?php echo $data[0]->resi ?>" required="" />
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="form-line">
                             Kurir <small style="color: red">*</small>
                             <select class="form-control" name="kurir">
-                                <option value=" ">--- Pilih Kurir ---</option>
-                                <option value="sembako">J&T</option>
-                                <option value="Obat-obatan">JNE</option>
-                                <option value="Pakaian">TIKI</option>
-                                <option value="sembako">Wahana</option>
-                                <option value="sembako">Lainnya</option>
+                                <option value="<?php echo $data[0]->kurir ?>"><?php echo $data[0]->kurir ?></option>
+                                <option value="J&T">J&T</option>
+                                <option value="JNE">JNE</option>
+                                <option value="TIKI">TIKI</option>
+                                <option value="Wahana">Wahana</option>
+                                <option value="Lainnya">Lainnya</option>
                             </select>
                         </div>
                     </div><br>

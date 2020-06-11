@@ -78,6 +78,8 @@
                         </div>
 
                         <div class="body">
+                            <br>
+                            <p style="color: black;text-align: right;">*Untuk Melacak Barang Donasi Anda dapat melihat pada menu<b style="color: #black"> Detail.</b></p><br>
                             <div class="table-responsive">
                                 <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                     <thead>
@@ -97,7 +99,7 @@
                                             <th>Nama Barang</th>
                                             <th>Jumlah Barang</th>
                                             <th>Keterangan</th>
-                                            <th style="width: 230px">Action</th>
+                                            <th style="width: 250px;">Action</th>
                                         </tr>
 
                                     </tfoot>
@@ -121,13 +123,13 @@
                                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanEditDonasi">
                                                         <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
                                                         <button type="submit" class="btn btn-success" style="float: left; margin-right: 5px">
-                                                        <i class="fa fa-edit"></i>
+                                                        <i class="fa fa-edit"></i> <small> edit </small>
                                                         </button>    
                                                     </form>
                                                     <form method="post" action="<?php echo base_url(); ?>donatur/C_donatur/tampilanDetailDonasi">
                                                         <input type="hidden" name="id" value="<?php echo $dt->id_barang; ?>">
                                                         <button type="submit" class="btn btn-info" style="float: left; margin-right: 5px">
-                                                        <i class="fa fa-bars"></i>
+                                                        <i class="fa fa-bars"></i> <small> detail </small>
                                                         </button>    
                                                     </form>
                                                 </td>    
@@ -135,7 +137,12 @@
                                     <?php } ?>
                                     
                                     </tbody>
-                                </table>
+                                </table><br>
+                                <p style="color: black;">
+                                <b> Keterangan : </b> <br>
+                                <b style="color: #ff9600"> Input No Resi </b> = anda harus mengisi no resi & nama kurir pada menu edit jika anda sudah mengirim barang dan mendapat no resi. <br>
+                                <b style="color: #00b0e4">Data Lengkap </b>= anda sudah melengkapi no resi & nama kurir.
+                            </p>
                             </div>
                         </div>
                     </div>

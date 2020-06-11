@@ -204,9 +204,9 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6 col-sm-6 text-left fh5co-link">
-            <a href="<?php echo base_url() ?>donatur/C_Bank/index">Bank</a>
-            <a href="#">Faq</a>
-            <a href="#">Contact</a>
+            <!-- <a href="<?php echo base_url() ?>donatur/C_Bank/index">Tentang</a> -->
+            <a href="#">Tanya Jawab</a>
+            <a href="#">Kontak</a>
           </div>
           <div class="col-md-6 col-sm-6 text-right fh5co-social">
             <a href="#" class="grow"><i class="icon-facebook2"></i></a>

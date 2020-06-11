@@ -80,24 +80,31 @@
 					$data['selectAllCampaign'] = $this->M_Donatur->viewCampaign();
 					$jml = $this->M_Donatur->progressCampaign($dt->id_campaign);
 					// $persen = ($jml[0]->jml/$dt->target_campaign)*100;
+					$date1=date_create($dt->tanggal_campaign);
+					$date2=date_create(date("Y-m-d H:i:s"));
+					$diff=date_diff($date1,$date2);
+					$selisih2 = (int) $diff->format("%a");
+					$persen = (int) (($selisih2 / $dt->selisih) * 100);
 					// echo "<pre>";
-					// print_r ($dt->id_campaign);
+					// print_r ($persen);
 					// echo "</pre>";
+
+					// if ($dt->hsl > 0) { //memunculkan campaign yang aktif
 					?>
 						<div class="col-lg-4 col-md-4 col-sm-6">
 							<div class="fh5co-blog animate-box">
-								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px; border-radius: 5px"></a><br><br>
+								<a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><img class="img-responsive" src="<?php echo base_url().$dt->gambar; ?>" style="width: 100%; height: 250px; border-radius: 10px"></a><br><br>
 								<div class="blog-text" style="height: 280px; width: 100%;">
 									<div class="prod-title">
 										<h3><a href="<?php echo base_url(); ?>donatur/C_donatur/detailCampaign?id_campaign=<?= $dt->id_campaign ?>"><?php echo $dt->judul_campaign; ?></a></h3>
-										<span class="comment"><small>Kateogri : <?php echo $dt->kategori_campaign; ?> Hari </small></span><br>
+										<span class="comment"><small>Kategori : <?php echo $dt->nama_kategori_campaign; ?></small></span><br>
 										
 										<font style="color: orange; size: 5px">Waktu campaign</font> 
 											<div class="progress" style="background-color: lightgrey">
 
 				                               <div class="progress-bar bg-orange progress-bar-striped active" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"
-				                                    style=" width: <?=$dt->hsl?>%; background-color: orange">
-				                                    <small style="color: white;margin-bottom: 5px;"><?=$dt->hsl?>%&nbsp;(Sisa&nbsp;<?php echo $dt->sisa; ?>&nbsp;Hari)</small>
+				                                    style=" width: <?=$persen?>%; background-color: orange">
+				                                    <small style="color: white;margin-bottom: 5px;"><?=$persen?>%&nbsp;(Sisa&nbsp;<?php echo $dt->sisa; ?>&nbsp;Hari)</small>
 				                               </div>
 				                               
 				                           </div>
@@ -117,7 +124,7 @@
 
 				<div class="row">
 					<div class="col-md-4 col-md-offset-4 text-center animate-box">
-						<!-- <a href="#" class="btn btn-primary btn-lg">Lebih Banyak</a> -->
+						<a href="#" class="btn btn-primary btn-lg">Lebih Banyak</a>
 					</div>
 				</div>
 
