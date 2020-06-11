@@ -20,7 +20,7 @@ class C_paket extends C_pengelola {
 				'jenis_barang' => $form['jenis_barang'],
 				'tanggal_sortir' => date('Y-m-d H:i:s'),
 				'asal' => 'Warehouse (Jakarta)',
-				'tujuan' => $camp[0]->tujuan,
+				'tujuan' => $camp[0]->alamat_campaign,
 				'keterangan' => $form['keterangan'],
 				'status' => 'Proses Penyortiran'
 			);
