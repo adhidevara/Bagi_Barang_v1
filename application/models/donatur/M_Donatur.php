@@ -196,6 +196,21 @@
 			return $this->db->get()->result();
 		}
 
+		function totalBarang($id_campaign)
+		{
+			$query = $this->db->query("
+				SELECT tot.id_barang_butuh as id_barang_butuh, tot.id_campaign as id_campaign, tot.nama_barang as nama_barang, tot.nama_kategori_barang, tot.jumlah - tot.jumlah_barang as jumlah, tot.satuan_barang as satuan_barang
+				FROM (SELECT b.id_campaign, b.nama_barang, bd.jumlah, SUM(b.jumlah_barang) as jumlah_barang, bd.id_barang_butuh as id_barang_butuh, kb.nama_kategori_barang as nama_kategori_barang, bd.satuan_barang as satuan_barang                                                     
+					  FROM barang b 
+					  JOIN barang_dibutuhkan bd ON bd.nama_barang = b.nama_barang
+					  JOIN kategori_barang kb ON kb.id_kategori_barang = bd.kategori_barang 
+					  GROUP BY b.nama_barang, bd.jumlah, b.id_campaign, bd.id_barang_butuh, kb.nama_kategori_barang, bd.satuan_barang) tot 
+				WHERE tot.id_campaign = '".$id_campaign."'
+			");
+
+			return $query->result();
+		}
+
 	}
 	
 	/* End of file modelName.php */

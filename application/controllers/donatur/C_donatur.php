@@ -24,6 +24,8 @@ class C_donatur extends CI_Controller {
 		$data['data2'] = $this->M_Donatur->barangDibutuhkan($data['id']);
 		$data['data3'] = $this->M_Donatur->barangTerkumpul($data['id']);
 		$data['dataBC'] = $this->M_akun->selectWhere('*', 'donasi', 'id_campaign', $data['id']);
+		$data['totalBrg'] = $this->M_Donatur->totalBarang($data['id']);
+
 		$this->load->view('dash_donatur/detailCampaign2',$data);
 	}
 

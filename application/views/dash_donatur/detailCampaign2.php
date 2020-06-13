@@ -96,7 +96,7 @@
                                                     </fieldset>
                                                 </section>
                                     
-                                        <div class="body"> 
+                                        <div class="body">
                                             <p style="margin-left: 5%">Berikut adalah list Barang yang dibutuhkan : </p> 
                                                 <table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
                                                        <tr style="background-color: lightgrey">
@@ -105,14 +105,15 @@
                                                            <th>Jumlah</th>
                                                            <th>Satuan</th>
                                                        </tr> 
-                                                <?php foreach ($data2 as $data2) { ?>
+                                                <?php foreach ($data2 as $data2) {
+                                                ?>
                                                         <tr>
                                                             <td><?php echo $data2->nama_barang; ?></td>
                                                             <td><?php echo $data2->nama_kategori_barang; ?></td>
                                                             <td><?php echo $data2->jumlah; ?></td>
                                                             <td><?php echo $data2->satuan_barang; ?></td>
                                                         </tr>
-                                                   
+
                                                 <?php } ?>
                                                     </table>
                                             <br><br>
@@ -138,6 +139,21 @@
                                                     </table>
                                             <br><br>
 
+											<h2 style="margin-left: 5%">Statistik Barang</h2>
+											<p style="margin-left: 5%">Berikut adalah list Statistik Barang : </p>
+											<table class="table" style="width: 90%; margin-left: 5%; border-radius: 5%">
+												<tr style="background-color: lightgrey">
+													<th>Nama Barang</th>
+													<th>Jumlah</th>
+												</tr>
+												<?php foreach ($totalBrg as $data3) { ?>
+													<tr>
+														<td><?php echo $data3->nama_barang; ?></td>
+														<td><?php echo $data3->jumlah; ?></td>
+													</tr>
+
+												<?php } ?>
+											</table>
 											<br><br>
 
 											<!-- <h2 style="margin-left: 5%">Blockchain Transaction List</h2>
