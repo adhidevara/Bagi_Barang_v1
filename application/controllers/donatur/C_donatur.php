@@ -23,7 +23,7 @@ class C_donatur extends CI_Controller {
 		$data['data'] = $this->M_Donatur->viewDetailCampaign($data['id']);
 		$data['data2'] = $this->M_Donatur->barangDibutuhkan($data['id']);
 		$data['data3'] = $this->M_Donatur->barangTerkumpul($data['id']);
-		$data['dataBC'] = $this->M_akun->selectWhere('*', 'donasi', 'id_campaign', $data['id']);
+		// $data['dataBC'] = $this->M_akun->selectWhere('*', 'donasi', 'id_campaign', $data['id']);
 		$data['totalBrg'] = $this->M_Donatur->totalBarang($data['id']);
 
 		$this->load->view('dash_donatur/detailCampaign2',$data);
@@ -301,6 +301,7 @@ class C_donatur extends CI_Controller {
 			'satuan_barang' => $form['satuan_barang'],
 			'catatan_barang' => $form['catatan_barang'],
 			'resi' => $form['resi'],
+			'kurir' => $form['kurir'],
 			'status' => 'Sedang Dikirim'
 		);
 		$this->M_Donatur->updateData('barang', 'id_barang',$data,$id_barang);

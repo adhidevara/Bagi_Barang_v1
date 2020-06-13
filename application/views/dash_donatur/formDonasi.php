@@ -42,7 +42,7 @@
                     <div class="form-group">
                         <div class="form-line">
                             Jumlah Barang <small style="color: red">*</small>
-                            <input type="number" class="form-control" name="jumlah_barang" placeholder="contoh : 100 " required="" />
+                            <input type="number" class="form-control" name="jumlah_barang" min="1" placeholder="contoh : 100 " required="" />
                         </div>
                     </div>
                     <div class="form-group">
