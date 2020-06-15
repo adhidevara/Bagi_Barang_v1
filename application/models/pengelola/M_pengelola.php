@@ -126,6 +126,17 @@ class M_pengelola extends CI_Model {
 
 		return $this->db->get()->result();
 	}
+
+	public function donasiList($id_campaign)
+	{
+		$this->db->select('d.*, don.nama as nama_donatur, b.satuan_barang as satuan_barang');
+		$this->db->from('donasi d');
+		$this->db->join('barang b', 'd.id_barang = b.id_barang');
+		$this->db->join('donatur don', 'd.id_donatur = don.id_donatur');
+		$this->db->where('d.id_campaign', $id_campaign);
+
+		return $this->db->get()->result();
+	}
 }
 
 /* End of file modelName.php */

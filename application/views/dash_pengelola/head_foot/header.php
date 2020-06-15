@@ -25,6 +25,9 @@
     <!-- Morris Chart Css-->
     <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/morrisjs/morris.css" rel="stylesheet" />
 
+	<!-- Sweetalert Css -->
+	<link href="<?php echo base_url(); ?>assets/dashAssets/plugins/sweetalert/sweetalert.css" rel="stylesheet" />
+
     <!-- JQuery DataTable Css -->
     <link href="<?php echo base_url(); ?>assets/dashAssets/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 

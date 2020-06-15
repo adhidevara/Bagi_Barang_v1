@@ -92,7 +92,8 @@ class C_pengelola extends CI_Controller {
 	public function transaksiDonasi()
 	{
 		$get = $this->input->get();
-		$data['txDonasi'] = $this->M_akun->selectWhere('*', 'donasi', 'id_campaign', $get['id_campaign']);
+		$data['txDonasi'] = $this->M_pengelola->donasiList($get['id_campaign']);
+
 		$this->load->view('dash_pengelola/hal_transaksiDonasi', $data);
 	}
 
